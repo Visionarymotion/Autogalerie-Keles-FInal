@@ -5,6 +5,9 @@ import { Logo } from '@/components/logo'
 import AdminVehicleTable from './vehicle-table'
 import LogoutButton from './logout-button'
 
+// Nie prerendern - immer dynamisch laden
+export const dynamic = 'force-dynamic'
+
 export default async function AdminDashboard() {
   const vehicles = await getVehicles()
 

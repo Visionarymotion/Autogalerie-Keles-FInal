@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import VehicleForm from '../vehicle-form'
 
+// Nie prerendern
+export const dynamic = 'force-dynamic'
+
 export default function NewVehiclePage() {
   return (
     <main className="min-h-screen bg-background">

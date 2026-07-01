@@ -5,6 +5,9 @@ import { getVehicleById } from '@/lib/vehicle-store'
 import { Logo } from '@/components/logo'
 import VehicleForm from '../vehicle-form'
 
+// Nie prerendern
+export const dynamic = 'force-dynamic'
+
 export default async function EditVehiclePage({ params }: { params: { id: string } }) {
   const vehicle = await getVehicleById(Number(params.id))
   if (!vehicle) notFound()
