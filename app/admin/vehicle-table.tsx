@@ -15,7 +15,10 @@ export default function AdminVehicleTable({ initialVehicles }: { initialVehicles
   async function handleDelete(id: number, label: string) {
     if (!confirm(`"${label}" wirklich unwiderruflich löschen?`)) return
     setDeletingId(id)
-    const res = await fetch(`/api/admin/vehicles/${id}`, { method: 'DELETE' })
+    
+    // ÄNDERUNG HIER: Übergabe der ID als Query-Parameter an den Basis-Pfad
+    const res = await fetch(`/api/admin/vehicles?id=${id}`, { method: 'DELETE' })
+    
     if (res.ok) {
       setVehicles((prev) => prev.filter((v) => v.id !== id))
       router.refresh()
