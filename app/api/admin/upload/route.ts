@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { put } from '@vercel/blob'
 
+const STORE_ID = process.env.BLOBMain_STORE_ID
+
 export async function POST(request: Request) {
   const form = await request.formData()
   const file = form.get('file') as File | null
@@ -19,6 +21,7 @@ export async function POST(request: Request) {
   const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_')
   const blob = await put(`fahrzeuge/${Date.now()}-${safeName}`, file, {
     access: 'public',
+    storeId: STORE_ID,
   })
 
   return NextResponse.json({ url: blob.url })

@@ -20,10 +20,11 @@ import { put, list } from '@vercel/blob'
 import { vehicles as seedVehicles, type Vehicle } from './vehicles-data'
 
 const BLOB_PATH = 'data/vehicles-data.json'
+const STORE_ID = process.env.BLOBMain_STORE_ID
 
 export async function getVehicles(): Promise<Vehicle[]> {
   try {
-    const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 })
+    const { blobs } = await list({ prefix: BLOB_PATH, limit: 1, storeId: STORE_ID })
     if (blobs.length === 0) return seedVehicles
     const res = await fetch(blobs[0].url, { cache: 'no-store' })
     if (!res.ok) return seedVehicles
@@ -41,6 +42,7 @@ export async function saveVehicles(vehicles: Vehicle[]): Promise<void> {
     contentType: 'application/json',
     addRandomSuffix: false,
     allowOverwrite: true,
+    storeId: STORE_ID,
   })
 }
 
