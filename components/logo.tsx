@@ -8,7 +8,7 @@ import Image from 'next/image'
  */
 export function Logo({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
   return (
-    <Link href="#home" className="flex items-center group" aria-label="Autogalerie Keles – Startseite">
+    <Link href="/" className="flex items-center group" aria-label="Autogalerie Keles – Startseite">
       <div className="relative h-12 md:h-14 w-[220px] md:w-[260px]">
         <Image
           src="/images/logo-real-transparent.png"

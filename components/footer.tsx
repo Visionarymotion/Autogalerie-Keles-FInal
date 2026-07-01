@@ -35,11 +35,11 @@ export default function Footer() {
             <p className="text-[11px] tracking-widest text-white/40 uppercase mb-5 font-bold">Navigation</p>
             <ul className="space-y-3" aria-label="Footer Navigation">
               {[
-                { label: 'Startseite', href: '#home' },
-                { label: 'Fahrzeuge', href: '#fahrzeuge' },
-                { label: 'Leistungen', href: '#leistungen' },
-                { label: 'Über uns', href: '#ueber-uns' },
-                { label: 'Kontakt', href: '#kontakt' },
+                { label: 'Startseite', href: '/' },
+                { label: 'Fahrzeuge', href: '/fahrzeuge' },
+                { label: 'Leistungen', href: '/#leistungen' },
+                { label: 'Über uns', href: '/#ueber-uns' },
+                { label: 'Kontakt', href: '/#kontakt' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link

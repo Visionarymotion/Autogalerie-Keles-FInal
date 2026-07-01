@@ -7,10 +7,10 @@ import { Logo } from '@/components/logo'
 import { siteConfig } from '@/lib/site-config'
 
 const navLinks = [
-  { label: 'Fahrzeugbestand', href: '#fahrzeuge' },
-  { label: 'Service', href: '#leistungen' },
-  { label: 'Über uns', href: '#ueber-uns' },
-  { label: 'Kontakt', href: '#kontakt' },
+  { label: 'Fahrzeugbestand', href: '/fahrzeuge' },
+  { label: 'Service', href: '/#leistungen' },
+  { label: 'Über uns', href: '/#ueber-uns' },
+  { label: 'Kontakt', href: '/#kontakt' },
 ]
 
 function getTodayIndex() {
