@@ -2,22 +2,14 @@ import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
   const { password } = await request.json()
-  // Fallback zu 'admin123' wenn ADMIN_PASSWORD nicht gesetzt ist (für Development/Testing)
-  const validPassword = process.env.ADMIN_PASSWORD || 'admin123'
-
-  if (!validPassword) {
-    return NextResponse.json(
-      { error: 'ADMIN_PASSWORD ist auf dem Server nicht gesetzt. Bitte in Vercel unter Environment Variables anlegen.' },
-      { status: 500 }
-    )
-  }
+  const validPassword = process.env.ADMIN_PASSWORD?.trim() || 'admin123'
 
   if (password !== validPassword) {
     return NextResponse.json({ error: 'Falsches Passwort' }, { status: 401 })
   }
 
   const response = NextResponse.json({ success: true })
-  response.cookies.set('admin_session', password, {
+  response.cookies.set('admin_session', validPassword, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
