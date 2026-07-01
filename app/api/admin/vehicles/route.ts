@@ -1,7 +1,14 @@
 import { NextResponse } from 'next/server'
 import { getVehicles, saveVehicles } from '@/lib/vehicle-store'
+import type { Vehicle } from '@/lib/vehicles-data'
 
-// Löschen eines Fahrzeugs
+// Deine bestehende GET Funktion
+export async function GET() { ... }
+
+// Deine bestehende POST Funktion
+export async function POST(request: Request) { ... }
+
+// NEU: Die DELETE Funktion hier unten anfügen
 export async function DELETE(request: Request) {
   const { searchParams } = new URL(request.url)
   const id = Number(searchParams.get('id'))
@@ -11,18 +18,4 @@ export async function DELETE(request: Request) {
   
   await saveVehicles(filtered)
   return NextResponse.json({ success: true })
-}
-
-// Bearbeiten eines Fahrzeugs
-export async function PUT(request: Request) {
-  const body = await request.json()
-  const vehicles = await getVehicles()
-  
-  const index = vehicles.findIndex((v) => v.id === body.id)
-  if (index === -1) return NextResponse.json({ error: 'Nicht gefunden' }, { status: 404 })
-
-  vehicles[index] = { ...vehicles[index], ...body }
-  await saveVehicles(vehicles)
-  
-  return NextResponse.json(vehicles[index])
 }
