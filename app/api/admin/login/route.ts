@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
   const { password } = await request.json()
-  const validPassword = process.env.ADMIN_PASSWORD
+  // Fallback zu 'admin123' wenn ADMIN_PASSWORD nicht gesetzt ist (für Development/Testing)
+  const validPassword = process.env.ADMIN_PASSWORD || 'admin123'
 
   if (!validPassword) {
     return NextResponse.json(
