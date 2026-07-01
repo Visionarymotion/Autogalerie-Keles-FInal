@@ -9,18 +9,23 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  const isPublicAdminRoute = pathname === '/admin/login' || pathname === '/api/admin/login'
-  if (isPublicAdminRoute) return NextResponse.next()
+  // Erlauben Sie öffentliche Admin-Routen
+  if (pathname === '/admin/login' || pathname === '/api/admin/login') {
+    return NextResponse.next()
+  }
 
-  const session = request.cookies.get('admin_session')?.value
-  const validPassword = process.env.ADMIN_PASSWORD?.trim() || 'admin123'
+  // Alles andere unter /admin oder /api/admin ist geschützt
+  if (pathname.startsWith('/admin') || pathname.startsWith('/api/admin')) {
+    const session = request.cookies.get('admin_session')?.value
+    const validPassword = process.env.ADMIN_PASSWORD?.trim() || 'admin123'
 
-  if (session !== validPassword) {
-    if (pathname.startsWith('/api/')) {
-      return NextResponse.json({ error: 'Nicht autorisiert' }, { status: 401 })
+    if (session !== validPassword) {
+      if (pathname.startsWith('/api/')) {
+        return NextResponse.json({ error: 'Nicht autorisiert' }, { status: 401 })
+      }
+      const loginUrl = new URL('/admin/login', request.url)
+      return NextResponse.redirect(loginUrl)
     }
-    const loginUrl = new URL('/admin/login', request.url)
-    return NextResponse.redirect(loginUrl)
   }
 
   return NextResponse.next()
