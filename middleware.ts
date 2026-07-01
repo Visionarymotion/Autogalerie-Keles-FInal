@@ -6,24 +6,24 @@ import type { NextRequest } from 'next/server'
  * Schützt alle /admin/* Routes außer /admin/login
  */
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+  const pathname = request.nextUrl.pathname
 
-  // Login-Seite ist öffentlich - immer durchlassen
+  // Login-Seite ist immer öffentlich
   if (pathname === '/admin/login') {
     return NextResponse.next()
   }
 
-  // Für alle anderen /admin/* Routes: Cookie prüfen
-  const adminSessionCookie = request.cookies.get('admin_session')?.value
-  const expectedPassword = process.env.ADMIN_PASSWORD || 'admin123'
+  // Für alle anderen /admin/* Routes: Session prüfen
+  const sessionCookie = request.cookies.get('admin_session')?.value
+  const correctPassword = process.env.ADMIN_PASSWORD || 'admin123'
 
-  // Wenn Cookie nicht vorhanden oder nicht korrekt → Redirect zu Login
-  if (!adminSessionCookie || adminSessionCookie !== expectedPassword) {
-    const loginUrl = new URL('/admin/login', request.url)
-    return NextResponse.redirect(loginUrl)
+  if (sessionCookie !== correctPassword) {
+    // Kein gültiges Session-Cookie → zur Login-Seite
+    const url = new URL('/admin/login', request.url)
+    return NextResponse.redirect(url)
   }
 
-  // Cookie ist gültig → durchlassen
+  // Session ist gültig → durchlassen
   return NextResponse.next()
 }
 

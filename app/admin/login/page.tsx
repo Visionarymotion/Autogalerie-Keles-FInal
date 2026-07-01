@@ -16,12 +16,9 @@ export default function AdminLoginPage() {
     setLoading(true)
     setError('')
 
-    const normalizedPassword = password.trim()
-
-    if (normalizedPassword === 'admin123') {
-      document.cookie = 'admin_session=admin123; path=/; max-age=604800; samesite=lax'
-      router.push('/admin')
-      router.refresh()
+    const pwd = password.trim()
+    if (!pwd) {
+      setError('Passwort erforderlich')
       setLoading(false)
       return
     }
@@ -30,18 +27,20 @@ export default function AdminLoginPage() {
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: normalizedPassword }),
+        body: JSON.stringify({ password: pwd }),
       })
-      const data = await res.json()
-      if (!res.ok) {
-        setError(data.error || 'Login fehlgeschlagen')
-        setLoading(false)
+
+      if (res.ok) {
+        router.push('/admin')
+        router.refresh()
         return
       }
-      router.push('/admin')
-      router.refresh()
-    } catch {
-      setError('Verbindungsfehler. Bitte erneut versuchen.')
+
+      const data = await res.json()
+      setError(data.error || 'Falsches Passwort')
+      setLoading(false)
+    } catch (err) {
+      setError('Verbindungsfehler. Versuche es später erneut.')
       setLoading(false)
     }
   }
@@ -69,16 +68,22 @@ export default function AdminLoginPage() {
                 autoFocus
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Geben Sie das Admin-Passwort ein"
                 className="w-full px-4 py-3 text-[13px] bg-surface border border-border rounded-lg text-foreground focus:outline-none focus:border-[#c7c9cc] focus:ring-2 focus:ring-[#c7c9cc]/15 transition-all"
+                disabled={loading}
               />
             </div>
-            {error && <p className="text-[12px] text-red-400">{error}</p>}
+            {error && (
+              <p className="text-[12px] text-red-400 bg-red-400/10 p-2 rounded">
+                {error}
+              </p>
+            )}
             <button
               type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-[#c7c9cc] text-background text-[13px] font-semibold tracking-wide rounded-lg hover:bg-white transition-all disabled:opacity-60"
+              disabled={loading || !password}
+              className="w-full py-3 bg-[#c7c9cc] text-background text-[13px] font-semibold tracking-wide rounded-lg hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Anmelden...' : 'Anmelden'}
+              {loading ? 'Wird überprüft...' : 'Anmelden'}
             </button>
           </form>
         </div>
