@@ -13,7 +13,10 @@ export default async function AdminDashboard() {
   // Auth-Check im Page selbst
   const cookieStore = await cookies()
   const sessionCookie = cookieStore.get('admin_session')?.value
-  const validPassword = process.env.ADMIN_PASSWORD || 'admin123'
+  const validPassword = process.env.ADMIN_PASSWORD
+  if (!validPassword) {
+    throw new Error('ADMIN_PASSWORD ist nicht gesetzt. Bitte in Vercel unter Environment Variables anlegen.')
+  }
 
   if (sessionCookie !== validPassword) {
     // Redirect zur Login-Seite wenn nicht authentifiziert

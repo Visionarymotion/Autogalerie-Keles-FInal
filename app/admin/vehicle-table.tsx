@@ -79,7 +79,7 @@ export default function AdminVehicleTable({ initialVehicles }: { initialVehicles
               <td className="px-5 py-3.5">
                 <div className="flex items-center justify-end gap-3">
                   <Link 
-                    href={`/admin/edit/${v.id}`} 
+                    href={`/admin/fahrzeuge/${v.id}`} 
                     className="text-muted-foreground hover:text-[#c7c9cc] transition-colors" 
                     aria-label="Bearbeiten"
                   >
