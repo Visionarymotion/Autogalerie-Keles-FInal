@@ -4,13 +4,13 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Login-Seiten sind immer öffentlich
-  if (pathname === '/admin/login' || pathname === '/api/admin/login') {
+  // Alle /admin/login Requests erlauben (öffentlich)
+  if (pathname === '/admin/login') {
     return NextResponse.next()
   }
 
-  // Nur /admin/* Seiten (nicht API) prüfen
-  if (pathname.startsWith('/admin')) {
+  // Alles andere unter /admin blockieren und zu Login redirect
+  if (pathname === '/admin' || pathname.startsWith('/admin/')) {
     const session = request.cookies.get('admin_session')?.value
     const validPassword = process.env.ADMIN_PASSWORD?.trim() || 'admin123'
 
