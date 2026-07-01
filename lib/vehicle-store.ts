@@ -3,30 +3,29 @@
  * ---------------------------------------------------------
  * Speichert den Bestand als JSON-Datei in Vercel Blob Storage.
  *
- * SETUP (einmalig, im Vercel-Dashboard des Projekts):
- * 1. Storage-Tab → "Blob" → Store erstellen → mit Projekt verbinden
- *    (Vercel setzt dann automatisch die Umgebungsvariable
- *    BLOB_READ_WRITE_TOKEN — nichts weiter zu tun)
- * 2. Environment Variable ADMIN_PASSWORD setzen (euer Admin-Passwort)
- * 3. Neu deployen
+ * WICHTIG zu diesem Projekt: Der verbundene Blob-Store heißt
+ * "BLOBMain" (Vercels neueres Multi-Store-System). Dadurch
+ * bekommt ihr KEINE Standard-Variable "BLOB_READ_WRITE_TOKEN",
+ * sondern store-spezifische Variablen mit Präfix, u. a.
+ * "BLOBMain_STORE_ID". Der Code hier verweist deshalb bewusst
+ * auf process.env.BLOBMain_STORE_ID (siehe Vercel → Storage →
+ * euer Blob-Store → Quickstart-Codebeispiel, das exakt das zeigt).
  *
- * WICHTIG: Kein "storeId"-Parameter nötig/verwenden! Das Standard-
- * Setup mit einem einzigen Blob-Store braucht das nicht — ein
- * vorheriger Versuch hatte einen nicht existierenden
- * "BLOBMain_STORE_ID" referenziert, wodurch JEDES Speichern
- * (Hinzufügen/Bearbeiten/Löschen) fehlgeschlagen ist.
- *
- * Bis der Blob-Store das erste Mal beschrieben wurde, liefert
- * getVehicles() die echten Startdaten aus vehicles-data.ts (Fallback).
+ * SETUP-CHECK in Vercel:
+ * 1. Storage → Blob-Store "BLOBMain" → mit diesem Projekt verbunden?
+ * 2. Settings → Environment Variables → ist BLOBMain_STORE_ID für
+ *    "Production" gesetzt (nicht nur Preview)?
+ * 3. Nach jeder Änderung: neu deployen.
  */
 import { put, list } from '@vercel/blob'
 import { vehicles as seedVehicles, type Vehicle } from './vehicles-data'
 
 const BLOB_PATH = 'data/vehicles-data.json'
+const STORE_ID = process.env.BLOBMain_STORE_ID
 
 export async function getVehicles(): Promise<Vehicle[]> {
   try {
-    const { blobs } = await list({ prefix: BLOB_PATH, limit: 1 })
+    const { blobs } = await list({ prefix: BLOB_PATH, limit: 1, storeId: STORE_ID })
     if (blobs.length === 0) return seedVehicles
     const res = await fetch(blobs[0].url, { cache: 'no-store' })
     if (!res.ok) return seedVehicles
@@ -39,17 +38,23 @@ export async function getVehicles(): Promise<Vehicle[]> {
 }
 
 export async function saveVehicles(vehicles: Vehicle[]): Promise<void> {
+  if (!STORE_ID) {
+    throw new Error(
+      'BLOBMain_STORE_ID ist nicht gesetzt. Bitte in Vercel unter Settings → Environment Variables prüfen, ob diese Variable für "Production" existiert.'
+    )
+  }
   try {
     await put(BLOB_PATH, JSON.stringify(vehicles, null, 2), {
       access: 'public',
       contentType: 'application/json',
       addRandomSuffix: false,
       allowOverwrite: true,
+      storeId: STORE_ID,
     })
   } catch (err) {
     console.error('[vehicle-store] saveVehicles fehlgeschlagen:', err)
     throw new Error(
-      'Speichern im Blob-Store fehlgeschlagen. Prüft in Vercel unter Storage, ob ein Blob-Store existiert und mit diesem Projekt verbunden ist.'
+      'Speichern im Blob-Store fehlgeschlagen. Prüft in Vercel, ob der Blob-Store "BLOBMain" mit diesem Projekt verbunden ist und BLOBMain_STORE_ID für Production gesetzt ist.'
     )
   }
 }
