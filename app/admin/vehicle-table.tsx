@@ -16,7 +16,7 @@ export default function AdminVehicleTable({ initialVehicles }: { initialVehicles
     if (!confirm(`"${label}" wirklich unwiderruflich löschen?`)) return
     setDeletingId(id)
     
-    // ÄNDERUNG HIER: Übergabe der ID als Query-Parameter an den Basis-Pfad
+    // KORREKTUR: ID als Query-Parameter, nicht als Teil des Pfades
     const res = await fetch(`/api/admin/vehicles?id=${id}`, { method: 'DELETE' })
     
     if (res.ok) {
