@@ -1,0 +1,122 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme inline {
+  --font-sans: var(--font-inter), 'Inter Fallback', sans-serif;
+  --font-heading: var(--font-playfair);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-surface: var(--surface);
+  --color-dark: var(--dark);
+  --color-whatsapp: var(--whatsapp);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+}
+
+/* ======================================
+   DARK MODE – Design nach echtem Logo
+   und Referenzvideo: Schwarz/Anthrazit
+   mit Silber/Chrome-Akzent statt Gold.
+   ====================================== */
+:root {
+  color-scheme: dark;
+
+  --background: #0e0e0e;
+  --foreground: #f5f5f4;
+
+  --card: #181817;
+  --card-foreground: #f5f5f4;
+
+  --surface: #161615;
+
+  --dark: #0a0a0a;
+
+  /* "gold" Variable bleibt aus Kompatibilitätsgründen im Code,
+     zeigt jetzt aber auf den silbernen Akzent des echten Logos –
+     kein Gold mehr auf der ganzen Seite. */
+  --primary: #c7c9cc;
+  --primary-foreground: #0e0e0e;
+  --gold: #c7c9cc;
+
+  /* WhatsApp-Grün – bleibt unverändert leuchtend */
+  --whatsapp: #25d366;
+
+  --secondary: #212120;
+  --secondary-foreground: #f5f5f4;
+
+  --muted: #212120;
+  --muted-foreground: #9d9d99;
+
+  --border: #2a2a28;
+  --input: #2a2a28;
+  --ring: #c7c9cc;
+
+  --radius: 0.5rem;
+}
+
+html, body {
+  color-scheme: dark !important;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: #0e0e0e;
+    color: #f5f5f4;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    background-color: #0e0e0e;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #161615;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(199, 201, 204, 0.4);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c7c9cc;
+}
+
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(199, 201, 204, 0.35), transparent);
+}
+
+.section-alt {
+  background-color: #161615;
+}
+
+@keyframes whatsapp-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55), 0 4px 18px rgba(37, 211, 102, 0.35); }
+  50% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0), 0 4px 22px rgba(37, 211, 102, 0.5); }
+}
+.whatsapp-pulse {
+  animation: whatsapp-glow 2.4s ease-in-out infinite;
+}
