@@ -71,17 +71,21 @@ export default function VehicleForm({ vehicleId, initialData }: { vehicleId?: nu
     setSaving(true)
     setError('')
     try {
-      const url = isEdit ? `/api/admin/vehicles/${vehicleId}` : '/api/admin/vehicles'
+      // Zentraler API-Endpunkt mit ?id= für Bearbeiten
+      const url = isEdit ? `/api/admin/vehicles?id=${vehicleId}` : '/api/admin/vehicles'
       const method = isEdit ? 'PUT' : 'POST'
+      
       const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
+      
       if (!res.ok) {
         const data = await res.json()
         throw new Error(data.error || 'Speichern fehlgeschlagen')
       }
+      
       router.push('/admin')
       router.refresh()
     } catch (err: any) {
@@ -95,7 +99,6 @@ export default function VehicleForm({ vehicleId, initialData }: { vehicleId?: nu
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl">
-      {/* Fotos */}
       <div>
         <label className={labelClass}>Fotos</label>
         <div className="flex flex-wrap gap-3 mb-3">
