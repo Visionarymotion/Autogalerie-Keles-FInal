@@ -16,7 +16,7 @@ export default function AdminVehicleTable({ initialVehicles }: { initialVehicles
     if (!confirm(`"${label}" wirklich unwiderruflich löschen?`)) return
     setDeletingId(id)
     
-    // KORREKTUR: ID als Query-Parameter, nicht als Teil des Pfades
+    // KORREKTUR: ID als Query-Parameter, kein Pfad-Parameter
     const res = await fetch(`/api/admin/vehicles?id=${id}`, { method: 'DELETE' })
     
     if (res.ok) {
@@ -31,7 +31,7 @@ export default function AdminVehicleTable({ initialVehicles }: { initialVehicles
   if (vehicles.length === 0) {
     return (
       <div className="text-center py-20 bg-card border border-border rounded-xl text-muted-foreground text-[13.5px]">
-        Noch keine Fahrzeuge im Bestand. Klicke oben auf &bdquo;Neues Fahrzeug&ldquo;.
+        Noch keine Fahrzeuge im Bestand.
       </div>
     )
   }
@@ -77,7 +77,8 @@ export default function AdminVehicleTable({ initialVehicles }: { initialVehicles
               </td>
               <td className="px-5 py-3.5">
                 <div className="flex items-center justify-end gap-3">
-                  <Link href={`/admin/fahrzeuge/${v.id}`} className="text-muted-foreground hover:text-[#c7c9cc] transition-colors" aria-label="Bearbeiten">
+                  {/* HIER GEÄNDERT: Link zeigt jetzt auf /admin/edit/[id] */}
+                  <Link href={`/admin/edit/${v.id}`} className="text-muted-foreground hover:text-[#c7c9cc] transition-colors" aria-label="Bearbeiten">
                     <Pencil size={15} strokeWidth={1.8} />
                   </Link>
                   <button
