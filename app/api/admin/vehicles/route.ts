@@ -1,40 +1,28 @@
 import { NextResponse } from 'next/server'
 import { getVehicles, saveVehicles } from '@/lib/vehicle-store'
-import type { Vehicle } from '@/lib/vehicles-data'
 
-export async function GET() {
+// Löschen eines Fahrzeugs
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const id = Number(searchParams.get('id'))
+  
   const vehicles = await getVehicles()
-  return NextResponse.json(vehicles)
+  const filtered = vehicles.filter((v) => v.id !== id)
+  
+  await saveVehicles(filtered)
+  return NextResponse.json({ success: true })
 }
 
-export async function POST(request: Request) {
+// Bearbeiten eines Fahrzeugs
+export async function PUT(request: Request) {
   const body = await request.json()
   const vehicles = await getVehicles()
-  const nextId = vehicles.length > 0 ? Math.max(...vehicles.map((v) => v.id)) + 1 : 1
+  
+  const index = vehicles.findIndex((v) => v.id === body.id)
+  if (index === -1) return NextResponse.json({ error: 'Nicht gefunden' }, { status: 404 })
 
-  const newVehicle: Vehicle = {
-    id: nextId,
-    slug: body.slug || `${body.brand}-${body.model}-${nextId}`.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-    brand: body.brand,
-    model: body.model,
-    detail: body.detail || '',
-    description: body.description || '',
-    price: Number(body.price),
-    priceNote: body.priceNote || undefined,
-    firstRegistration: body.firstRegistration,
-    km: Number(body.km),
-    powerKw: Number(body.powerKw),
-    powerPs: Number(body.powerPs),
-    fuel: body.fuel,
-    transmission: body.transmission,
-    owners: Number(body.owners) || 1,
-    consumption: body.consumption || undefined,
-    emissions: body.emissions || undefined,
-    featured: Boolean(body.featured),
-    photos: Array.isArray(body.photos) ? body.photos : [],
-  }
-
-  const updated = [...vehicles, newVehicle]
-  await saveVehicles(updated)
-  return NextResponse.json(newVehicle, { status: 201 })
+  vehicles[index] = { ...vehicles[index], ...body }
+  await saveVehicles(vehicles)
+  
+  return NextResponse.json(vehicles[index])
 }
