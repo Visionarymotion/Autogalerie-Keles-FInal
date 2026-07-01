@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 import { getVehicleById } from '@/lib/vehicle-store'
 import { Logo } from '@/components/logo'
 import VehicleForm from '../vehicle-form'
@@ -9,6 +10,15 @@ import VehicleForm from '../vehicle-form'
 export const dynamic = 'force-dynamic'
 
 export default async function EditVehiclePage({ params }: { params: { id: string } }) {
+  // Auth-Check
+  const cookieStore = await cookies()
+  const sessionCookie = cookieStore.get('admin_session')?.value
+  const validPassword = process.env.ADMIN_PASSWORD || 'admin123'
+
+  if (sessionCookie !== validPassword) {
+    redirect('/admin/login')
+  }
+
   const vehicle = await getVehicleById(Number(params.id))
   if (!vehicle) notFound()
 

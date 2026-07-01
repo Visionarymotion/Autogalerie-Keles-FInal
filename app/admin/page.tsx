@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Plus } from 'lucide-react'
+import { cookies } from 'next/headers'
 import { getVehicles } from '@/lib/vehicle-store'
 import { Logo } from '@/components/logo'
 import AdminVehicleTable from './vehicle-table'
@@ -9,6 +10,26 @@ import LogoutButton from './logout-button'
 export const dynamic = 'force-dynamic'
 
 export default async function AdminDashboard() {
+  // Auth-Check im Page selbst
+  const cookieStore = await cookies()
+  const sessionCookie = cookieStore.get('admin_session')?.value
+  const validPassword = process.env.ADMIN_PASSWORD || 'admin123'
+
+  if (sessionCookie !== validPassword) {
+    // Redirect zur Login-Seite wenn nicht authentifiziert
+    return (
+      <main className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Authentifizierung erforderlich</h1>
+          <p className="text-muted-foreground mb-6">Bitte melden Sie sich zuerst an.</p>
+          <a href="/admin/login" className="inline-block px-6 py-3 bg-[#c7c9cc] text-background font-semibold rounded">
+            Zur Login-Seite
+          </a>
+        </div>
+      </main>
+    )
+  }
+
   const vehicles = await getVehicles()
 
   return (

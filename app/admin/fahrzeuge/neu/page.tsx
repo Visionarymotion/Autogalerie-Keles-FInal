@@ -1,12 +1,22 @@
 import { Logo } from '@/components/logo'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 import VehicleForm from '../vehicle-form'
 
 // Nie prerendern
 export const dynamic = 'force-dynamic'
 
-export default function NewVehiclePage() {
+export default async function NewVehiclePage() {
+  // Auth-Check
+  const cookieStore = await cookies()
+  const sessionCookie = cookieStore.get('admin_session')?.value
+  const validPassword = process.env.ADMIN_PASSWORD || 'admin123'
+
+  if (sessionCookie !== validPassword) {
+    redirect('/admin/login')
+  }
   return (
     <main className="min-h-screen bg-background">
       <header className="border-b border-border px-6 py-4 flex items-center justify-between">
