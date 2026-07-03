@@ -37,8 +37,5 @@ export default async function EditVehiclePage({ params }: { params: Promise<{ id
                         </Link>
                         <h1 className="text-[26px] font-[var(--font-heading)] font-semibold text-foreground mb-8">{vehicle.brand} {vehicle.model} bearbeiten</h1>
                         <VehicleForm vehicleId={vehicle.id} initialData={vehicle} />
-                </div>
-          </main>
-        )
+                </div>        )
 }
-</main>
