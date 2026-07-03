@@ -1,4 +1,4 @@
-import Link from 'next/link'
+üÜimport Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { notFound, redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
