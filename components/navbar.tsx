@@ -40,11 +40,11 @@ export default function Navbar() {
           </span>
           <span className="w-px h-3.5 bg-border" />
           <a
-            href={`tel:+${siteConfig.contact.whatsapp}`}
+            href={`tel:+${siteConfig.contact.ctaWhatsapp}`}
             className="flex items-center gap-2 text-[11.5px] text-muted-foreground hover:text-[#c7c9cc] transition-colors"
           >
             <Phone size={12} strokeWidth={1.8} className="text-[#c7c9cc]" />
-            {siteConfig.contact.phone}
+            {siteConfig.contact.ctaPhone}
           </a>
         </div>
       </div>
@@ -80,15 +80,15 @@ export default function Navbar() {
           {/* CTA – desktop */}
           <div className="hidden lg:flex items-center gap-5">
             <a
-              href={`tel:+${siteConfig.contact.whatsapp}`}
+              href={`tel:+${siteConfig.contact.ctaWhatsapp}`}
               className="flex items-center gap-2 text-[13px] text-muted-foreground hover:text-gold transition-colors duration-300 font-medium"
-              aria-label={`Jetzt anrufen: ${siteConfig.contact.phone}`}
+              aria-label={`Jetzt anrufen: ${siteConfig.contact.ctaPhone}`}
             >
               <Phone size={14} strokeWidth={1.8} />
-              <span>{siteConfig.contact.phone}</span>
+              <span>{siteConfig.contact.ctaPhone}</span>
             </a>
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+              href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-2.5 bg-gold text-white text-[12px] font-semibold tracking-widest uppercase hover:bg-gold/90 transition-all duration-300 rounded-sm"
@@ -126,14 +126,14 @@ export default function Navbar() {
             ))}
             <div className="pt-5 border-t border-border flex flex-col gap-3">
               <a
-                href={`tel:+${siteConfig.contact.whatsapp}`}
+                href={`tel:+${siteConfig.contact.ctaWhatsapp}`}
                 className="flex items-center gap-2 text-sm text-muted-foreground"
               >
                 <Phone size={14} strokeWidth={1.5} />
-                {siteConfig.contact.phone}
+                {siteConfig.contact.ctaPhone}
               </a>
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+                href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block text-center px-6 py-3 bg-gold text-white text-sm font-semibold tracking-wider uppercase rounded-sm"
