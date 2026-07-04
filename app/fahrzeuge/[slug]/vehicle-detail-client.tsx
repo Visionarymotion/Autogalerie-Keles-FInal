@@ -21,8 +21,8 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
     { label: 'Kraftstoff', value: vehicle.fuel, icon: Fuel },
     { label: 'Leistung', value: `${vehicle.powerKw} kW (${vehicle.powerPs} PS)`, icon: Zap },
     { label: 'Getriebe', value: vehicle.transmission, icon: Settings },
-    { label: 'Fahrzeughalter', value: String(vehicle.owners), icon: Users },
-  ]
+    { label: 'Fahrzeughalter', value: vehicle.owners ? String(vehicle.owners) : '', icon: Users },
+  ].filter((s) => s.value)
 
   return (
     <div className="max-w-7xl mx-auto px-5 lg:px-10 pb-24">
