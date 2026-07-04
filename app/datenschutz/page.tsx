@@ -57,9 +57,10 @@ export default function DatenschutzPage() {
             <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">4. Google Maps</h2>
             <p>
               Zur Anzeige unseres Standorts binden wir eine Karte von Google Maps ein (Google
-              Ireland Limited). Beim Aufruf der Seite mit eingebetteter Karte kann Google Daten
-              über Ihre Nutzung verarbeiten, ggf. auch außerhalb der EU. Rechtsgrundlage ist Art. 6
-              Abs. 1 lit. f DSGVO (übersichtliche Darstellung unseres Standorts). Weitere Infos:{' '}
+              Ireland Limited). Die Karte wird nicht automatisch geladen, sondern erst, wenn Sie
+              aktiv auf „Karte laden" klicken. Erst dann kann Google Daten über Ihre Nutzung
+              verarbeiten, ggf. auch außerhalb der EU. Rechtsgrundlage ist Ihre Einwilligung durch
+              den Klick (Art. 6 Abs. 1 lit. a DSGVO). Weitere Infos:{' '}
               <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
                 Datenschutzerklärung von Google
               </a>.
@@ -81,8 +82,9 @@ export default function DatenschutzPage() {
             <p>
               Diese Website verwendet aktuell keine eigenen Tracking- oder Marketing-Cookies.
               Technisch notwendige Cookies (z. B. zur grundlegenden Funktion der Seite) können
-              gesetzt werden. Eingebundene Drittinhalte (Google Maps) können eigene Cookies setzen
-              – siehe Punkt 4.
+              gesetzt werden. Ihre Entscheidung zum Laden der Google-Maps-Karte (siehe Punkt 4)
+              speichern wir lokal in Ihrem Browser (localStorage), damit Sie nicht bei jedem Besuch
+              erneut gefragt werden – hierbei werden keine Daten an uns übertragen.
             </p>
           </section>
 
