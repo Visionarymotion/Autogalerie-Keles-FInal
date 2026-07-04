@@ -32,6 +32,9 @@ export const siteConfig = {
     phone: '04731 3699444',
     phoneHref: '+4947313699444',
     whatsapp: '4947313699444',
+    ctaPhone: '0159 01290621',
+    ctaPhoneHref: '+4915901290621',
+    ctaWhatsapp: '4915901290621',
     email: 'auto@galerie-keles.com',
   },
 
@@ -70,7 +73,7 @@ export const siteConfig = {
     ownerName: 'Cengiz Keles',
     companyName: 'Autogalerie Keles – Cengiz Keles Autohandel',
     legalForm: 'Einzelunternehmen / Gewerbebetrieb',
-    vatId: null as string | null, // TODO (Kunde): USt-IdNr. nachreichen, falls vorhanden
+    vatId: 'DE 341445719' as string | null,
     taxNumber: null as string | null, // TODO (Kunde): Steuernummer nachreichen
     register: null as string | null, // TODO (Kunde): nur falls im Handelsregister eingetragen
   },
