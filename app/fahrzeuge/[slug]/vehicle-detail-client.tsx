@@ -69,7 +69,7 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
                 <ImageOff size={32} strokeWidth={1.2} className="text-muted-foreground/40" />
                 <span className="text-[12px] tracking-widest uppercase text-muted-foreground/50">Fotos folgen in Kürze</span>
                 <a
-                  href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(waMessage + ' Könnten Sie mir bitte Fotos schicken?')}`}
+                  href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(waMessage + ' Könnten Sie mir bitte Fotos schicken?')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[11.5px] text-[#c7c9cc] hover:underline"
@@ -134,7 +134,7 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
 
             <div className="space-y-2.5 mt-2">
               <a
-                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(waMessage)}`}
+                href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(waMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="whatsapp-pulse w-full flex items-center justify-center gap-2 py-3.5 bg-[#25D366] text-white text-[13px] font-semibold tracking-wide rounded-lg hover:bg-[#22bf5d] transition-all duration-300"
@@ -143,11 +143,11 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
                 Per WhatsApp anfragen
               </a>
               <a
-                href={`tel:+${siteConfig.contact.whatsapp}`}
+                href={`tel:+${siteConfig.contact.ctaWhatsapp}`}
                 className="w-full flex items-center justify-center gap-2 py-3.5 bg-surface border border-border text-foreground text-[13px] font-semibold tracking-wide rounded-lg hover:border-[#c7c9cc] transition-all duration-300"
               >
                 <Phone size={15} strokeWidth={1.8} />
-                {siteConfig.contact.phone}
+                {siteConfig.contact.ctaPhone}
               </a>
               <a
                 href={`mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(`Anfrage: ${vehicle.brand} ${vehicle.model}`)}`}
