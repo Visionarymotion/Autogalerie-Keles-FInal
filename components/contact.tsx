@@ -42,7 +42,7 @@ export default function Contact() {
     e.preventDefault()
     setLoading(true)
     const msg = `Hallo, mein Name ist ${form.name}. Anliegen: ${form.topic}. E-Mail: ${form.email}. Meine Nummer: ${form.phone}. Nachricht: ${form.message}`
-    const url = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(msg)}`
+    const url = `https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(msg)}`
     setTimeout(() => {
       window.open(url, '_blank')
       setSent(true)
@@ -82,7 +82,7 @@ export default function Contact() {
         {/* Quick action row */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <a
-            href={`tel:+${siteConfig.contact.whatsapp}`}
+            href={`tel:+${siteConfig.contact.ctaWhatsapp}`}
             className="flex items-center gap-3 px-5 py-4 bg-card border border-border rounded-xl hover:border-gold/40 hover:shadow-sm transition-all duration-300"
           >
             <div className="w-10 h-10 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0">
@@ -90,12 +90,12 @@ export default function Contact() {
             </div>
             <div>
               <p className="text-[11px] text-muted-foreground uppercase tracking-wide">Anrufen</p>
-              <p className="text-[13px] font-semibold text-foreground">{siteConfig.contact.phone}</p>
+              <p className="text-[13px] font-semibold text-foreground">{siteConfig.contact.ctaPhone}</p>
             </div>
           </a>
 
           <a
-            href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+            href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
             className="whatsapp-pulse flex items-center gap-3 px-5 py-4 bg-[#25D366] rounded-xl hover:bg-[#22bf5d] transition-all duration-300"
@@ -154,8 +154,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-[12px] font-semibold text-muted-foreground uppercase tracking-wide mb-0.5">Telefon</p>
-                    <a href={`tel:+${siteConfig.contact.whatsapp}`} className="text-[14px] text-foreground hover:text-gold transition-colors">
-                      {siteConfig.contact.phone}
+                    <a href={`tel:+${siteConfig.contact.ctaWhatsapp}`} className="text-[14px] text-foreground hover:text-gold transition-colors">
+                      {siteConfig.contact.ctaPhone}
                     </a>
                   </div>
                 </div>
