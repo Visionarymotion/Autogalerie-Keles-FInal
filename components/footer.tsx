@@ -1,10 +1,47 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Phone, MapPin, MessageCircle, Clock } from 'lucide-react'
+import { Phone, MapPin, Clock } from 'lucide-react'
 import { Logo } from '@/components/logo'
 import { siteConfig } from '@/lib/site-config'
+import { getOpeningStatus, type OpeningStatus } from '@/lib/opening-hours'
+
+function WhatsAppIcon({ size = 13 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.27 4.9L2 22l5.25-1.38a9.96 9.96 0 0 0 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.49-9.84-10.01-9.84Zm5.86 14.26c-.25.7-1.45 1.36-2 1.44-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.68-.63-2.96-1.28-4.89-4.26-5.04-4.46-.15-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.18.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.33.02.53-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.26 1.64 2.04 1.13.99 2.08 1.3 2.38 1.45.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.68-.15.28.1 1.77.84 2.08 1 .3.15.5.23.58.35.08.13.08.72-.17 1.42Z" />
+    </svg>
+  )
+}
+
+function FooterStatusBadge({ status }: { status: OpeningStatus | null }) {
+  if (!status) return null
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 text-[12px] font-semibold ${
+        status.isOpen ? (status.closingSoon ? 'text-amber-400' : 'text-emerald-400') : 'text-red-400'
+      }`}
+    >
+      <span
+        className={`inline-flex h-1.5 w-1.5 rounded-full ${
+          status.isOpen ? (status.closingSoon ? 'bg-amber-400' : 'bg-emerald-400') : 'bg-red-400'
+        }`}
+      />
+      {status.isOpen ? status.label : `Aktuell ${status.label.toLowerCase()}`}
+    </span>
+  )
+}
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const [status, setStatus] = useState<OpeningStatus | null>(null)
+
+  useEffect(() => {
+    setStatus(getOpeningStatus())
+    const id = setInterval(() => setStatus(getOpeningStatus()), 30_000)
+    return () => clearInterval(id)
+  }, [])
 
   return (
     <footer className="text-white pt-16 pb-8 px-5 lg:px-10" style={{ backgroundColor: '#1c1812' }}>
@@ -23,9 +60,9 @@ export default function Footer() {
               href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 border border-white/20 text-white/80 text-[12px] font-semibold tracking-widest uppercase hover:bg-white/10 hover:border-white/40 transition-all duration-300 rounded-sm"
+              className="inline-flex items-center gap-2 px-5 py-3 bg-[#25D366] text-white text-[12px] font-semibold tracking-widest uppercase hover:bg-[#20bd5a] transition-all duration-300 rounded-sm shadow-[0_0_0_0_rgba(37,211,102,0.5)] hover:shadow-[0_0_0_6px_rgba(37,211,102,0.15)]"
             >
-              <MessageCircle size={13} strokeWidth={1.8} />
+              <WhatsAppIcon size={14} />
               WhatsApp schreiben
             </a>
           </div>
@@ -77,8 +114,9 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Clock size={13} strokeWidth={1.8} className="text-gold mt-0.5 flex-shrink-0" />
                 <div className="text-[13px] text-white/55 leading-snug">
-                  Mo–Sa: 09:00–18:00<br />
-                  <span className="text-white/35">So: Geschlossen</span>
+                  <div>Mo–Sa: 09:00–18:00</div>
+                  <div className="text-white/35 mb-1.5">So: Geschlossen</div>
+                  <FooterStatusBadge status={status} />
                 </div>
               </li>
             </ul>
@@ -96,15 +134,7 @@ export default function Footer() {
 
         {/* Agentur-Credit */}
         <div className="pt-4 text-center text-[11px] text-white/25">
-          Realisiert von{' '}
-          <a
-            href="https://www.kronsolutions.de/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white/40 hover:text-gold transition-colors"
-          >
-            Visionary Motion
-          </a>
+          Realisiert von <span className="text-white/40">Visionary Motion</span>
         </div>
       </div>
     </footer>
