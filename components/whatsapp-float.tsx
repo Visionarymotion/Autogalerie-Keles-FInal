@@ -9,7 +9,7 @@ import { siteConfig } from '@/lib/site-config'
 export function WhatsAppFloat() {
   return (
     <a
-      href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+      href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Auf WhatsApp schreiben"
