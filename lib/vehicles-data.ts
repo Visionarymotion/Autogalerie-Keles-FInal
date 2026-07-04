@@ -64,7 +64,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 381,
     fuel: 'Benzin',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/5b/5b6fe3c1-77a4-4bf7-8921-a605b98f55e7'],
+    photos: ['/api/vehicle-image/5b/5b6fe3c1-77a4-4bf7-8921-a605b98f55e7'],
   },
   {
     id: 2,
@@ -81,7 +81,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Benzin',
     transmission: 'Automatik',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/a9/a96910cb-f43a-4551-9b4b-4c185da4ea45'],
+    photos: ['/api/vehicle-image/a9/a96910cb-f43a-4551-9b4b-4c185da4ea45'],
   },
   {
     id: 3,
@@ -97,7 +97,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 381,
     fuel: 'Benzin',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/d3/d37d3d25-e9bb-4b2e-8341-958a6bb9c20b'],
+    photos: ['/api/vehicle-image/d3/d37d3d25-e9bb-4b2e-8341-958a6bb9c20b'],
   },
   {
     id: 4,
@@ -113,7 +113,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 190,
     fuel: 'Benzin',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/9b/9bbdc9d4-9fa4-40dd-81ec-bd713acbae08'],
+    photos: ['/api/vehicle-image/9b/9bbdc9d4-9fa4-40dd-81ec-bd713acbae08'],
   },
   {
     id: 5,
@@ -129,7 +129,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 190,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/31/31ed5f2e-3d5d-4c3e-8e24-cd1405f76269'],
+    photos: ['/api/vehicle-image/31/31ed5f2e-3d5d-4c3e-8e24-cd1405f76269'],
   },
   {
     id: 6,
@@ -145,7 +145,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 211,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/d1/d170eba0-b1e4-489b-ac76-e54473a08260'],
+    photos: ['/api/vehicle-image/d1/d170eba0-b1e4-489b-ac76-e54473a08260'],
   },
   {
     id: 7,
@@ -162,7 +162,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     transmission: 'Automatik',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/85/852d30c1-6ced-4087-a17d-bfa932d2f4cd'],
+    photos: ['/api/vehicle-image/85/852d30c1-6ced-4087-a17d-bfa932d2f4cd'],
   },
   {
     id: 8,
@@ -179,7 +179,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     transmission: 'Automatik',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/69/69ff19ed-b5c9-46ac-bb9c-05070e6f3bf7'],
+    photos: ['/api/vehicle-image/69/69ff19ed-b5c9-46ac-bb9c-05070e6f3bf7'],
   },
   {
     id: 9,
@@ -195,7 +195,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 102,
     fuel: 'Benzin',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/94/940c38ec-c6ca-427f-9d59-9a36c88a7c66'],
+    photos: ['/api/vehicle-image/94/940c38ec-c6ca-427f-9d59-9a36c88a7c66'],
   },
   {
     id: 10,
@@ -211,7 +211,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 60,
     fuel: 'Benzin',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/06/067b82d2-aca4-445b-87d5-76aec1be44a0'],
+    photos: ['/api/vehicle-image/06/067b82d2-aca4-445b-87d5-76aec1be44a0'],
   },
   {
     id: 11,
@@ -227,7 +227,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 114,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/65/651d1cb2-4603-4c48-b18b-4c16d25d3a4a'],
+    photos: ['/api/vehicle-image/65/651d1cb2-4603-4c48-b18b-4c16d25d3a4a'],
   },
   {
     id: 12,
@@ -244,7 +244,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 204,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/13/13cee006-3ac3-4bc5-8744-60715d8d9be0'],
+    photos: ['/api/vehicle-image/13/13cee006-3ac3-4bc5-8744-60715d8d9be0'],
   },
   {
     id: 13,
@@ -261,7 +261,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     transmission: 'Automatik',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/b0/b0b32f38-c2ed-4057-8f27-4751cc93c702'],
+    photos: ['/api/vehicle-image/b0/b0b32f38-c2ed-4057-8f27-4751cc93c702'],
   },
   {
     id: 14,
@@ -278,7 +278,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Benzin',
     transmission: 'Automatik',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/33/3319cab4-fa3c-4d30-ba3c-2bbdae6fda89'],
+    photos: ['/api/vehicle-image/33/3319cab4-fa3c-4d30-ba3c-2bbdae6fda89'],
   },
   {
     id: 15,
@@ -294,7 +294,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 105,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/5c/5c526ef8-5195-46a4-b8c6-07a76a8e8123'],
+    photos: ['/api/vehicle-image/5c/5c526ef8-5195-46a4-b8c6-07a76a8e8123'],
   },
   {
     id: 16,
@@ -310,7 +310,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 170,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/73/7340145d-76d0-4133-bd0a-2226f6794fd7'],
+    photos: ['/api/vehicle-image/73/7340145d-76d0-4133-bd0a-2226f6794fd7'],
   },
   {
     id: 17,
@@ -326,7 +326,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 286,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/e7/e755f1bd-73b2-4e5d-b914-f36aec4ff5ea'],
+    photos: ['/api/vehicle-image/e7/e755f1bd-73b2-4e5d-b914-f36aec4ff5ea'],
   },
   {
     id: 18,
@@ -342,7 +342,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 235,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/c8/c87616db-55b6-4fd7-8b96-a1fbbed10d3d'],
+    photos: ['/api/vehicle-image/c8/c87616db-55b6-4fd7-8b96-a1fbbed10d3d'],
   },
   {
     id: 19,
@@ -358,7 +358,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 131,
     fuel: 'Benzin',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/89/899308f9-6d14-4a84-9506-74a5e1fe1e5f'],
+    photos: ['/api/vehicle-image/89/899308f9-6d14-4a84-9506-74a5e1fe1e5f'],
   },
   {
     id: 20,
@@ -374,7 +374,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 258,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/e8/e85df878-2e0a-49c2-ba46-8ed0719103af'],
+    photos: ['/api/vehicle-image/e8/e85df878-2e0a-49c2-ba46-8ed0719103af'],
   },
   {
     id: 21,
@@ -390,7 +390,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 131,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/c0/c0ef87e0-ac3f-4585-9298-c1328892838f'],
+    photos: ['/api/vehicle-image/c0/c0ef87e0-ac3f-4585-9298-c1328892838f'],
   },
   {
     id: 22,
@@ -406,7 +406,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 126,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/a2/a2995cd3-e3c7-4af4-85b7-51127261f150'],
+    photos: ['/api/vehicle-image/a2/a2995cd3-e3c7-4af4-85b7-51127261f150'],
   },
   {
     id: 23,
@@ -422,7 +422,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 120,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/29/299b72b5-0444-4f40-8b80-8bb96dcf018f'],
+    photos: ['/api/vehicle-image/29/299b72b5-0444-4f40-8b80-8bb96dcf018f'],
   },
   {
     id: 24,
@@ -438,7 +438,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 435,
     fuel: 'Diesel',
     featured: true,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/22/221c8033-81a6-460b-93f7-92d6636ab6fe'],
+    photos: ['/api/vehicle-image/22/221c8033-81a6-460b-93f7-92d6636ab6fe'],
   },
   {
     id: 25,
@@ -454,7 +454,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 258,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/70/707a9da2-0e4e-4c31-af8c-2f05921f1701'],
+    photos: ['/api/vehicle-image/70/707a9da2-0e4e-4c31-af8c-2f05921f1701'],
   },
   {
     id: 26,
@@ -470,7 +470,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 121,
     fuel: 'Benzin',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/80/8070b72a-c280-4a9f-a7e4-6f6a400620e6'],
+    photos: ['/api/vehicle-image/80/8070b72a-c280-4a9f-a7e4-6f6a400620e6'],
   },
   {
     id: 27,
@@ -486,7 +486,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 102,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/3f/3fa0d3c0-3ebe-4c9f-b23e-c123cb07363f'],
+    photos: ['/api/vehicle-image/3f/3fa0d3c0-3ebe-4c9f-b23e-c123cb07363f'],
   },
   {
     id: 28,
@@ -502,7 +502,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 585,
     fuel: 'Benzin',
     featured: true,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/37/37f63b67-e6d6-4cf3-9c23-b3b5de1c1022'],
+    photos: ['/api/vehicle-image/37/37f63b67-e6d6-4cf3-9c23-b3b5de1c1022'],
   },
   {
     id: 29,
@@ -518,7 +518,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 476,
     fuel: 'Benzin',
     featured: true,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/be/be343cf2-1d79-4cad-93f8-6a298b3cc504'],
+    photos: ['/api/vehicle-image/be/be343cf2-1d79-4cad-93f8-6a298b3cc504'],
   },
   {
     id: 30,
@@ -535,7 +535,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 75,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/00/00ba5048-bdbf-4e65-ac43-f354c70955b2'],
+    photos: ['/api/vehicle-image/00/00ba5048-bdbf-4e65-ac43-f354c70955b2'],
   },
   {
     id: 31,
@@ -551,7 +551,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 179,
     fuel: 'Diesel',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/bf/bf93cd85-766f-4407-a8b9-33893a081725'],
+    photos: ['/api/vehicle-image/bf/bf93cd85-766f-4407-a8b9-33893a081725'],
   },
   {
     id: 32,
@@ -567,7 +567,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 105,
     fuel: 'Hybrid',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/7a/7a5d95fa-d66e-4175-89fd-7bc1a609e92e'],
+    photos: ['/api/vehicle-image/7a/7a5d95fa-d66e-4175-89fd-7bc1a609e92e'],
   },
   {
     id: 33,
@@ -583,7 +583,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 272,
     fuel: 'Diesel',
     featured: true,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/29/29a0c0a7-0c45-48d9-8c58-fcd7d349d041'],
+    photos: ['/api/vehicle-image/29/29a0c0a7-0c45-48d9-8c58-fcd7d349d041'],
   },
   {
     id: 34,
@@ -600,7 +600,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     owners: 1,
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/f9/f97d3b18-c43a-4bfb-8481-3c7f605e5d8f'],
+    photos: ['/api/vehicle-image/f9/f97d3b18-c43a-4bfb-8481-3c7f605e5d8f'],
   },
   {
     id: 35,
@@ -617,7 +617,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     transmission: 'Automatik',
     featured: false,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/ff/ffa98839-99d0-40ec-9d5a-99d944d85633'],
+    photos: ['/api/vehicle-image/ff/ffa98839-99d0-40ec-9d5a-99d944d85633'],
   },
   {
     id: 36,
@@ -633,7 +633,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 381,
     fuel: 'Benzin',
     featured: true,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/93/932084bf-934f-4c6d-8b08-076af4b2e0a3'],
+    photos: ['/api/vehicle-image/93/932084bf-934f-4c6d-8b08-076af4b2e0a3'],
   },
   {
     id: 37,
@@ -649,7 +649,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 190,
     fuel: 'Diesel',
     featured: true,
-    photos: ['https://img.classistatic.de/api/v1/mo-prod/images/d2/d23be8a9-af0b-4464-b5f1-5961b178932d'],
+    photos: ['/api/vehicle-image/d2/d23be8a9-af0b-4464-b5f1-5961b178932d'],
   },
 ]
 
