@@ -93,6 +93,19 @@ export default function Footer() {
             <Link href="/datenschutz" className="hover:text-gold transition-colors">Datenschutz</Link>
           </div>
         </div>
+
+        {/* Agentur-Credit */}
+        <div className="pt-4 text-center text-[11px] text-white/25">
+          Realisiert von{' '}
+          <a
+            href="https://www.kronsolutions.de/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/40 hover:text-gold transition-colors"
+          >
+            Visionary Motion
+          </a>
+        </div>
       </div>
     </footer>
   )
