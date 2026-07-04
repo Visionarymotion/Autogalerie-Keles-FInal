@@ -46,7 +46,7 @@ const jsonLd = {
   '@type': 'AutoDealer',
   name: siteConfig.name,
   image: 'https://autogalerie-keles.de/images/dealership-real.jpg',
-  telephone: siteConfig.contact.phoneHref,
+  telephone: siteConfig.contact.ctaPhoneHref,
   email: siteConfig.contact.email,
   address: {
     '@type': 'PostalAddress',
