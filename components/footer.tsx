@@ -20,7 +20,7 @@ export default function Footer() {
               Ihr vertrauensvoller Gebrauchtwagen-Händler in {siteConfig.address.city}. Geprüfte Fahrzeuge aller Marken — fair, transparent und persönlich.
             </p>
             <a
-              href={`https://wa.me/${siteConfig.contact.whatsapp}`}
+              href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 border border-white/20 text-white/80 text-[12px] font-semibold tracking-widest uppercase hover:bg-white/10 hover:border-white/40 transition-all duration-300 rounded-sm"
@@ -70,8 +70,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={13} strokeWidth={1.8} className="text-gold flex-shrink-0" />
-                <a href={`tel:+${siteConfig.contact.whatsapp}`} className="text-[13px] text-white/55 hover:text-gold transition-colors">
-                  {siteConfig.contact.phone}
+                <a href={`tel:+${siteConfig.contact.ctaWhatsapp}`} className="text-[13px] text-white/55 hover:text-gold transition-colors">
+                  {siteConfig.contact.ctaPhone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
