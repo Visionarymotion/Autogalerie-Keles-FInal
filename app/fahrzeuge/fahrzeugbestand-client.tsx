@@ -101,7 +101,7 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
           Alle Fahrzeuge
         </h1>
         <p className="text-[13.5px] text-muted-foreground max-w-xl">
-          {vehicles.length} geprüfte Fahrzeuge – echte, aktuelle Angebote direkt von unserer AutoScout24-Seite.
+          {vehicles.length} geprüfte Fahrzeuge – echte, aktuelle Angebote direkt aus unserem Bestand.
           Nicht dabei, was Sie suchen?{' '}
           <a
             href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent('Hallo, ich suche ein bestimmtes Fahrzeug.')}`}
