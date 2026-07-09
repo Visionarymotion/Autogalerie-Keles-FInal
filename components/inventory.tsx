@@ -74,7 +74,6 @@ function CarCard({ car }: { car: Vehicle }) {
         href={waHref}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={(e) => e.stopPropagation()}
         aria-label={`${car.brand} ${car.model} per WhatsApp anfragen`}
         className="absolute top-3 left-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366] hover:bg-[#20bd5a] shadow-lg transition-colors duration-300"
       >
