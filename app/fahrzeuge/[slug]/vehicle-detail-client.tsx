@@ -5,10 +5,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowLeft, Calendar, Gauge, Fuel, Zap, Settings, Users,
-  MessageCircle, Phone, Mail, ImageOff, ChevronLeft, ChevronRight,
+  Phone, Mail, ImageOff, ChevronLeft, ChevronRight,
 } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 import { formatPrice, formatKm, type Vehicle } from '@/lib/vehicles-data'
+
+function WhatsAppIcon({ size = 13 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77 0.46 3.45 1.27 4.9L2 22l5.25-1.38a9.96 9.96 0 0 0 4.79 1.22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm5.89 14.32c-0.25 0.7-1.24 1.28-2.02 1.45-0.54 0.11-1.24 0.2-3.62-0.78-2.9-1.2-4.77-4.15-4.92-4.34-0.14-0.19-1.18-1.57-1.18-3 0-1.42 0.75-2.12 1.02-2.41 0.27-0.29 0.58-0.36 0.78-0.36 0.19 0 0.39 0 0.56 0.01 0.18 0.01 0.42-0.07 0.66 0.5 0.25 0.59 0.84 2.05 0.92 2.2 0.08 0.15 0.13 0.32 0.03 0.51-0.1 0.19-0.15 0.3-0.29 0.47-0.15 0.16-0.31 0.36-0.44 0.49-0.15 0.15-0.3 0.3-0.13 0.6 0.17 0.29 0.75 1.24 1.61 2.01 1.11 0.99 2.04 1.3 2.34 1.45 0.29 0.15 0.47 0.13 0.64-0.05 0.18-0.19 0.73-0.85 0.92-1.14 0.19-0.29 0.39-0.24 0.65-0.14 0.27 0.1 1.7 0.8 1.99 0.95 0.29 0.15 0.48 0.22 0.55 0.34 0.08 0.13 0.08 0.72-0.17 1.42Z" />
+    </svg>
+  )
+}
 
 export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
   const [activePhoto, setActivePhoto] = useState(0)
@@ -139,7 +147,7 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
                 rel="noopener noreferrer"
                 className="whatsapp-pulse w-full flex items-center justify-center gap-2 py-3.5 bg-[#25D366] text-white text-[13px] font-semibold tracking-wide rounded-lg hover:bg-[#22bf5d] transition-all duration-300"
               >
-                <MessageCircle size={16} strokeWidth={2} />
+                <WhatsAppIcon size={16} />
                 Per WhatsApp anfragen
               </a>
               <a
