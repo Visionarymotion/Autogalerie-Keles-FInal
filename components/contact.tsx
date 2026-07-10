@@ -328,7 +328,7 @@ export default function Contact() {
                         {loading ? 'Senden...' : 'Per WhatsApp senden'}
                       </button>
                       <p className="text-[11px] text-muted-foreground">
-                        Öffnet WhatsApp mit Ihrer Nachricht
+                        Öffnet WhatsApp mit Ihrer Nachricht – keine Speicherung auf dieser Website. <a href="/datenschutz" className="text-gold hover:underline">Datenschutz</a>
                       </p>
                     </div>
                   </form>
