@@ -5,6 +5,32 @@ import Image from 'next/image'
 import { ArrowRight, ChevronDown, Star } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 
+/**
+ * Dezenter Count-up für die Trust-Zahlen: zählt beim ersten Rendern in ~1.2s
+ * mit Ease-out auf den Zielwert hoch. Läuft nur einmal; bei
+ * prefers-reduced-motion wird sofort der Endwert gezeigt.
+ */
+function CountUp({ to, decimals = 0, duration = 1200 }: { to: number; decimals?: number; duration?: number }) {
+  const [val, setVal] = useState(0)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setVal(to)
+      return
+    }
+    let raf = 0
+    const start = performance.now()
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / duration)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setVal(to * eased)
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [to, duration])
+  return <>{val.toFixed(decimals)}</>
+}
+
 export default function Hero() {
   const [visible, setVisible] = useState(false)
 
@@ -87,7 +113,7 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="#fahrzeuge"
-              className="group inline-flex items-center gap-2.5 px-7 py-3.5 bg-gold text-white font-semibold text-[13px] tracking-widest uppercase rounded-sm hover:bg-gold/90 transition-all duration-300"
+              className="btn-shine group inline-flex items-center gap-2.5 px-7 py-3.5 bg-gold text-white font-semibold text-[13px] tracking-widest uppercase rounded-sm hover:bg-gold/90 transition-all duration-300"
             >
               Alle Fahrzeuge
               <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -109,8 +135,8 @@ export default function Hero() {
             }}
           >
             <div>
-              <p className="text-[28px] font-[var(--font-heading)] text-white font-semibold">{siteConfig.rating.value.toFixed(1)}★</p>
-              <p className="text-[10px] tracking-[0.25em] text-white/50 uppercase mt-0.5">{siteConfig.rating.count}+ Bewertungen</p>
+              <p className="text-[28px] font-[var(--font-heading)] text-white font-semibold"><CountUp to={siteConfig.rating.value} decimals={1} />★</p>
+              <p className="text-[10px] tracking-[0.25em] text-white/50 uppercase mt-0.5"><CountUp to={siteConfig.rating.count} />+ Bewertungen</p>
             </div>
             <div className="w-px h-9 bg-white/15" />
             <div>
