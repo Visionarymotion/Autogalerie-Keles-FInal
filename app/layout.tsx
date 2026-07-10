@@ -18,17 +18,46 @@ const playfair = Playfair_Display({
   weight: ['400', '500', '600', '700'],
 })
 
+const ogImage = {
+  url: '/images/dealership-real.jpg',
+  width: 1360,
+  height: 1020,
+  alt: 'Autogalerie Keles – Gebrauchtwagen in Nordenham',
+}
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: 'Autogalerie Keles – Gebrauchtwagen in Nordenham',
   description:
     'Ihr vertrauensvoller Gebrauchtwagen-Händler in Nordenham. Autogalerie Keles bietet geprüfte Fahrzeuge aller Marken zu fairen Preisen. Am Sieltief 2, 26954 Nordenham. Tel: 04731 3699444',
   keywords: ['Gebrauchtwagen', 'Nordenham', 'Autogalerie Keles', 'Gebrauchtwagenhändler', 'Fahrzeuge kaufen', 'VW', 'Mercedes', 'Audi', 'BMW'],
   authors: [{ name: 'Autogalerie Keles' }],
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+    },
+  },
   openGraph: {
     title: 'Autogalerie Keles – Gebrauchtwagen Nordenham',
     description: 'Geprüfte Fahrzeuge aller Marken. Fair. Transparent. Persönlich.',
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     locale: 'de_DE',
     type: 'website',
+    images: [ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Autogalerie Keles – Gebrauchtwagen Nordenham',
+    description: 'Geprüfte Fahrzeuge aller Marken. Fair. Transparent. Persönlich.',
+    images: [ogImage.url],
   },
 }
 
@@ -45,7 +74,8 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'AutoDealer',
   name: siteConfig.name,
-  image: 'https://autogalerie-keles.de/images/dealership-real.jpg',
+  url: siteConfig.url,
+  image: `${siteConfig.url}/images/dealership-real.jpg`,
   telephone: siteConfig.contact.ctaPhoneHref,
   email: siteConfig.contact.email,
   address: {
@@ -68,6 +98,7 @@ const jsonLd = {
     ratingValue: siteConfig.rating.value,
     reviewCount: siteConfig.rating.count,
   },
+  sameAs: [siteConfig.links.mobileDe],
 }
 
 export default function RootLayout({
