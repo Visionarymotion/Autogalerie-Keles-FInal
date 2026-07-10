@@ -64,7 +64,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 381,
     fuel: 'Benzin',
     featured: false,
-    photos: ['/api/vehicle-image/5b/5b6fe3c1-77a4-4bf7-8921-a605b98f55e7'],
+    photos: ['/api/vehicle-image/5b/5b6fe3c1-77a4-4bf7-8921-a605b98f55e7', '/api/vehicle-image/3e/3ea30fdb-8d84-4018-add1-75da7f560689', '/api/vehicle-image/91/91aebdde-d2c8-47a7-861f-ee397fb048d0', '/api/vehicle-image/c4/c425c8ad-3507-42b5-8a38-f3e92d940a35', '/api/vehicle-image/5c/5c4ff5e7-4fc3-4c3b-a9ed-6b0ae6a43b1a', '/api/vehicle-image/39/3990e4b1-c2ad-4c56-83ec-b1d118d58362', '/api/vehicle-image/ea/eabc3acd-033d-4d92-b241-d9d0cbb7448d', '/api/vehicle-image/45/4592728b-5218-4cdf-9054-777602508322'],
   },
   {
     id: 2,
@@ -81,7 +81,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Benzin',
     transmission: 'Automatik',
     featured: false,
-    photos: ['/api/vehicle-image/a9/a96910cb-f43a-4551-9b4b-4c185da4ea45'],
+    photos: ['/api/vehicle-image/a9/a96910cb-f43a-4551-9b4b-4c185da4ea45', '/api/vehicle-image/57/57e253a1-8ad7-49a7-816f-3ab8735f1d75', '/api/vehicle-image/85/85f17202-a65f-45de-9dd0-28451c1c6997', '/api/vehicle-image/a2/a2d0ceaa-2bd4-4bf1-9a23-ee61a93f88fd', '/api/vehicle-image/e1/e118d0b6-981d-4a82-8d12-ae2faf0d2442', '/api/vehicle-image/f7/f7874a4f-0217-480e-8a4d-007d7f111008', '/api/vehicle-image/c4/c4c57243-e17a-4291-a3a0-8633dbdd37a2', '/api/vehicle-image/15/1589b041-0380-4478-81ed-c475ed9c0323'],
   },
   {
     id: 3,
@@ -97,7 +97,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 381,
     fuel: 'Benzin',
     featured: false,
-    photos: ['/api/vehicle-image/d3/d37d3d25-e9bb-4b2e-8341-958a6bb9c20b'],
+    photos: ['/api/vehicle-image/d3/d37d3d25-e9bb-4b2e-8341-958a6bb9c20b', '/api/vehicle-image/ef/ef7ad06c-ef4f-4951-a932-3a8f23e2ad01', '/api/vehicle-image/f1/f1ace3bc-da15-4c2b-9307-40e36d5d8f0d', '/api/vehicle-image/cf/cfe973ed-eda1-4b88-8036-adae018aebe3', '/api/vehicle-image/69/69dc4b52-d1a3-4148-91fa-ac12a566cce1', '/api/vehicle-image/57/57213904-5df3-4269-9073-b179fa982aa0', '/api/vehicle-image/a3/a3b0fdcd-78a2-449a-84c9-a728e9a06ad6', '/api/vehicle-image/ad/adad95f2-9959-4e66-b2c8-3d60b397adde'],
   },
   {
     id: 4,
@@ -113,7 +113,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 190,
     fuel: 'Benzin',
     featured: false,
-    photos: ['/api/vehicle-image/9b/9bbdc9d4-9fa4-40dd-81ec-bd713acbae08'],
+    photos: ['/api/vehicle-image/9b/9bbdc9d4-9fa4-40dd-81ec-bd713acbae08', '/api/vehicle-image/a3/a3fc6168-adc2-46d4-bfca-0c62f515aae3', '/api/vehicle-image/dc/dc751d6e-cbab-45c4-9207-49de37467270', '/api/vehicle-image/f3/f35a1242-7687-4d33-8f97-9742f843fa87', '/api/vehicle-image/f4/f4288f41-4d1b-478f-9f7e-8539bf810aed', '/api/vehicle-image/e6/e6929c42-9d72-4bbd-9348-3a473bb75383', '/api/vehicle-image/aa/aa67ee03-d6b4-45be-ad91-7ffd34583c51', '/api/vehicle-image/de/de19ac41-5231-4dd2-8f36-061d9e53a67f'],
   },
   {
     id: 5,
@@ -129,7 +129,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 190,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/31/31ed5f2e-3d5d-4c3e-8e24-cd1405f76269'],
+    photos: ['/api/vehicle-image/31/31ed5f2e-3d5d-4c3e-8e24-cd1405f76269', '/api/vehicle-image/71/71c8d525-a243-4bf9-98b0-f1683afddb40', '/api/vehicle-image/4e/4e58d647-c497-4d17-910c-15d716cb5e9a', '/api/vehicle-image/58/58fa6d3c-ce97-4813-90e6-bb73eee8d273', '/api/vehicle-image/f8/f857698a-4341-4111-8fee-49b3194ffff5', '/api/vehicle-image/f7/f719c8f9-b73b-4c4b-aebb-a548774e038c', '/api/vehicle-image/ce/ceb0c528-c814-4ff8-9892-1fc9c31085fb', '/api/vehicle-image/58/58c7bf92-b10c-4a4b-acdf-3e989ee04b81'],
   },
   {
     id: 6,
@@ -145,7 +145,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 211,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/d1/d170eba0-b1e4-489b-ac76-e54473a08260'],
+    photos: ['/api/vehicle-image/d1/d170eba0-b1e4-489b-ac76-e54473a08260', '/api/vehicle-image/c2/c28b96b2-efa8-4ac9-8a69-18af57095bdf', '/api/vehicle-image/c8/c8f5c424-c318-4870-b08e-09668bf1b0a9', '/api/vehicle-image/db/db14c35e-11f3-4668-ab4b-8e860543d254', '/api/vehicle-image/e8/e898f158-2a92-4d49-bd6e-61575ff6fbcb', '/api/vehicle-image/49/497437ac-a12c-45c4-9c2a-135ea2807416', '/api/vehicle-image/50/50440f92-21ca-4e21-8f72-a237bc298364', '/api/vehicle-image/68/68c0fd9d-148a-4ac6-b680-75c9ca4f02d9'],
   },
   {
     id: 7,
@@ -162,7 +162,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     transmission: 'Automatik',
     featured: false,
-    photos: ['/api/vehicle-image/85/852d30c1-6ced-4087-a17d-bfa932d2f4cd'],
+    photos: ['/api/vehicle-image/85/852d30c1-6ced-4087-a17d-bfa932d2f4cd', '/api/vehicle-image/83/839081f7-5b65-49b7-b5d7-fbe632bbab9e', '/api/vehicle-image/3b/3bd79182-996c-4273-9ac3-85497ddc825b', '/api/vehicle-image/02/020dc63a-ed84-4cdf-81fe-bc404bec5f12', '/api/vehicle-image/22/22e44f9a-07cc-4a8f-bbd4-75066f5ef12e', '/api/vehicle-image/1e/1e27771a-14b6-419b-9a30-22776e51fbdc', '/api/vehicle-image/0f/0f30a59a-46cd-47b1-88cd-5d94ce871187', '/api/vehicle-image/fb/fb75ccbf-9572-41cf-a742-7a0e0974e983'],
   },
   {
     id: 8,
@@ -179,7 +179,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     transmission: 'Automatik',
     featured: false,
-    photos: ['/api/vehicle-image/69/69ff19ed-b5c9-46ac-bb9c-05070e6f3bf7'],
+    photos: ['/api/vehicle-image/69/69ff19ed-b5c9-46ac-bb9c-05070e6f3bf7', '/api/vehicle-image/07/077e8b90-556a-4980-87be-4b5fa3822abd', '/api/vehicle-image/5b/5b9239ab-bc12-461b-b031-0c9a207756ea', '/api/vehicle-image/86/8607eb63-530e-4064-a156-0903ef642dbe', '/api/vehicle-image/2b/2b3b6522-854f-4f86-9795-86a152540dd7', '/api/vehicle-image/12/12cf0a29-b406-4465-850b-7f8b9713b3b7', '/api/vehicle-image/fa/fa9e3db8-0f0f-4d58-91ad-4d3ce4bb1181', '/api/vehicle-image/ad/adb3b001-e08b-4acd-921d-d6390a3dfae6'],
   },
   {
     id: 9,
@@ -195,7 +195,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 102,
     fuel: 'Benzin',
     featured: false,
-    photos: ['/api/vehicle-image/94/940c38ec-c6ca-427f-9d59-9a36c88a7c66'],
+    photos: ['/api/vehicle-image/94/940c38ec-c6ca-427f-9d59-9a36c88a7c66', '/api/vehicle-image/a0/a070e4ee-9d69-42f0-83d1-c89f8437a77f', '/api/vehicle-image/98/98b0ee0a-d4d3-4139-ba74-572bc5c721f5', '/api/vehicle-image/48/48a294f1-7be6-432a-90ae-2bff64f5b858', '/api/vehicle-image/ea/ea9a32bc-e128-4d35-b18e-7c556d24b7ec', '/api/vehicle-image/88/8823b664-22b0-44a8-a515-3101fe53f0a2', '/api/vehicle-image/8b/8bcee1cc-9bf5-4f2c-a908-5dd3b7796a17', '/api/vehicle-image/f3/f3675972-2765-43d6-94a4-4e884527bb8e'],
   },
   {
     id: 10,
@@ -211,7 +211,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 60,
     fuel: 'Benzin',
     featured: false,
-    photos: ['/api/vehicle-image/06/067b82d2-aca4-445b-87d5-76aec1be44a0'],
+    photos: ['/api/vehicle-image/06/067b82d2-aca4-445b-87d5-76aec1be44a0', '/api/vehicle-image/69/698b443e-bd53-41cf-bbe5-e3bd0ac0dabb', '/api/vehicle-image/b3/b345fdab-09b7-4868-9ad8-e6a15041f982', '/api/vehicle-image/ce/ce8d1056-44ed-4b20-9bab-e2d27365799b', '/api/vehicle-image/9f/9fb0c869-ab0e-4eca-a4cd-cfd1b2b5d732', '/api/vehicle-image/45/453cc410-2c3f-4e78-8b64-b927e3c100c6', '/api/vehicle-image/89/893ced26-420d-4c4a-a5eb-784c3c102d33', '/api/vehicle-image/1b/1b706d8b-6864-4de7-a282-82c4aa46c36b'],
   },
   {
     id: 11,
@@ -227,7 +227,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 114,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/65/651d1cb2-4603-4c48-b18b-4c16d25d3a4a'],
+    photos: ['/api/vehicle-image/65/651d1cb2-4603-4c48-b18b-4c16d25d3a4a', '/api/vehicle-image/80/8071934e-5065-45c0-93d7-2110095f0e6b', '/api/vehicle-image/fe/fe4eeaab-5991-4535-a4a3-46a435f9f862', '/api/vehicle-image/30/30c29f59-cbf4-4435-af10-607927e8645b', '/api/vehicle-image/e5/e5ef4506-1ea7-42d0-b6ca-801e669785a0', '/api/vehicle-image/40/407266f0-9452-479d-bd54-a25ba893680b', '/api/vehicle-image/d7/d70d438b-1218-46ed-9a2e-e6bef3488fff', '/api/vehicle-image/d3/d34945c7-3bde-4787-b1a9-396f321c1781'],
   },
   {
     id: 12,
@@ -244,7 +244,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 204,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/13/13cee006-3ac3-4bc5-8744-60715d8d9be0'],
+    photos: ['/api/vehicle-image/13/13cee006-3ac3-4bc5-8744-60715d8d9be0', '/api/vehicle-image/06/0612e45c-93d0-4f4e-aeaa-8ba0abc680fc', '/api/vehicle-image/4b/4b976a11-13bc-47cd-a56b-2974bffed976', '/api/vehicle-image/a0/a07d098b-dab6-446e-90a5-0b765d6f31b6', '/api/vehicle-image/3a/3a772175-412b-4b33-b2ed-a1e833fa9177', '/api/vehicle-image/07/07798c3b-46a4-4e35-a2fc-3ad4c79ee6bf', '/api/vehicle-image/96/9623c881-0a4c-4258-9eb6-26d780340d10', '/api/vehicle-image/67/672930ea-602f-4e91-a5cc-4ab86a83cebd'],
   },
   {
     id: 13,
@@ -261,7 +261,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     transmission: 'Automatik',
     featured: false,
-    photos: ['/api/vehicle-image/b0/b0b32f38-c2ed-4057-8f27-4751cc93c702'],
+    photos: ['/api/vehicle-image/b0/b0b32f38-c2ed-4057-8f27-4751cc93c702', '/api/vehicle-image/87/8734bbed-5231-42df-b5aa-ed97d7bf9a72', '/api/vehicle-image/ed/edf7dee4-a9a3-4e8b-a394-38516a28cb10', '/api/vehicle-image/79/790fb8e2-2ae6-4880-abf0-6e74ddc64f30', '/api/vehicle-image/27/27ba87a3-46fa-42b1-ae8b-4346fc8f58ed', '/api/vehicle-image/58/585a5b79-8f15-4f6a-86f6-643fcead46a3', '/api/vehicle-image/f4/f40fafdf-8da2-4ff7-9530-312c8d7e038d', '/api/vehicle-image/bb/bbdf5c34-8d57-41b8-9fdc-1d0a66ab2131'],
   },
   {
     id: 14,
@@ -278,7 +278,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Benzin',
     transmission: 'Automatik',
     featured: false,
-    photos: ['/api/vehicle-image/33/3319cab4-fa3c-4d30-ba3c-2bbdae6fda89'],
+    photos: ['/api/vehicle-image/33/3319cab4-fa3c-4d30-ba3c-2bbdae6fda89', '/api/vehicle-image/15/150a8202-ec30-438b-b29b-e13774f41eb9', '/api/vehicle-image/dd/ddece243-3ec1-4566-98bb-ca685892439b', '/api/vehicle-image/3e/3eadfcb9-4de2-4734-bfc9-5faf3b8d031b', '/api/vehicle-image/7a/7add527b-b393-45fc-a15b-050e13437be4', '/api/vehicle-image/f9/f988ec8b-f035-49da-9d92-a96e724e5f4f', '/api/vehicle-image/09/0983db33-d4db-49ba-88eb-d718f481a0c8', '/api/vehicle-image/d1/d1c7bca4-294a-4ca6-b092-ff2214d026ef'],
   },
   {
     id: 15,
@@ -294,7 +294,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 105,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/5c/5c526ef8-5195-46a4-b8c6-07a76a8e8123'],
+    photos: ['/api/vehicle-image/5c/5c526ef8-5195-46a4-b8c6-07a76a8e8123', '/api/vehicle-image/36/363647c0-c478-4606-b5b3-a3085d0b097e', '/api/vehicle-image/73/738095e2-b16d-4048-bb43-104ba276f07f', '/api/vehicle-image/12/121bd466-4395-44ef-b3db-1dd60e96a138', '/api/vehicle-image/a8/a80b963a-3a8d-4347-83c6-004568901dc0', '/api/vehicle-image/c8/c89f5927-b7d5-4c68-a9ea-da8af427fba1', '/api/vehicle-image/91/919c54dd-c680-4e12-a28b-004923444fbd', '/api/vehicle-image/7f/7f82b1c9-b4a3-4845-8c70-93707f6077e6'],
   },
   {
     id: 16,
@@ -310,7 +310,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 170,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/73/7340145d-76d0-4133-bd0a-2226f6794fd7'],
+    photos: ['/api/vehicle-image/73/7340145d-76d0-4133-bd0a-2226f6794fd7', '/api/vehicle-image/bf/bf5372a4-6bd2-4873-bb08-5d727735f400', '/api/vehicle-image/76/7667d439-7c42-412a-9538-08e30c527477', '/api/vehicle-image/37/37804c71-d02e-4ff2-a851-ee7a8fee07df', '/api/vehicle-image/0d/0d9f3a7e-4418-4f8e-8493-00965852dc64', '/api/vehicle-image/bc/bcb033e6-2659-4f25-981b-96db9606961b', '/api/vehicle-image/02/02f40371-9ab3-4fb4-938f-56f832b77e6b', '/api/vehicle-image/41/4197573a-fc60-4ea4-a599-2a2d90f46e54'],
   },
   {
     id: 17,
@@ -326,7 +326,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 286,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/e7/e755f1bd-73b2-4e5d-b914-f36aec4ff5ea'],
+    photos: ['/api/vehicle-image/e7/e755f1bd-73b2-4e5d-b914-f36aec4ff5ea', '/api/vehicle-image/a0/a01c5c3f-4bbb-4737-8793-d74dc6cf1a2c', '/api/vehicle-image/2b/2b037d4c-ab6e-4947-acf2-73841ea0695a', '/api/vehicle-image/51/51218761-d039-4381-9d7d-43540729f89a', '/api/vehicle-image/47/4702e08a-25d8-489d-a9d9-a6b3a044dd1b', '/api/vehicle-image/5d/5d302e04-0fbb-4971-b813-7eab6d55df8c', '/api/vehicle-image/be/beb11f1a-344d-4af6-8de0-925ef6dd4b12', '/api/vehicle-image/43/43043686-b8b2-42b1-922c-87613f375d71'],
   },
   {
     id: 18,
@@ -342,7 +342,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 235,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/c8/c87616db-55b6-4fd7-8b96-a1fbbed10d3d'],
+    photos: ['/api/vehicle-image/c8/c87616db-55b6-4fd7-8b96-a1fbbed10d3d', '/api/vehicle-image/24/2474e23b-204d-4e42-a2b2-d472a53162f7', '/api/vehicle-image/40/4081227d-963f-489f-af04-a3e3b75c5b5b', '/api/vehicle-image/5c/5c6726ef-0df7-432f-8b09-61ead07945e3', '/api/vehicle-image/41/41f362ea-9248-4068-a55a-f2580b5ddcc6', '/api/vehicle-image/9a/9a2db877-4361-4f9d-957a-b2a3fa21aac6', '/api/vehicle-image/14/14957ad9-f6d8-4f48-9a50-2323ce9d997f', '/api/vehicle-image/09/09e52b80-546b-4d35-83ba-0b3a32c508dc'],
   },
   {
     id: 19,
@@ -358,7 +358,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 131,
     fuel: 'Benzin',
     featured: false,
-    photos: ['/api/vehicle-image/89/899308f9-6d14-4a84-9506-74a5e1fe1e5f'],
+    photos: ['/api/vehicle-image/89/899308f9-6d14-4a84-9506-74a5e1fe1e5f', '/api/vehicle-image/f7/f7cdb8a1-bb54-4bd9-90b8-e7d516621ca9', '/api/vehicle-image/fd/fd3b2e90-92e3-45d7-b288-ea3d9baa49f4', '/api/vehicle-image/0c/0c3594aa-d6a1-474c-b9f7-b393b6f5d44e', '/api/vehicle-image/77/771f25d5-120e-441e-9793-d816a1a7e1b8', '/api/vehicle-image/f1/f1d5544e-3aa0-4e35-a8e1-a811899517ce', '/api/vehicle-image/71/71c5c864-4956-4355-b020-cf161e2784a8', '/api/vehicle-image/50/50959ff7-41e1-449e-8f07-4bb568c3f1be'],
   },
   {
     id: 20,
@@ -374,7 +374,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 258,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/e8/e85df878-2e0a-49c2-ba46-8ed0719103af'],
+    photos: ['/api/vehicle-image/e8/e85df878-2e0a-49c2-ba46-8ed0719103af', '/api/vehicle-image/4b/4bc01a1a-5517-4d4c-a0de-257ad57478d6', '/api/vehicle-image/98/98a060df-ea67-4e89-8d82-e324ad9713f5', '/api/vehicle-image/b9/b938c383-729f-49fd-b4bd-3685ee4ad29d', '/api/vehicle-image/e8/e8b8af1d-eac5-4daa-a54c-95a1a8699ce5', '/api/vehicle-image/4e/4e297b51-c4b8-4722-8df4-d0eab7e8a804', '/api/vehicle-image/7b/7b783e99-8822-4382-bb24-38532fab4bd7', '/api/vehicle-image/89/89c41948-4acb-42b2-9a7d-32da78968d9f'],
   },
   {
     id: 21,
@@ -390,7 +390,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 131,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/c0/c0ef87e0-ac3f-4585-9298-c1328892838f'],
+    photos: ['/api/vehicle-image/c0/c0ef87e0-ac3f-4585-9298-c1328892838f', '/api/vehicle-image/a0/a0f7d57c-2a7e-4212-a4f1-0192b353b7bf', '/api/vehicle-image/a1/a149642e-4bcf-4212-b33c-52be61c86b25', '/api/vehicle-image/88/8828ca82-2174-4d1f-b9b1-e565e4404941', '/api/vehicle-image/d9/d973807a-6b52-4fbb-af3f-d29643c7f33e', '/api/vehicle-image/0d/0db1177b-9abd-4575-b135-c31a41db7366', '/api/vehicle-image/36/363636fe-9360-4578-9a30-8fcc587e4674', '/api/vehicle-image/85/85e4a865-f64a-4d3b-ad64-304183cc7d76'],
   },
   {
     id: 22,
@@ -406,7 +406,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 126,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/a2/a2995cd3-e3c7-4af4-85b7-51127261f150'],
+    photos: ['/api/vehicle-image/a2/a2995cd3-e3c7-4af4-85b7-51127261f150', '/api/vehicle-image/f8/f8c94d01-c141-42f9-bc1f-bccae27abede', '/api/vehicle-image/67/6720e259-f93a-4510-b4c3-fd3b66aa84e1', '/api/vehicle-image/a4/a47b99ec-b9e2-42e9-902f-cd6951902c42', '/api/vehicle-image/cc/ccf51c56-bbe8-436e-b56a-55ad59fe2361', '/api/vehicle-image/1f/1f4e7258-a34b-4979-ac27-2e01abf384cc', '/api/vehicle-image/bd/bd144fa5-1e5d-462f-b6a7-da559d2fc2c5', '/api/vehicle-image/22/226fa3b5-01b7-4c53-957d-d65200c0da90'],
   },
   {
     id: 23,
@@ -422,7 +422,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 120,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/29/299b72b5-0444-4f40-8b80-8bb96dcf018f'],
+    photos: ['/api/vehicle-image/29/299b72b5-0444-4f40-8b80-8bb96dcf018f', '/api/vehicle-image/5c/5c9f194c-bde0-4c98-98c0-834eed34b170', '/api/vehicle-image/aa/aa247d0e-a567-46ef-8f49-cc5af5808321', '/api/vehicle-image/6f/6f91d4a4-3d57-4715-b508-277489cd05fb', '/api/vehicle-image/95/9532b4e2-176d-4e7b-9510-e99e47e0452a', '/api/vehicle-image/e7/e7c39d9c-379e-4d13-ac7f-e0e024e32632', '/api/vehicle-image/22/220e3e6a-6de5-4743-9064-b89afbb60426', '/api/vehicle-image/62/6268ecbc-6491-4518-9936-c5ee9b7a83b3'],
   },
   {
     id: 24,
@@ -438,7 +438,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 435,
     fuel: 'Diesel',
     featured: true,
-    photos: ['/api/vehicle-image/22/221c8033-81a6-460b-93f7-92d6636ab6fe'],
+    photos: ['/api/vehicle-image/22/221c8033-81a6-460b-93f7-92d6636ab6fe', '/api/vehicle-image/6b/6bc3503e-7237-4680-a70e-5b10d9e29f26', '/api/vehicle-image/a3/a371ebc1-3e81-4ca9-ac5e-c73eade356de', '/api/vehicle-image/6f/6f0a90ea-f591-4ef6-91ab-7b6110ee623c', '/api/vehicle-image/17/175be73d-1f5f-4192-a114-9c4c8cd62e38', '/api/vehicle-image/dc/dc39f347-d290-4b2b-9095-8f7d2b3000fe', '/api/vehicle-image/ab/ab3cbf33-053d-4fae-a88c-f47e27a358e2', '/api/vehicle-image/c8/c8a39d86-9351-4e1c-99a6-14872b816b3f'],
   },
   {
     id: 25,
@@ -454,7 +454,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 258,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/70/707a9da2-0e4e-4c31-af8c-2f05921f1701'],
+    photos: ['/api/vehicle-image/70/707a9da2-0e4e-4c31-af8c-2f05921f1701', '/api/vehicle-image/93/93de90e4-7122-4b88-86ac-ddaf00b303a0', '/api/vehicle-image/cf/cf2cbea1-cf5b-4ffa-853a-9131db59915e', '/api/vehicle-image/ea/eac347e0-1324-4de6-b0a5-c77b2b4f1e8b', '/api/vehicle-image/fe/fe508087-b5ee-4ba2-8709-f241b8b00124', '/api/vehicle-image/32/32e34ad1-e734-4efa-b340-2fa4e0745dcc', '/api/vehicle-image/63/631f87f6-90d9-4ddb-8387-9f6c99148d14', '/api/vehicle-image/68/6847146d-58d8-4598-8170-9aba0532a83d'],
   },
   {
     id: 26,
@@ -470,7 +470,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 121,
     fuel: 'Benzin',
     featured: false,
-    photos: ['/api/vehicle-image/80/8070b72a-c280-4a9f-a7e4-6f6a400620e6'],
+    photos: ['/api/vehicle-image/80/8070b72a-c280-4a9f-a7e4-6f6a400620e6', '/api/vehicle-image/10/103dfba7-2fb9-4b6e-8594-299cf21d20aa', '/api/vehicle-image/38/383a67d3-3d04-4a0b-ad9f-45baa760f41d', '/api/vehicle-image/ed/ed4f0d35-cd2f-4d5b-a37e-4e97c7d21290', '/api/vehicle-image/36/3623822a-e630-4ab2-bc3a-478b0733852b', '/api/vehicle-image/e8/e818923c-a008-4e7b-b08c-b5c8bb013f8f', '/api/vehicle-image/72/7235ac1d-20c3-49a4-ba6e-9019d9eb412b', '/api/vehicle-image/56/56668349-e90f-47a9-ba10-2ff478184ef6'],
   },
   {
     id: 27,
@@ -486,7 +486,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 102,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/3f/3fa0d3c0-3ebe-4c9f-b23e-c123cb07363f'],
+    photos: ['/api/vehicle-image/3f/3fa0d3c0-3ebe-4c9f-b23e-c123cb07363f', '/api/vehicle-image/88/88edb73f-75fd-4f7b-a6c8-48f4ecd05b00', '/api/vehicle-image/00/00d8f613-1d69-44f0-9105-e6c815936da4', '/api/vehicle-image/c1/c11fe9cd-6d4c-47a3-b072-441382cc4bc4', '/api/vehicle-image/62/6228cd2c-ff3b-4850-8601-7e828d2f1b60', '/api/vehicle-image/b8/b8d7975c-8a77-468e-8681-c401c698bf1c', '/api/vehicle-image/82/8286e94c-7fdf-4a65-b156-933770521bec', '/api/vehicle-image/41/4122cb87-6ffd-490c-b8c8-ef2d2c10c538'],
   },
   {
     id: 28,
@@ -502,7 +502,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 585,
     fuel: 'Benzin',
     featured: true,
-    photos: ['/api/vehicle-image/37/37f63b67-e6d6-4cf3-9c23-b3b5de1c1022'],
+    photos: ['/api/vehicle-image/37/37f63b67-e6d6-4cf3-9c23-b3b5de1c1022', '/api/vehicle-image/9b/9b9ec19b-5d6e-426a-a9a4-c7c5b387279e', '/api/vehicle-image/00/0087268b-3321-42a6-b0f6-3748a97ac69f', '/api/vehicle-image/7b/7b0b264d-f772-4864-8872-b8f5ad0c8588', '/api/vehicle-image/90/9055e021-87c8-4fc0-b7de-092f5650a0f9', '/api/vehicle-image/d6/d69b47c1-7c0c-4387-9e1c-c505f5004a01', '/api/vehicle-image/d2/d2227465-e892-49c6-95e7-4ce7dc182a29', '/api/vehicle-image/c9/c97114d0-7623-4d75-a5c5-561fa51add2f'],
   },
   {
     id: 29,
@@ -518,7 +518,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 476,
     fuel: 'Benzin',
     featured: true,
-    photos: ['/api/vehicle-image/be/be343cf2-1d79-4cad-93f8-6a298b3cc504'],
+    photos: ['/api/vehicle-image/be/be343cf2-1d79-4cad-93f8-6a298b3cc504', '/api/vehicle-image/03/03850b39-845c-4580-8dd7-eebb18c59c6f', '/api/vehicle-image/62/622b1b00-8f40-431d-9f0f-da9e9894d167', '/api/vehicle-image/5b/5bfc4ca3-5220-4300-b1f1-7d177301e411', '/api/vehicle-image/dd/dd2e6c56-3b98-45fa-9c3d-0c096025e099', '/api/vehicle-image/34/34e681f8-b827-4e15-9075-055a94d3aa2b', '/api/vehicle-image/22/2230d4d2-cb92-4b64-9635-42184d4acf30', '/api/vehicle-image/82/82349076-198a-43a2-880e-cfbda2a24436'],
   },
   {
     id: 30,
@@ -535,7 +535,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 75,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/00/00ba5048-bdbf-4e65-ac43-f354c70955b2'],
+    photos: ['/api/vehicle-image/00/00ba5048-bdbf-4e65-ac43-f354c70955b2', '/api/vehicle-image/05/055ac7a9-b4f1-4c69-ae1b-839451309545', '/api/vehicle-image/c6/c697501b-793d-43de-b5ef-07dee5961e39', '/api/vehicle-image/db/db887b09-60eb-4257-8cae-c094c2a5830a', '/api/vehicle-image/cd/cd1f0156-a4c7-43f5-9fe9-1b1b73ee8b28', '/api/vehicle-image/d4/d49a1848-9794-4181-bf6f-4e42fcab268a', '/api/vehicle-image/3d/3d0f73a9-9ac7-4733-ab06-54041cc3a577', '/api/vehicle-image/d8/d873e423-481b-4846-bac2-6019c07c9034'],
   },
   {
     id: 31,
@@ -551,7 +551,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 179,
     fuel: 'Diesel',
     featured: false,
-    photos: ['/api/vehicle-image/bf/bf93cd85-766f-4407-a8b9-33893a081725'],
+    photos: ['/api/vehicle-image/bf/bf93cd85-766f-4407-a8b9-33893a081725', '/api/vehicle-image/53/53964e8d-f366-46cf-9129-f698994fbd8d', '/api/vehicle-image/72/72ce7d57-c0c1-4b23-98e1-18d0967789e4', '/api/vehicle-image/bf/bfc0337b-8f01-4f34-9197-85326f612885', '/api/vehicle-image/fd/fdc78116-2bc3-4dca-b031-a8505002e560', '/api/vehicle-image/80/80b55812-7ca6-4723-97e4-af23d5d84cae', '/api/vehicle-image/2b/2be758cf-8fed-4e27-9325-73d068304e20', '/api/vehicle-image/f8/f88a5467-6cf4-42de-a62c-f55217f11af2'],
   },
   {
     id: 32,
@@ -567,7 +567,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 105,
     fuel: 'Hybrid',
     featured: false,
-    photos: ['/api/vehicle-image/7a/7a5d95fa-d66e-4175-89fd-7bc1a609e92e'],
+    photos: ['/api/vehicle-image/7a/7a5d95fa-d66e-4175-89fd-7bc1a609e92e', '/api/vehicle-image/23/23b804d6-95f5-4614-ab19-d72e39344e92', '/api/vehicle-image/c3/c3bd60a3-3e88-4b55-88e9-0ad2066e8bb9', '/api/vehicle-image/f7/f7247a2b-abc2-4e63-b04a-7683425310af', '/api/vehicle-image/ce/ce5e214d-7d07-45d6-8b83-ae2203b3d700', '/api/vehicle-image/bf/bf095cbb-307d-4122-bc6d-55fc9830e847', '/api/vehicle-image/09/09102f94-faa5-457e-bf34-d46469a9aceb', '/api/vehicle-image/dd/dd53dc5b-84a1-4685-9569-c7bffa52274a'],
   },
   {
     id: 33,
@@ -583,7 +583,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 272,
     fuel: 'Diesel',
     featured: true,
-    photos: ['/api/vehicle-image/29/29a0c0a7-0c45-48d9-8c58-fcd7d349d041'],
+    photos: ['/api/vehicle-image/29/29a0c0a7-0c45-48d9-8c58-fcd7d349d041', '/api/vehicle-image/28/2844b545-cef0-44ec-90aa-911b21be58a0', '/api/vehicle-image/d8/d81c6702-f286-4451-80c9-173dc49c96f8', '/api/vehicle-image/d4/d4dbc555-be55-4dbd-a0de-ca519828fc83', '/api/vehicle-image/20/20ff417c-1215-482b-9e37-68d46cc4672a', '/api/vehicle-image/ac/ac85a4e1-39fa-46c5-8ed7-0cc0aa4c21fd', '/api/vehicle-image/40/402ccc81-b15c-4b51-9b41-a53ecffac082', '/api/vehicle-image/e5/e5b373e4-dd47-49f3-aeb9-1a2613b5c8c5'],
   },
   {
     id: 34,
@@ -600,7 +600,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     owners: 1,
     featured: false,
-    photos: ['/api/vehicle-image/f9/f97d3b18-c43a-4bfb-8481-3c7f605e5d8f'],
+    photos: ['/api/vehicle-image/f9/f97d3b18-c43a-4bfb-8481-3c7f605e5d8f', '/api/vehicle-image/f9/f9eaa8de-2cb1-4210-80fd-3efe4984c887', '/api/vehicle-image/cb/cb7847b1-670f-4043-b2a8-455b99ab89bf', '/api/vehicle-image/e6/e69bc9f6-6cbb-49cc-97af-14083dcfb063', '/api/vehicle-image/2e/2e2e0332-8880-4d65-9568-6f7370e43c22', '/api/vehicle-image/06/06d033ba-6854-4604-8a04-8b6a423e34ab', '/api/vehicle-image/7c/7c67e7b3-ca88-494b-9f70-7f453efe7245', '/api/vehicle-image/ee/eed738f3-93d2-4d19-bc97-8ce8efe6f449'],
   },
   {
     id: 35,
@@ -617,7 +617,7 @@ export const vehicles: Vehicle[] = [
     fuel: 'Diesel',
     transmission: 'Automatik',
     featured: false,
-    photos: ['/api/vehicle-image/ff/ffa98839-99d0-40ec-9d5a-99d944d85633'],
+    photos: ['/api/vehicle-image/ff/ffa98839-99d0-40ec-9d5a-99d944d85633', '/api/vehicle-image/be/be1c4131-17c5-48bb-a2b2-a87d7b2f97ee', '/api/vehicle-image/f4/f4cf76ff-e540-4440-8695-153f32e0a5bb', '/api/vehicle-image/7b/7b371ef4-0b51-4657-83d6-68a9e8723230', '/api/vehicle-image/fd/fd7e4f8c-2cc4-4648-ae63-06080f4b7677', '/api/vehicle-image/c7/c7296c1f-b42c-499f-9c03-6975bd94bade', '/api/vehicle-image/4a/4af61e33-a0db-4988-b2f3-2d4c81032dea', '/api/vehicle-image/e5/e5fd34cf-fd79-4aa1-8259-6cb9d64afe95'],
   },
   {
     id: 36,
@@ -633,7 +633,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 381,
     fuel: 'Benzin',
     featured: true,
-    photos: ['/api/vehicle-image/93/932084bf-934f-4c6d-8b08-076af4b2e0a3'],
+    photos: ['/api/vehicle-image/93/932084bf-934f-4c6d-8b08-076af4b2e0a3', '/api/vehicle-image/dd/dd76f28b-153f-4163-86ef-bfa506fc15dc', '/api/vehicle-image/4e/4e8b1233-8260-4a9f-8c22-a33705be72cd', '/api/vehicle-image/7a/7a08c84e-7b64-43f2-adb1-f8daba512a65', '/api/vehicle-image/8d/8d417d8f-7e3b-4ddc-98c4-827aa6a6fbd9', '/api/vehicle-image/c3/c3ee456b-4a44-4a4b-bd72-e602b89eb85c', '/api/vehicle-image/45/457accd4-b9fa-43f5-82bb-c742d3bf144d', '/api/vehicle-image/a8/a8afb085-b299-4870-bc0e-3a0def2c4390'],
   },
   {
     id: 37,
@@ -649,7 +649,7 @@ export const vehicles: Vehicle[] = [
     powerPs: 190,
     fuel: 'Diesel',
     featured: true,
-    photos: ['/api/vehicle-image/d2/d23be8a9-af0b-4464-b5f1-5961b178932d'],
+    photos: ['/api/vehicle-image/d2/d23be8a9-af0b-4464-b5f1-5961b178932d', '/api/vehicle-image/75/75056e33-2220-4c5b-b03e-3db8045efb5c', '/api/vehicle-image/a3/a349eaa5-72d3-4ed2-a791-5bfa211f5da5', '/api/vehicle-image/1c/1c56fe9e-e588-4055-bb20-44b88f05cec4', '/api/vehicle-image/90/907dd38b-59c5-4e8e-b5f3-0d0125aa168f', '/api/vehicle-image/f4/f40c64f4-817a-4286-9fdc-58faa7eb2c33', '/api/vehicle-image/77/778c8a3e-6419-4dae-9c7e-9d88e0322028', '/api/vehicle-image/49/49339085-4771-49cc-b898-14d06ad421d7'],
   },
 ]
 
