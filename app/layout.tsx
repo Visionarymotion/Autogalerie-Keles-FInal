@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 import { WhatsAppFloat } from '@/components/whatsapp-float'
 import { siteConfig } from '@/lib/site-config'
 import './globals.css'
@@ -121,6 +122,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <WhatsAppFloat />
+        <Analytics />
       </body>
     </html>
   )
