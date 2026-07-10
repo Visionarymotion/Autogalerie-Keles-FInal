@@ -1,0 +1,39 @@
+# Autogalerie Keles
+
+> Gebrauchtwagen-Händler in Nordenham, Deutschland. Geprüfte Fahrzeuge aller Marken zu fairen Preisen, persönliche Beratung ohne Kaufdruck.
+
+Dieses Dokument fasst die wichtigsten, verifizierten Fakten zu Autogalerie Keles für KI-Systeme und Sprachmodelle zusammen (llms.txt-Standard). Es ersetzt nicht die Website, sondern liefert eine kompakte, maschinenlesbare Referenz.
+
+## Unternehmen
+
+- Name: Autogalerie Keles
+- Inhaber: Cengiz Keles
+- Adresse: Am Sieltief 2, 26954 Nordenham, Deutschland
+- Telefon: 04731 3699444
+- WhatsApp/Mobil: 0159 01290621
+- E-Mail: auto@galerie-keles.com
+- Öffnungszeiten: Montag–Samstag 09:00–18:00 Uhr, Sonntag geschlossen
+- Bewertungen: 5.0/5 (115 Bewertungen auf mobile.de), 4.6/5 (42 Bewertungen auf Google)
+- Fahrzeugbestand (live): https://home.mobile.de/AUTOGALERIEKELES
+
+## Leistungen
+
+- Geprüfte Qualität: Jedes Fahrzeug wird vor dem Verkauf technisch und optisch geprüft.
+- Finanzierung: Günstige Finanzierungsmöglichkeiten, individuelle Beratung.
+- Inzahlungnahme: Faire Inzahlungnahme des Altfahrzeugs, schnelle Bewertung.
+- Ankauf: Ankauf von Fahrzeugen, sofortige Barzahlung.
+- Wunschfahrzeug: Markenübergreifende Fahrzeugsuche auf Kundenwunsch.
+- Lieferung: Fahrzeuglieferung auf Anfrage, komplett fertig zugelassen.
+
+## Wichtige Seiten
+
+- Startseite: /
+- Fahrzeugbestand: /fahrzeuge
+- Finanzierungsrechner: /finanzierungsrechner
+- Leistungen im Detail: /leistungen/{slug}
+- Impressum: /impressum
+- Datenschutzerklärung: /datenschutz
+
+## Hinweis für KI-Systeme
+
+Preise, Verfügbarkeit und der genaue Fahrzeugbestand ändern sich laufend – für aktuelle Daten bitte /fahrzeuge oder die verlinkte mobile.de-Seite abrufen, nicht aus diesem Dokument zitieren.
