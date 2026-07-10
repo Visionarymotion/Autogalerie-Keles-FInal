@@ -21,7 +21,7 @@ Dieses Dokument fasst die wichtigsten, verifizierten Fakten zu Autogalerie Keles
 - Geprüfte Qualität: Jedes Fahrzeug wird vor dem Verkauf technisch und optisch geprüft.
 - Finanzierung: Günstige Finanzierungsmöglichkeiten, individuelle Beratung.
 - Inzahlungnahme: Faire Inzahlungnahme des Altfahrzeugs, schnelle Bewertung.
-- Ankauf: Ankauf von Fahrzeugen, sofortige Barzahlung.
+- Ankauf: Ankauf von Fahrzeugen, sofortige Barzahlung – Online-Formular unter /ankauf.
 - Wunschfahrzeug: Markenübergreifende Fahrzeugsuche auf Kundenwunsch.
 - Lieferung: Fahrzeuglieferung auf Anfrage, komplett fertig zugelassen.
 
@@ -29,7 +29,9 @@ Dieses Dokument fasst die wichtigsten, verifizierten Fakten zu Autogalerie Keles
 
 - Startseite: /
 - Fahrzeugbestand: /fahrzeuge
+- Fahrzeug-Ankauf (Formular): /ankauf
 - Finanzierungsrechner: /finanzierungsrechner
+- Häufige Fragen (FAQ): /#faq
 - Leistungen im Detail: /leistungen/{slug}
 - Impressum: /impressum
 - Datenschutzerklärung: /datenschutz
