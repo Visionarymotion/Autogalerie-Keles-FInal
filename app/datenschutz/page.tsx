@@ -38,18 +38,23 @@ export default function DatenschutzPage() {
               Diese Website wird bei Vercel Inc. gehostet. Beim Aufruf der Seite verarbeitet Vercel
               automatisch technische Daten (z. B. IP-Adresse, Browsertyp, Datum und Uhrzeit des
               Zugriffs) in Server-Logfiles. Diese Verarbeitung ist zur Bereitstellung der Website
-              technisch erforderlich (Art. 6 Abs. 1 lit. f DSGVO).
+              technisch erforderlich (Art. 6 Abs. 1 lit. f DSGVO). Vercel ist ein US-Unternehmen;
+              eine Verarbeitung der Daten auf Servern außerhalb der EU (insbesondere in den USA)
+              ist möglich. Die Übermittlung stützt sich auf die EU-Standardvertragsklauseln bzw.
+              das EU-US Data Privacy Framework.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">3. Kontaktformular</h2>
+            <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">3. Kontakt- und Ankauf-Formular</h2>
             <p>
-              Wenn Sie uns über das Kontaktformular eine Anfrage senden, werden Ihre Angaben (Name,
-              Telefonnummer, Nachricht) zur Bearbeitung Ihrer Anfrage genutzt. Das Formular leitet
-              Ihre Nachricht direkt an WhatsApp weiter. Es gelten zusätzlich die Datenschutzhinweise
-              von WhatsApp/Meta (siehe Punkt 5). Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO
-              (Vertragsanbahnung) bzw. lit. f (berechtigtes Interesse an Kundenkontakt).
+              Wenn Sie uns über das Kontaktformular oder das Fahrzeug-Ankauf-Formular eine Anfrage
+              senden, werden Ihre Angaben (z. B. Name, Telefonnummer, Fahrzeugdaten, Nachricht) zur
+              Bearbeitung Ihrer Anfrage genutzt. Beide Formulare leiten Ihre Nachricht direkt an
+              WhatsApp weiter – eine Speicherung auf unserer Website findet nicht statt. Es gelten
+              zusätzlich die Datenschutzhinweise von WhatsApp/Meta (siehe Punkt 5). Rechtsgrundlage
+              ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f (berechtigtes
+              Interesse an Kundenkontakt).
             </p>
           </section>
 
@@ -81,7 +86,7 @@ export default function DatenschutzPage() {
             <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">6. Cookies</h2>
             <p>
               Diese Website verwendet aktuell keine eigenen Tracking- oder Marketing-Cookies.
-              Technisch notwendige Cookies (z. B. zur grundlegenden Funktion der Seite) können
+              Technisch notwendige Speichervorgänge (z. B. zur grundlegenden Funktion der Seite) können
               gesetzt werden. Ihre Entscheidung zum Laden der Google-Maps-Karte (siehe Punkt 4)
               speichern wir lokal in Ihrem Browser (localStorage), damit Sie nicht bei jedem Besuch
               erneut gefragt werden – hierbei werden keine Daten an uns übertragen.
@@ -89,7 +94,19 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">7. Ihre Rechte</h2>
+            <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">7. Webanalyse (Vercel Analytics)</h2>
+            <p>
+              Zur Verbesserung unseres Angebots nutzen wir Vercel Web Analytics. Dieses Verfahren
+              arbeitet ohne Cookies und ohne geräteübergreifendes Tracking: Es werden ausschließlich
+              aggregierte, anonymisierte Nutzungsdaten erhoben (z. B. aufgerufene Seiten, Herkunftsland,
+              Gerätetyp). Eine Identifizierung einzelner Besucher ist nicht möglich; IP-Adressen werden
+              nicht dauerhaft gespeichert. Rechtsgrundlage ist unser berechtigtes Interesse an der
+              statistischen Auswertung und Verbesserung der Website (Art. 6 Abs. 1 lit. f DSGVO).
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">8. Ihre Rechte</h2>
             <p>
               Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung
               der Verarbeitung Ihrer personenbezogenen Daten sowie ein Recht auf
