@@ -20,6 +20,13 @@ export const siteConfig = {
   name: 'Autogalerie Keles',
   tagline: 'Ihr vertrauensvoller Gebrauchtwagen-Händler in Nordenham',
 
+  // Produktions-Domain für Metadata (canonical URLs, OpenGraph, JSON-LD,
+  // Sitemap, robots.txt). Aktuell die Vercel-Subdomain, da noch keine
+  // eigene Domain verbunden ist. Sobald der Kunde autogalerie-keles.de
+  // (oder eine andere Domain) auf dieses Projekt zeigt, hier EINMAL
+  // anpassen statt in jeder Datei einzeln.
+  url: 'https://autogalerie-keles-final.vercel.app',
+
   address: {
     street: 'Am Sieltief 2',
     zip: '26954',
