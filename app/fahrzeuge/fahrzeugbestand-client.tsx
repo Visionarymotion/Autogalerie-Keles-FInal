@@ -1,9 +1,9 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Fuel, Gauge, Calendar, Zap, ArrowRight, ImageOff, SlidersHorizontal, X } from 'lucide-react'
+import { Fuel, Gauge, Calendar, Zap, ArrowRight, ImageOff, SlidersHorizontal, X, Heart } from 'lucide-react'
 import { formatPrice, formatKm, type Vehicle } from '@/lib/vehicles-data'
 import { siteConfig } from '@/lib/site-config'
 
@@ -28,7 +28,7 @@ function WhatsAppIcon({ size = 13 }: { size?: number }) {
   )
 }
 
-function CarCard({ car }: { car: Vehicle }) {
+function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; onToggleFav: (id: number) => void }) {
   const photo = car.photos[0] ?? null
   const waHref = `https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(`Hallo, ich interessiere mich für den ${car.brand} ${car.model}.`)}`
   return (
@@ -88,6 +88,17 @@ function CarCard({ car }: { car: Vehicle }) {
       >
         <WhatsAppIcon size={16} />
       </a>
+      <button
+        type="button"
+        onClick={() => onToggleFav(car.id)}
+        aria-label={isFav ? 'Von Merkliste entfernen' : 'Auf Merkliste setzen'}
+        aria-pressed={isFav}
+        className={`absolute top-[3.75rem] right-3 z-10 flex items-center justify-center w-9 h-9 rounded-full border shadow-lg transition-colors duration-300 ${
+          isFav ? 'bg-gold border-gold text-white' : 'bg-dark/70 border-white/25 text-white/85 hover:text-white hover:border-gold/70'
+        }`}
+      >
+        <Heart size={15} strokeWidth={2} fill={isFav ? 'currentColor' : 'none'} />
+      </button>
     </div>
   )
 }
@@ -98,6 +109,25 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
   const [maxPrice, setMaxPrice] = useState(60000)
   const [sort, setSort] = useState<SortKey>('relevanz')
   const [filtersOpen, setFiltersOpen] = useState(false)
+  const [favs, setFavs] = useState<number[]>([])
+  const [onlyFavs, setOnlyFavs] = useState(false)
+
+  // Merkliste liegt nur lokal im Browser (localStorage) – keine
+  // Server-Speicherung, keine personenbezogenen Daten.
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('ak-merkliste')
+      if (stored) setFavs(JSON.parse(stored))
+    } catch {}
+  }, [])
+
+  const toggleFav = (id: number) => {
+    setFavs((prev) => {
+      const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+      try { localStorage.setItem('ak-merkliste', JSON.stringify(next)) } catch {}
+      return next
+    })
+  }
 
   const brands = useMemo(() => ['Alle', ...Array.from(new Set(vehicles.map((v) => v.brand))).sort()], [vehicles])
   const fuels = useMemo(() => ['Alle', ...Array.from(new Set(vehicles.map((v) => v.fuel)))], [vehicles])
@@ -106,8 +136,9 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
     let list = vehicles.filter((v) => v.price <= maxPrice)
     if (brand !== 'Alle') list = list.filter((v) => v.brand === brand)
     if (fuel !== 'Alle') list = list.filter((v) => v.fuel === fuel)
+    if (onlyFavs) list = list.filter((v) => favs.includes(v.id))
     return sortVehicles(list, sort)
-  }, [vehicles, brand, fuel, maxPrice, sort])
+  }, [vehicles, brand, fuel, maxPrice, sort, onlyFavs, favs])
 
   return (
     <div className="max-w-7xl mx-auto px-5 lg:px-10 pb-24">
@@ -232,9 +263,23 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
             </select>
           </div>
 
+          <div className="mb-6">
+            <button
+              type="button"
+              onClick={() => setOnlyFavs((v) => !v)}
+              aria-pressed={onlyFavs}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-md border text-[12px] font-semibold tracking-wide transition-colors duration-300 ${
+                onlyFavs ? 'bg-gold border-gold text-white' : 'bg-card border-border text-muted-foreground hover:border-gold/40 hover:text-foreground'
+              }`}
+            >
+              <Heart size={13} strokeWidth={2} fill={onlyFavs ? 'currentColor' : 'none'} />
+              Merkliste{favs.length > 0 ? ` (${favs.length})` : ''}
+            </button>
+          </div>
+
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-              {filtered.map((car) => <CarCard key={car.id} car={car} />)}
+              {filtered.map((car) => <CarCard key={car.id} car={car} isFav={favs.includes(car.id)} onToggleFav={toggleFav} />)}
             </div>
           ) : (
             <div className="text-center py-20 text-muted-foreground text-[13.5px]">
