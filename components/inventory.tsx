@@ -4,6 +4,7 @@ import { Fuel, Gauge, Calendar, Zap, ArrowRight, ExternalLink, ImageOff } from '
 import { siteConfig } from '@/lib/site-config'
 import { getFeaturedVehicles } from '@/lib/vehicle-store'
 import { formatPrice, formatKm, type Vehicle } from '@/lib/vehicles-data'
+import { Reveal } from '@/components/reveal'
 
 function WhatsAppIcon({ size = 13 }: { size?: number }) {
   return (
@@ -90,30 +91,34 @@ export default async function Inventory() {
     <section id="fahrzeuge" className="py-24 px-5 lg:px-10 bg-background">
       <div className="max-w-7xl mx-auto">
 
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 gap-6">
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="w-7 h-px bg-[#c7c9cc]" />
-              <span className="text-[11px] tracking-[0.3em] text-[#c7c9cc] uppercase font-semibold">Aktuelle Highlights</span>
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-7 h-px bg-[#c7c9cc]" />
+                <span className="text-[11px] tracking-[0.3em] text-[#c7c9cc] uppercase font-semibold">Aktuelle Highlights</span>
+              </div>
+              <h2 className="font-[var(--font-heading)] text-4xl md:text-5xl text-foreground font-semibold text-balance">
+                Unsere Fahrzeuge
+              </h2>
             </div>
-            <h2 className="font-[var(--font-heading)] text-4xl md:text-5xl text-foreground font-semibold text-balance">
-              Unsere Fahrzeuge
-            </h2>
+            <Link
+              href="/fahrzeuge"
+              className="inline-flex items-center gap-1.5 text-[12px] text-[#c7c9cc] font-medium hover:underline"
+            >
+              Alle Fahrzeuge ansehen
+              <ExternalLink size={11} strokeWidth={2} />
+            </Link>
           </div>
-          <Link
-            href="/fahrzeuge"
-            className="inline-flex items-center gap-1.5 text-[12px] text-[#c7c9cc] font-medium hover:underline"
-          >
-            Alle Fahrzeuge ansehen
-            <ExternalLink size={11} strokeWidth={2} />
-          </Link>
-        </div>
+        </Reveal>
 
         <div className="divider-gold mb-8 mt-6" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {featuredVehicles.map((car) => (
-            <CarCard key={car.id} car={car} />
+          {featuredVehicles.map((car, i) => (
+            <Reveal key={car.id} delay={i * 90}>
+              <CarCard car={car} />
+            </Reveal>
           ))}
         </div>
 
