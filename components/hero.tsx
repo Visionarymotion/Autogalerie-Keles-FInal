@@ -17,17 +17,25 @@ export default function Hero() {
     <section id="home" className="relative min-h-screen flex flex-col overflow-hidden bg-dark">
 
       {/* Echtes Standort-Foto (von euch bereitgestellt) */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/dealership-real.jpg"
-          alt="Autogalerie Keles – unser Standort"
-          fill
-          priority
-          className="object-cover object-center"
-          style={{ filter: 'brightness(0.68) saturate(1)' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/92 via-[#0a0a0a]/45 to-[#0a0a0a]/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/75 via-transparent to-[#0a0a0a]/20" />
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            transform: visible ? 'scale(1)' : 'scale(1.08)',
+            transition: 'transform 7s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        >
+          <Image
+            src="/images/dealership-real.jpg"
+            alt="Autogalerie Keles – unser Standort"
+            fill
+            priority
+            className="object-cover object-center"
+            style={{ filter: 'brightness(0.8) contrast(1.12) saturate(1.18)' }}
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/92 via-[#0a0a0a]/48 to-[#0a0a0a]/12" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/78 via-transparent to-[#0a0a0a]/22" />
       </div>
 
       {/* Content */}
@@ -130,4 +138,3 @@ export default function Hero() {
     </section>
   )
 }
-
