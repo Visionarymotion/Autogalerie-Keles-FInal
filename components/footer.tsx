@@ -76,6 +76,7 @@ export default function Footer() {
                 { label: 'Fahrzeuge', href: '/fahrzeuge' },
                 { label: 'Leistungen', href: '/#leistungen' },
                 { label: 'Finanzierungsrechner', href: '/finanzierungsrechner' },
+                { label: 'Fahrzeug-Ankauf', href: '/ankauf' },
                 { label: 'Über uns', href: '/#ueber-uns' },
                 { label: 'Kontakt', href: '/#kontakt' },
               ].map((link) => (
