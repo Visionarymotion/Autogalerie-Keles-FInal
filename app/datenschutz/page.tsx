@@ -40,7 +40,8 @@ export default function DatenschutzPage() {
               Zugriffs) in Server-Logfiles. Diese Verarbeitung ist zur Bereitstellung der Website
               technisch erforderlich (Art. 6 Abs. 1 lit. f DSGVO). Vercel ist ein US-Unternehmen;
               eine Verarbeitung der Daten auf Servern außerhalb der EU (insbesondere in den USA)
-              ist möglich. Die Übermittlung stützt sich auf die EU-Standardvertragsklauseln bzw.
+              ist möglich. Für die Auftragsverarbeitung besteht mit Vercel Inc. ein
+              Auftragsverarbeitungsvertrag (AVV) gemäß Art. 28 DSGVO. Die Übermittlung stützt sich auf die EU-Standardvertragsklauseln bzw.
               das EU-US Data Privacy Framework.
             </p>
           </section>
@@ -106,7 +107,20 @@ export default function DatenschutzPage() {
           </section>
 
           <section>
-            <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">8. Ihre Rechte</h2>
+            <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">8. Merkliste (lokale Speicherung)</h2>
+            <p>
+              Die Merkliste-Funktion (Herz-Symbol auf Fahrzeugkarten) speichert die IDs
+              gemerkter Fahrzeuge ausschließlich lokal in Ihrem Browser (localStorage).
+              Es werden dabei keine personenbezogenen Daten an unsere Server oder Dritte
+              übertragen; die Auswahl bleibt auf Ihrem Gerät und wird beim Löschen der
+              Browserdaten automatisch entfernt. Eine gesonderte Einwilligung ist hierfür
+              nicht erforderlich, da keine Datenverarbeitung außerhalb Ihres Endgeräts
+              stattfindet (kein Personenbezug, Art. 4 Nr. 1 DSGVO nicht einschlägig).
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-[16px] font-[var(--font-heading)] font-semibold mb-2">9. Ihre Rechte</h2>
             <p>
               Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung
               der Verarbeitung Ihrer personenbezogenen Daten sowie ein Recht auf
