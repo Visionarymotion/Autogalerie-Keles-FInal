@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fuel, Gauge, Calendar, Zap, ArrowRight, ImageOff, SlidersHorizontal, X, Heart } from 'lucide-react'
@@ -31,8 +31,38 @@ function WhatsAppIcon({ size = 13 }: { size?: number }) {
 function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; onToggleFav: (id: number) => void }) {
   const photo = car.photos[0] ?? null
   const waHref = `https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(`Hallo, ich interessiere mich für den ${car.brand} ${car.model}.`)}`
+
+  /* Dezenter 3D-Tilt-Effekt (Maus-Perspektive) + Glare-Highlight, prefers-reduced-motion-sicher */
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0, glareX: 50, glareY: 50, hover: false })
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const el = cardRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const px = (e.clientX - rect.left) / rect.width
+    const py = (e.clientY - rect.top) / rect.height
+    setTilt({ rx: (0.5 - py) * 8, ry: (px - 0.5) * 8, glareX: px * 100, glareY: py * 100, hover: true })
+  }
+
+  const handleMouseLeave = () => setTilt({ rx: 0, ry: 0, glareX: 50, glareY: 50, hover: false })
+
   return (
-    <div className="group relative bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-2xl hover:border-[#c7c9cc]/40 transition-all duration-500 hover:-translate-y-1.5 flex flex-col">
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `perspective(1000px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateY(${tilt.hover ? -6 : 0}px)`,
+      }}
+      className="group relative bg-card border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-2xl hover:border-[#c7c9cc]/40 transition-transform duration-200 ease-out flex flex-col [transform-style:preserve-3d] will-change-transform"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, rgba(255,255,255,0.16), transparent 60%)` }}
+      />
       <Link
         href={`/fahrzeuge/${car.slug}`}
         className="flex flex-col flex-1"
