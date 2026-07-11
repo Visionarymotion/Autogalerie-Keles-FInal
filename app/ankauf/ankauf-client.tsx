@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Car, CheckCircle2, BadgeEuro, Clock, ShieldCheck } from 'lucide-react'
+import { Car, CheckCircle2, BadgeEuro, Clock, ShieldCheck, Mail } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 import { Reveal } from '@/components/reveal'
 
@@ -46,27 +46,35 @@ export default function AnkaufClient() {
 
   const canSubmit = form.brand.trim() && form.model.trim() && form.km.trim() && form.name.trim()
 
+  const buildLines = () => [
+    'Hallo, ich möchte mein Fahrzeug zum Ankauf anbieten:',
+    '',
+    `Fahrzeug: ${form.brand} ${form.model}`,
+    form.firstReg && `Erstzulassung: ${form.firstReg}`,
+    `Kilometerstand: ${form.km} km`,
+    form.fuel && `Kraftstoff: ${form.fuel}`,
+    form.transmission && `Getriebe: ${form.transmission}`,
+    form.condition && `Zustand: ${form.condition}`,
+    form.accident && `Unfallstatus: ${form.accident}`,
+    form.price && `Preisvorstellung: ${form.price} €`,
+    '',
+    `Name: ${form.name}`,
+    form.phone && `Telefon: ${form.phone}`,
+    form.message && `Anmerkung: ${form.message}`,
+  ].filter(Boolean) as string[]
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!canSubmit) return
-    const lines = [
-      'Hallo, ich möchte mein Fahrzeug zum Ankauf anbieten:',
-      '',
-      `Fahrzeug: ${form.brand} ${form.model}`,
-      form.firstReg && `Erstzulassung: ${form.firstReg}`,
-      `Kilometerstand: ${form.km} km`,
-      form.fuel && `Kraftstoff: ${form.fuel}`,
-      form.transmission && `Getriebe: ${form.transmission}`,
-      form.condition && `Zustand: ${form.condition}`,
-      form.accident && `Unfallstatus: ${form.accident}`,
-      form.price && `Preisvorstellung: ${form.price} €`,
-      '',
-      `Name: ${form.name}`,
-      form.phone && `Telefon: ${form.phone}`,
-      form.message && `Anmerkung: ${form.message}`,
-    ].filter(Boolean)
-    const url = `https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(lines.join('\n'))}`
+    const url = `https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(buildLines().join('\n'))}`
     window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
+  const handleEmailSubmit = () => {
+    if (!canSubmit) return
+    const subject = `Fahrzeug-Ankauf: ${form.brand} ${form.model}`
+    const url = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(buildLines().join('\n'))}`
+    window.location.href = url
   }
 
   const inputCls =
@@ -181,17 +189,28 @@ export default function AnkaufClient() {
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={!canSubmit}
-            className="w-full inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] disabled:opacity-40 disabled:cursor-not-allowed text-white text-[14px] font-semibold tracking-wide px-8 py-4 rounded-md transition-all duration-300"
-          >
-            <WhatsAppIcon size={17} />
-            Anfrage per WhatsApp senden
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className="flex-1 inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] disabled:opacity-40 disabled:cursor-not-allowed text-white text-[14px] font-semibold tracking-wide px-8 py-4 rounded-md transition-all duration-300"
+            >
+              <WhatsAppIcon size={17} />
+              Anfrage per WhatsApp senden
+            </button>
+            <button
+              type="button"
+              onClick={handleEmailSubmit}
+              disabled={!canSubmit}
+              className="flex-1 inline-flex items-center justify-center gap-2.5 bg-surface border border-border hover:border-gold/60 disabled:opacity-40 disabled:cursor-not-allowed text-foreground text-[14px] font-semibold tracking-wide px-8 py-4 rounded-md transition-all duration-300"
+            >
+              <Mail size={17} strokeWidth={2} />
+              Per E-Mail anfragen
+            </button>
+          </div>
 
           <p className="text-[11px] text-muted-foreground/80 leading-relaxed mt-4 text-center">
-            Beim Absenden öffnet sich WhatsApp mit Ihrer vorbereiteten Nachricht – Sie sehen alles vor dem
+            Beim Absenden öffnet sich WhatsApp bzw. Ihr E-Mail-Programm mit Ihrer vorbereiteten Nachricht – Sie sehen alles vor dem
             Senden und Ihre Angaben werden nicht auf unserer Website gespeichert. Details in der{' '}
             <Link href="/datenschutz" className="text-gold hover:underline">Datenschutzerklärung</Link>.
           </p>
