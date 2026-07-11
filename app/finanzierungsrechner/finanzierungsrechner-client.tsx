@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Mail } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 
 function WhatsAppIcon({ size = 13 }: { size?: number }) {
@@ -47,6 +47,8 @@ export default function FinanzierungsrechnerClient() {
 
   const waMessage = `Hallo, ich interessiere mich für eine Finanzierung. Fahrzeugpreis: ${formatEuro(price)}, Anzahlung: ${formatEuro(downPayment)}, Laufzeit: ${term} Monate. Errechnete monatliche Rate: ca. ${formatEuro(monthlyPayment)}. Können Sie mir ein individuelles Angebot erstellen?`
   const waHref = `https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(waMessage)}`
+  const mailSubject = `Finanzierungsanfrage: ${formatEuro(price)} über ${term} Monate`
+  const mailHref = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(waMessage)}`
 
   return (
     <div className="pb-24 px-5 lg:px-10">
@@ -169,15 +171,24 @@ export default function FinanzierungsrechnerClient() {
               </div>
             </div>
 
-            <a
-              href={waHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp-pulse mt-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 bg-[#25D366] text-white text-[13px] font-semibold tracking-widest uppercase hover:bg-[#20bd5a] transition-all duration-300 rounded-sm"
-            >
-              <WhatsAppIcon size={15} />
-              Angebot per WhatsApp anfragen
-            </a>
+            <div className="mt-auto flex flex-col sm:flex-row gap-3">
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp-pulse flex-1 inline-flex items-center justify-center gap-3 px-6 py-3.5 bg-[#25D366] text-white text-[13px] font-semibold tracking-widest uppercase hover:bg-[#20bd5a] transition-all duration-300 rounded-sm"
+              >
+                <WhatsAppIcon size={15} />
+                Angebot per WhatsApp anfragen
+              </a>
+              <a
+                href={mailHref}
+                className="flex-1 inline-flex items-center justify-center gap-3 px-6 py-3.5 bg-transparent border border-border text-foreground text-[13px] font-semibold tracking-widest uppercase hover:border-gold/60 transition-all duration-300 rounded-sm"
+              >
+                <Mail size={15} strokeWidth={2} />
+                Per E-Mail anfragen
+              </a>
+            </div>
           </div>
         </div>
 
