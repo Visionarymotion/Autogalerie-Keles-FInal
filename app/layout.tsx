@@ -74,8 +74,18 @@ export const viewport: Viewport = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'AutoDealer',
+  '@id': `${siteConfig.url}/#autodealer`,
   name: siteConfig.name,
   url: siteConfig.url,
+  priceRange: '€€',
+  areaServed: [
+    { '@type': 'City', name: 'Nordenham' },
+    { '@type': 'AdministrativeArea', name: 'Landkreis Wesermarsch' },
+    { '@type': 'City', name: 'Bremerhaven' },
+    { '@type': 'City', name: 'Bremen' },
+    { '@type': 'City', name: 'Oldenburg' },
+  ],
+  hasMap: `https://maps.google.com/?q=${encodeURIComponent(siteConfig.address.mapsQuery)}`,
   image: `${siteConfig.url}/images/dealership-real.jpg`,
   telephone: siteConfig.contact.ctaPhoneHref,
   email: siteConfig.contact.email,
