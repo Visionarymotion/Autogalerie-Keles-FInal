@@ -9,6 +9,8 @@ import { getOpeningStatus, type OpeningStatus } from '@/lib/opening-hours'
 
 const navLinks = [
   { label: 'Fahrzeugbestand', href: '/fahrzeuge' },
+  { label: 'Ankauf', href: '/ankauf' },
+  { label: 'Finanzierung', href: '/finanzierungsrechner' },
   { label: 'Service', href: '/#leistungen' },
   { label: 'Über uns', href: '/#ueber-uns' },
   { label: 'Kontakt', href: '/#kontakt' },
