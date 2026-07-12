@@ -50,6 +50,7 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
                   src={vehicle.photos[activePhoto]}
                   alt={`${vehicle.brand} ${vehicle.model}`}
                   fill
+                  unoptimized
                   className="object-cover"
                   priority
                 />
@@ -97,7 +98,7 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
                     i === activePhoto ? 'border-[#c7c9cc]' : 'border-transparent opacity-60 hover:opacity-100'
                   }`}
                 >
-                  <Image src={photo} alt="" fill className="object-cover" />
+                  <Image src={photo} alt="" fill unoptimized className="object-cover" />
                 </button>
               ))}
             </div>
