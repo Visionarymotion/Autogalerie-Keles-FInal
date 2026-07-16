@@ -1,3 +1,16 @@
+## Agentur-Standards (Visionary Motion, projektübergreifend verbindlich)
+
+Vollständige Fassung: `CLAUDE.md` im Hauptordner `VM Visionary Motion Digital/`. Kernpunkte, falls dieses Repo eigenständig geöffnet wird:
+
+- **Qualitäts-Gate vor jedem Push:** Build + Lint/Typecheck grün, Secrets-Check (`.env*` nie committen), Browser-Test (Golden Path + Edge Cases), Mobile+Desktop-Check — sonst kein Push.
+- **Deploy:** GitHub-Push automatisch nach Freigabe. Vercel-Deploy und lokaler Dev-Server nur nach expliziter Zustimmung, vorher aktiv fragen.
+- **Design:** Farbpalette immer Kunden-Branding (Silber/Chrome bei diesem Kunden), nie eine feste VM-Palette. High-End, kein generischer KI-Look.
+- **DSGVO/A11y:** WCAG 2.1 AA, Consent vor Tracking, Impressum/Datenschutz-Pflicht.
+- **Footer:** "Realisiert von Visionary Motion Digital" mittig unten, zweizeilig, zweite Zeile fett.
+- **Skills:** `.claude/skills/` in diesem Repo enthält u. a. `impeccable`, `emil-design-eng`, `design-taste-frontend`, `ui-ux-pro-max`, `web-design-guidelines`, `vercel-react-best-practices`, `next-best-practices`, `before-and-after` — proaktiv nutzen, wo passend, kurz erwähnen was verwendet wurde.
+
+---
+
 # Autogalerie Keles — Projekt-Übergabe für Claude Code
 
 > Diese Datei ist für die Übernahme in eine **Claude Code**-Session mit direktem
