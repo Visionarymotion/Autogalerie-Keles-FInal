@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Mail } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
+import { calculateMonthlyPayment } from '@/lib/financing'
 
 function WhatsAppIcon({ size = 13 }: { size?: number }) {
   return (
@@ -27,15 +28,7 @@ export default function FinanzierungsrechnerClient() {
 
   const { loanAmount, monthlyPayment, totalPayment, totalInterest } = useMemo(() => {
     const loan = Math.max(price - downPayment, 0)
-    const monthlyRate = rate / 100 / 12
-    let payment: number
-    if (loan <= 0) {
-      payment = 0
-    } else if (monthlyRate === 0) {
-      payment = loan / term
-    } else {
-      payment = (loan * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -term))
-    }
+    const payment = calculateMonthlyPayment(loan, rate, term)
     const total = payment * term
     return {
       loanAmount: loan,

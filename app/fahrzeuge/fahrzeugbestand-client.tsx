@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Fuel, Gauge, Calendar, Zap, ArrowRight, ImageOff, SlidersHorizontal, X, Heart } from 'lucide-react'
 import { formatPrice, formatKm, type Vehicle } from '@/lib/vehicles-data'
 import { siteConfig } from '@/lib/site-config'
+import { estimateCardMonthlyPayment } from '@/lib/financing'
 
 type SortKey = 'relevanz' | 'preis-auf' | 'preis-ab' | 'km-auf' | 'ez-neu'
 
@@ -31,6 +32,7 @@ function WhatsAppIcon({ size = 13 }: { size?: number }) {
 function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; onToggleFav: (id: number) => void }) {
   const photo = car.photos[0] ?? null
   const waHref = `https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(`Hallo, ich interessiere mich für den ${car.brand} ${car.model}.`)}`
+  const monthlyEstimate = Math.round(estimateCardMonthlyPayment(car.price))
 
   /* Dezenter 3D-Tilt-Effekt (Maus-Perspektive) + Glare-Highlight, prefers-reduced-motion-sicher */
   const cardRef = useRef<HTMLDivElement>(null)
@@ -97,6 +99,11 @@ function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; on
             <p className="text-[10px] tracking-[0.28em] text-[#c7c9cc] uppercase font-semibold mb-0.5">{car.brand}</p>
             <h3 className="text-[16px] font-[var(--font-heading)] font-semibold text-foreground leading-snug">{car.model}</h3>
             <p className="text-[11px] text-muted-foreground mt-0.5 truncate">{car.detail}</p>
+            {monthlyEstimate > 0 && (
+              <p className="text-[11.5px] text-[#c7c9cc] mt-1.5 font-medium">
+                ab {formatPrice(monthlyEstimate)}/mtl.<span className="text-muted-foreground font-normal">*</span>
+              </p>
+            )}
           </div>
           <div className="flex items-center gap-2.5 flex-wrap pt-3.5 mt-auto border-t border-border">
             <span className="flex items-center gap-1.5 text-[11px] text-muted-foreground"><Calendar size={11} strokeWidth={1.8} className="text-[#c7c9cc]" />{car.firstRegistration}</span>
@@ -279,8 +286,13 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
 
         {/* Results */}
         <div>
-          <div className="flex items-center justify-between mb-5">
-            <p className="text-[12.5px] text-muted-foreground">{filtered.length} Fahrzeuge</p>
+          <div className="flex items-center justify-between mb-5 flex-wrap gap-2">
+            <p className="text-[12.5px] text-muted-foreground">
+              {filtered.length} Fahrzeuge
+              <span className="hidden sm:inline">
+                {' '}· <span className="text-[11px]">*Finanzierungsbeispiel: 0 € Anzahlung, 36 Monate, 5,9 % eff. Jahreszins, unverbindlich</span>
+              </span>
+            </p>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortKey)}
