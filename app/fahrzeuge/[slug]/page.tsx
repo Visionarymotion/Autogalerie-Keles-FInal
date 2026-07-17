@@ -89,18 +89,38 @@ function buildVehicleJsonLd(vehicle: Vehicle) {
   return jsonLd
 }
 
+// Breadcrumb-Pfad für GEO/SEO (Startseite > Fahrzeuge > Modell) – hilft
+// Google/KI-Crawlern bei der Einordnung der URL-Hierarchie, unabhängig
+// vom Car-Schema oben.
+function buildBreadcrumbJsonLd(vehicle: Vehicle) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteConfig.url },
+      { '@type': 'ListItem', position: 2, name: 'Fahrzeuge', item: `${siteConfig.url}/fahrzeuge` },
+      { '@type': 'ListItem', position: 3, name: `${vehicle.brand} ${vehicle.model}`, item: `${siteConfig.url}/fahrzeuge/${vehicle.slug}` },
+    ],
+  }
+}
+
 export default async function VehicleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const vehicle = await getVehicleBySlug(slug)
   if (!vehicle) notFound()
 
   const jsonLd = buildVehicleJsonLd(vehicle)
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(vehicle)
 
   return (
     <main className="bg-background min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
       <div className="pt-32">
