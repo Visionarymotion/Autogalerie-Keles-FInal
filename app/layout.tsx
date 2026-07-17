@@ -19,13 +19,6 @@ const playfair = Playfair_Display({
   weight: ['400', '500', '600', '700'],
 })
 
-const ogImage = {
-  url: '/images/dealership-real.jpg',
-  width: 1360,
-  height: 1020,
-  alt: 'Autogalerie Keles – Gebrauchtwagen in Nordenham',
-}
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: 'Autogalerie Keles – Gebrauchtwagen in Nordenham',
@@ -52,13 +45,11 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: 'de_DE',
     type: 'website',
-    images: [ogImage],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Autogalerie Keles – Gebrauchtwagen Nordenham',
     description: 'Geprüfte Fahrzeuge aller Marken. Fair. Transparent. Persönlich.',
-    images: [ogImage.url],
   },
 }
 
