@@ -136,7 +136,9 @@ export default function Footer() {
 
         {/* Agentur-Credit */}
         <div className="pt-4 text-center text-[11px] text-white/25">
-          Realisiert von <span className="text-white/40">Visionary Motion</span>
+          Realisiert von
+          <br />
+          <span className="font-bold text-white/40">Visionary Motion Digital</span>
         </div>
       </div>
     </footer>
