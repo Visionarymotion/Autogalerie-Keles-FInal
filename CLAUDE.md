@@ -8,7 +8,7 @@ Vollständige Fassung: `CLAUDE.md` im Hauptordner `VM Visionary Motion Digital/`
 - **DSGVO/A11y:** WCAG 2.1 AA, Consent vor Tracking, Impressum/Datenschutz-Pflicht.
 - **Footer:** zweizeilig, mittig unten — Zeile 1 "Realisiert von" dünn, Zeile 2 "Visionary Motion Digital" fett. Keine Abweichungen.
 - **Fertigstellung:** vor jedem "fertig" ein Abschluss-Audit (Sicherheit, GEO/KI-SEO, SEO, Rechtliches), Ergebnis als Vorschlag zur Freigabe, nicht eigenmächtig einbauen. Danach Übergabeprotokoll in `01-Doku/` aktualisieren (umgesetzt/neu/offen).
-- **Skills:** `.claude/skills/` in diesem Repo enthält u. a. `impeccable`, `emil-design-eng`, `design-taste-frontend`, `ui-ux-pro-max`, `web-design-guidelines`, `vercel-react-best-practices`, `next-best-practices`, `before-and-after` — proaktiv nutzen, wo passend, kurz erwähnen was verwendet wurde.
+- **Skills:** `.claude/skills/` in diesem Repo enthält u. a. `impeccable`, `emil-design-eng`, `design-taste-frontend`, `ui-ux-pro-max`, `web-design-guidelines`, `vercel-react-best-practices`, `next-best-practices`, `before-and-after`, `next-upgrade`, `vercel-blob`, `dependency-upgrade`, `vulnerability-scanning` — proaktiv nutzen, wo passend, kurz erwähnen was verwendet wurde. `vercel-blob` explizit vor jeder Änderung an `lib/vehicle-store.ts` konsultieren (siehe offener Blob-Versions-Fund im Chat-Verlauf).
 
 ---
 
