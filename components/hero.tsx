@@ -67,7 +67,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center max-w-7xl mx-auto w-full px-5 lg:px-10 pt-40 pb-20">
         <div
-          className="max-w-2xl"
+          className="max-w-2xl min-w-0"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(28px)',
@@ -98,7 +98,7 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-[var(--font-heading)] text-5xl md:text-6xl lg:text-[68px] leading-[1.06] tracking-tight text-white mb-5">
+          <h1 className="font-[var(--font-heading)] text-4xl sm:text-5xl md:text-6xl lg:text-[68px] leading-[1.06] tracking-tight text-white mb-5">
             Gebrauchtwagen,{' '}
             <span style={{ color: '#dcdddd' }}>die überzeugen.</span>
           </h1>
