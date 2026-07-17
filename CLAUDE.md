@@ -141,6 +141,71 @@ auslieferungsfähigen Zustand. Zwei Punkte nicht auf die lange Bank schieben: de
 Admin-Cookie (sauber lösbar) und realistische Erwartungen bei mobile.de (eigenes Projekt,
 kein Nebenbei-Task).
 
+## Runde 8 (Cowork, abgeschlossen, live verifiziert)
+
+Auslöser: Vision bat um vollautomatische Umsetzung aller in Runde 7 offen gebliebenen
+Punkte plus erneuten Blick auf mobile.de-Automatisierung. Sieben Commits, jeweils gegen
+eine isolierte Kopie (`pnpm build` + `pnpm start`) gebaut und im Browser (Desktop +
+Mobile, 375px) verifiziert, danach live auf Production gegengeprüft — nicht nur "sollte
+funktionieren".
+
+1. **Mobile-Hero-Overflow gefixt**: `Gebrauchtwagen,` lief bei ≤639px über den
+   Viewport-Rand (Flex-Kind ohne `min-w-0`, `text-5xl` zu breit für das längste Wort).
+   Fix: `min-w-0` am Content-Wrapper + `text-4xl` als Mobile-Basis in `components/hero.tsx`.
+2. **Favicon/Icon-Set**: lag komplett ungenutzt in `public/` (kein `<link rel="icon">` im
+   Head). Auf Next.js-File-Convention umgestellt (`app/icon.png`, `app/apple-icon.png`,
+   aus dem vorhandenen Chrome-K-Logo zugeschnitten), altes `public/apple-icon.png`
+   entfernt (Routen-Konflikt sonst).
+3. **Custom 404**: `app/not-found.tsx` fehlte, zeigte die englische Next.js-Standardseite.
+   Jetzt im Markendesign mit Links zu Fahrzeugbestand/Startseite.
+4. **Security-Header + CSP**: Standard-Header (`X-Content-Type-Options`,
+   `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`) global über
+   `next.config.mjs`. CSP zweigeteilt in `middleware.ts` — öffentliche Seiten:
+   `script-src 'self' 'unsafe-inline'` (statisch, erhält Static Generation für
+   Startseite/Impressum/Leistungen); Admin-Bereich: strikte Nonce-CSP
+   (`'nonce-…' 'strict-dynamic'`, kein `unsafe-inline`), da dort ohnehin immer
+   dynamisch gerendert wird. **Wichtige Falle, die dabei live diagnostiziert wurde**:
+   Next.js' App Router liefert Hydration über 44+ Inline-`<script>`-Tags
+   (`self.__next_f.push(...)`, RSC-Flight-Data) — eine CSP mit `script-src 'self'`
+   ohne `unsafe-inline`/Nonce blockiert die komplett und die Seite bleibt unhydratisiert
+   (Buttons tot, Hero-Fade-in hängt bei `opacity:0`), **ohne dass CSP-Verstöße in der
+   Browser-Pane-Konsole auftauchen** — nur per Bau/Screenshot-Vergleich mit
+   deaktivierter CSP eindeutig diagnostizierbar. Nonce-Propagation an Next.js' eigene
+   Scripts läuft nicht automatisch übers Response-Header allein; es braucht zusätzlich
+   einen `headers()`-Read in einer Server Component im jeweiligen Teilbaum
+   (`app/admin/layout.tsx` liest die Nonce, dadurch aktiv nur dort).
+5. **Admin-Session-Cookie signiert**: `lib/admin-session.ts`, HMAC-SHA256 über Web
+   Crypto (läuft in Node- UND Edge-Runtime, kein `Buffer`/Node-`crypto`), Token-Format
+   `<expiry>.<signature>`. Ersetzt das Klartext-Passwort-Cookie aus Runde 7 komplett.
+6. **Login-Rate-Limit**: einfaches In-Memory-Sliding-Window (5 Versuche/15 Min pro IP)
+   in `app/api/admin/login/route.ts` — bremst Brute-Force spürbar, kein verteilter
+   Speicher nötig für dieses Traffic-Volumen.
+7. **OG-Image gebrandet**: `app/opengraph-image.tsx` (next/og, dunkles Design mit
+   Chrome-K-Logo, Bewertung) statt des rohen `dealership-real.jpg` — WhatsApp ist
+   Hauptkanal bei diesem Kunden, Link-Vorschau zählt. **Falle**: Satori/`next/og`
+   versucht bei Sonderzeichen wie „★" einen Font dynamisch nachzuladen; schlägt der
+   Netzwerkzugriff fehl, bricht das Bild. Text bewusst ohne Symbolzeichen gehalten.
+8. **BreadcrumbList-Schema** auf Fahrzeug-Detailseiten (`app/fahrzeuge/[slug]/page.tsx`).
+9. **Finanzierungsrate auf Fahrzeugkarten**: „ab X €/mtl.*" auf `/fahrzeuge`, Rechenlogik
+   aus `app/finanzierungsrechner/finanzierungsrechner-client.tsx` in `lib/financing.ts`
+   extrahiert und geteilt (0 € Anzahlung, 36 Monate, 5,9 % eff. Jahreszins — identisch
+   zu den Rechner-Defaults, damit Karte und Rechner beim Durchklicken nie widersprüchlich
+   wirken). Disclaimer-Zeile über der Ergebnisliste.
+
+**Nicht umgesetzt, echte Blocker statt Zeitmangel:**
+
+- **mobile.de-Live-Sync**: braucht Händler-Schnittstellen-Zugang vom Kunden (API-Key/
+  Zugangsdaten) — ohne den ist kein funktionierender Sync-Job baubar, nur totes
+  Scaffolding. Nicht begonnen, um kein ungetestetes Gerüst als "fertig" auszugeben.
+- **Fahrzeugfotos in Vercel Blob statt Live-Proxy zu mobile.de**: `BLOB_READ_WRITE_TOKEN`
+  liegt nur in Vercels Env-Vars, lokal nicht verfügbar (kein `vercel`-CLI-Login in
+  dieser Session). **Hinweis für die nächste Session**: Eine parallele Session hat
+  während Runde 8 bereits `sharp` als Dependency ins Repo gebracht (`pnpm-lock.yaml`,
+  `pnpm-workspace.yaml`, unter `.github/` liegt ebenfalls neuer, noch uncommitteter
+  Inhalt) — das deutet stark darauf hin, dass genau diese Bild-Migration dort bereits
+  in Arbeit ist. Vor eigenem Start unbedingt mit der anderen Session/Vision abgleichen,
+  um keine Doppelarbeit zu bauen.
+
 ## Frühere Runden (Kurzfassung)
 
 - **Runde 6**: E-Mail-Anfrage-Option (Ankauf + Finanzierungsrechner) neben WhatsApp,
@@ -158,27 +223,31 @@ kein Nebenbei-Task).
 - **Runde 1**: Scroll-Reveal-Komponente, Hero-Klarheit + Ken-Burns-Effekt, SEO-Fundament
   (robots/sitemap/`metadataBase`/llms.txt, JSON-LD-Domain-Fix).
 
-## Offene Punkte (priorisiert für die nächste Session)
+## Offene Punkte (priorisiert für die nächste Session, Stand nach Runde 8)
 
-1. **mobile.de-Live-Sync bauen**, sobald der Kunde Händler-Schnittstellen-Zugang liefert
-   — als eigenständiges Projekt: Schema-Erweiterung + Sync-Job mit Fehlerbehandlung.
-2. **Admin-Session-Cookie** auf signiertes Token statt Klartext-Passwort umstellen.
+1. **mobile.de-Live-Sync**: blockiert auf Händler-Schnittstellen-Zugang vom Kunden
+   (API-Key/Zugangsdaten) — kann niemand ohne diese Daten bauen, siehe Runde 8.
+2. **Fahrzeugfotos in Vercel Blob statt Live-Proxy** — vermutlich schon in Arbeit in
+   einer parallelen Session (siehe Runde 8, `sharp`-Dependency-Fund), vor Start abgleichen.
 3. **Eigene Domain** einrichten (Kundenentscheidung, außerhalb des Codes) — größte
    verbleibende SEO/GEO-Lücke.
 4. Falls der Kunde ein höher aufgelöstes Original-Hero-Foto hat: damit ersetzen (besser
    als die rechnerisch geschärfte Version aus Runde 6).
-5. Aus der Konkurrenzanalyse (Runde 5) priorisiert umsetzen: echte Kundenstimmen,
-   Öffnungszeiten auf der Bestandsseite, Ankauf-Prozess-Visualisierung,
-   Finanzierungsrate direkt auf der Fahrzeugkarte. Prüfsiegel-Idee ggf. auf Detailseiten
-   sichtbarer verlinken/badge-artig darstellen (Basis existiert bereits über
-   `/leistungen/gepruefte-qualitaet`).
-6. BreadcrumbList/Organization-Schema als weitere GEO/SEO-Ergänzung — kein `sameAs`
-   ohne echte Social-Media-URLs vom Kunden.
-7. "Wunschtermin"-Freitextfeld in bestehende Formulare, falls vom Kunden nach obiger
-   Einschätzung weiterhin gewünscht — kein voller Buchungskalender.
+5. Aus der Konkurrenzanalyse (Runde 5), noch offen: echte Kundenstimmen,
+   Öffnungszeiten auf der Bestandsseite, Ankauf-Prozess-Visualisierung. Prüfsiegel-Idee
+   ggf. auf Detailseiten sichtbarer verlinken/badge-artig darstellen (Basis existiert
+   bereits über `/leistungen/gepruefte-qualitaet`).
+6. Organization-Schema als weitere GEO/SEO-Ergänzung — kein `sameAs` ohne echte
+   Social-Media-URLs vom Kunden.
+7. "Wunschtermin"-Freitextfeld in bestehende Formulare, falls vom Kunden nach der
+   Runde-7-Einschätzung weiterhin gewünscht — kein voller Buchungskalender.
 8. `typescript.ignoreBuildErrors: true` als separate Aufräum-Session angehen, falls
    gewünscht (Umfang der bereits vorhandenen Typfehler ist unbekannt, da nie geprüft).
 9. Ratgeber-/Content-Bereich für Local SEO, echte Kundenvideos — mittelfristig.
+10. ESLint ist im Projekt referenziert (`npm run lint`), aber nicht als Dependency
+    installiert — `pnpm run lint` schlägt mit "command not found" fehl. Vor der
+    nächsten größeren Änderung nachrüsten, damit das Qualitäts-Gate wieder vollständig
+    automatisiert prüfbar ist (aktuell nur `next build` als Signal).
 
 ## Wichtige Konventionen im Code
 
