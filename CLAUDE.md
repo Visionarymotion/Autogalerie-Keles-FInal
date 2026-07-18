@@ -259,6 +259,52 @@ unrealistisch (siehe Runde-7-Einschätzung zur Terminbuchung), aber ein kurzes
 Rundgang-Video pro Fahrzeug wäre ein realistischer nächster Schritt, sobald der Kunde
 das liefern kann.
 
+## Runde 9, Fortsetzung (Batch 2+3, abgeschlossen, live verifiziert)
+
+Auslöser: Vision fragte, ob ohne mobile.de-Zugang trotzdem weitergearbeitet werden kann,
+und bat um weitere Senior-Vorschläge. Sechs davon direkt umgesetzt (mobile.de-Sync ist
+komplett unabhängig von diesen Punkten). 3 Commits, isoliert gebaut/verifiziert wie immer.
+
+- **Fahrzeugvergleich** (`app/fahrzeuge/fahrzeugbestand-client.tsx`): Waage-Icon auf jeder
+  Karte (max. 3 Fahrzeuge gleichzeitig, 4. Klick deaktiviert bis eins entfernt wird),
+  schwebender "N Fahrzeuge vergleichen"-Button, Modal mit `table-fixed`-Vergleichstabelle
+  (Preis/Finanzierung/EZ/km/PS/Kraftstoff/Getriebe/Unfallfrei). Als Sibling-Element neben
+  `<Link>` gebaut (nicht verschachtelt — Buttons in Links sind ungültiges HTML).
+- **Merkliste per WhatsApp teilen**: baut eine WhatsApp-Nachricht mit allen gemerkten
+  Fahrzeugen inkl. Links (`buildMerklisteWhatsAppHref`). Button-Style bewusst auf das
+  sitweite gefüllte Grün (`#178048`) gesetzt, nicht Outline — Outline-Variante fiel beim
+  Kontrast-Scan mit 3.88:1 durch, gefüllt liegt bei 4.98:1.
+- **"Stand: Datum"** auf jeder Fahrzeugkarte (`DATA_SNAPSHOT_DATE` in
+  `lib/vehicles-data.ts`) — Aktualitäts-Signal, bis der echte mobile.de-Sync steht.
+- **ESLint nachgerüstet** (`eslint.config.mjs`, neu): `pnpm run lint` lief bisher ins
+  Leere ("command not found"), Qualitäts-Gate war nur über `next build` teilabgesichert.
+  **Falle dabei**: `eslint-config-next`s Peer-Range (`>=9.0.0`, offen nach oben) plus
+  `eslint-plugin-react@7.37.5`s Cap (`^9.7`) lässt pnpm ohne Pin auf ESLint 10 auflösen —
+  das crasht zweifach (zirkuläre Referenz in `FlatCompat`, dann
+  `contextOrFilename.getFilename is not a function` im React-Plugin). Fix: `eslint@^9`
+  explizit gepinnt, direkt die nativen Flat-Config-Exports importiert
+  (`eslint-config-next/core-web-vitals`, `/typescript`) statt der `FlatCompat`-Brücke.
+  `react-hooks/set-state-in-effect` auf `warn` gestellt — die Regel schlägt auch beim
+  korrekten, verbreiteten Hydration-Pattern (`useEffect(() => setState(...), [])`) an.
+
+### Kritischer Deploy-Fehler nach diesem Batch — gefunden und behoben
+
+Der erste Push (Commit `e6849a1`) brach den Production-Build auf Vercel:
+`ERR_PNPM_LOCKFILE_CONFIG_MISMATCH` unter `pnpm install --frozen-lockfile`. Ursache: die
+alte, bereits tote `package.json`-Angabe `"pnpm": {"overrides": {"hono": "4.12.25"}}`
+geriet nach dem ESLint-Install (der die Lockfile-`settings:` neu schrieb) außer Sync.
+**Lokal nie aufgefallen**, weil alle lokalen Installs `--no-frozen-lockfile` nutzen, das
+solche Abweichungen still repariert — Vercels striktes CI-`--frozen-lockfile` deckt es
+gnadenlos auf. Fix (Commit `247d1f8`): totes Feld aus `package.json` entfernt, korrekt
+nach `pnpm-workspace.yaml` → `overrides:` migriert (moderner pnpm-Weg, Hono-Version
+unverändert 4.12.25). Verifiziert: `pnpm install --frozen-lockfile` lief danach lokal
+sauber durch, Deployment `dpl_BpSjXVkJ3vnLzq5m2eenEp6Hp3NX` als READY bestätigt, neue
+Features (Vergleich-Icon, UNFALLFREI-Badge, Stand:Datum) live auf Production per
+Screenshot gegengeprüft. **Lehre für künftige Dependency-Installs**: nach jedem
+`pnpm add`/`pnpm install`, das die Lockfile neu schreibt, `package.json` auf veraltete
+`"pnpm"`-Legacy-Felder prüfen, die nicht mehr zur Lockfile passen könnten — lokales
+`--no-frozen-lockfile` verschleiert das zuverlässig bis zum Vercel-Build.
+
 ## Frühere Runden (Kurzfassung)
 
 - **Runde 6**: E-Mail-Anfrage-Option (Ankauf + Finanzierungsrechner) neben WhatsApp,
@@ -276,7 +322,7 @@ das liefern kann.
 - **Runde 1**: Scroll-Reveal-Komponente, Hero-Klarheit + Ken-Burns-Effekt, SEO-Fundament
   (robots/sitemap/`metadataBase`/llms.txt, JSON-LD-Domain-Fix).
 
-## Offene Punkte (priorisiert für die nächste Session, Stand nach Runde 9)
+## Offene Punkte (priorisiert für die nächste Session, Stand nach Runde 9 Batch 2+3)
 
 1. **mobile.de-Live-Sync**: blockiert auf Händler-Schnittstellen-Zugang vom Kunden
    (API-Key/Zugangsdaten) — kann niemand ohne diese Daten bauen, siehe Runde 8.
@@ -303,10 +349,16 @@ das liefern kann.
 11. Weitere `Vehicle.accidentFree`-Flags nachtragen, sobald der Kunde für weitere
     Fahrzeuge den Unfallfrei-Status bestätigt (aktuell nur 4 von 37, exakt die vom
     mobile.de-Inserat bereits ausgewiesenen — nicht großzügiger raten).
-10. ESLint ist im Projekt referenziert (`npm run lint`), aber nicht als Dependency
-    installiert — `pnpm run lint` schlägt mit "command not found" fehl. Vor der
-    nächsten größeren Änderung nachrüsten, damit das Qualitäts-Gate wieder vollständig
-    automatisiert prüfbar ist (aktuell nur `next build` als Signal).
+12. 20 bestehende Dependabot-Meldungen (undici + postcss, Runtime-Scope) — bewusst nicht
+    in dieser Session gefixt, um nicht angefragten Scope zu vermeiden, als eigener Task
+    geflaggt. Ein Dependabot-PR dafür existiert bereits (`dependabot/npm_and_yarn/multi-3c2b2a488c`,
+    aktualisiert `undici`+`@vercel/blob`) — Merge ist eine eigene Entscheidung, nicht
+    automatisch durchführen.
+13. PageSpeed-Insights-Zahlen weiterhin nicht messbar (Tooling-Blocker in der Sandbox,
+    kein Site-Defekt) — bei Gelegenheit von außerhalb der Sandbox nachholen.
+
+**Erledigt in Runde 9 Batch 2+3** (ehemals hier gelistet): ESLint-Dependency nachgerüstet,
+Fahrzeugvergleich, Merkliste-WhatsApp-Share, Stand:Datum-Anzeige — siehe Abschnitt oben.
 
 ## Wichtige Konventionen im Code
 
