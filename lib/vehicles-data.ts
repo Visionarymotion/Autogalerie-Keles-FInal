@@ -47,11 +47,17 @@ export type Vehicle = {
   emissions?: string
   featured: boolean
   photos: string[] // leer = noch kein echtes Foto vorhanden
+  // Nur bei den 4 Fahrzeugen gesetzt, deren mobile.de-Inserat "Unfallfrei"
+  // explizit auswies (bislang nur in der Fließtext-description erfasst,
+  // ab jetzt zusätzlich strukturiert für Badge + JSON-LD). Bei allen
+  // anderen unbekannt und bewusst nicht angenommen.
+  accidentFree?: boolean
 }
 
 export const vehicles: Vehicle[] = [
   {
     id: 1,
+    accidentFree: true,
     slug: 'vw-golf-vii-r-4motion-behindertenumbau',
     brand: 'Volkswagen',
     model: 'Golf VII R 4MOTION',
@@ -101,6 +107,7 @@ export const vehicles: Vehicle[] = [
   },
   {
     id: 4,
+    accidentFree: true,
     slug: 'vw-arteon-elegance',
     brand: 'Volkswagen',
     model: 'Arteon Elegance',
@@ -458,6 +465,7 @@ export const vehicles: Vehicle[] = [
   },
   {
     id: 26,
+    accidentFree: true,
     slug: 'mazda-cx-3-sports-line',
     brand: 'Mazda',
     model: 'CX-3 Sports-Line',
@@ -621,6 +629,7 @@ export const vehicles: Vehicle[] = [
   },
   {
     id: 36,
+    accidentFree: true,
     slug: 'jaguar-f-type-coupe-r-dynamic-awd',
     brand: 'Jaguar',
     model: 'F-Type Coupe R-Dynamic AWD',

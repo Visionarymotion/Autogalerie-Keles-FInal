@@ -84,6 +84,13 @@ function buildVehicleJsonLd(vehicle: Vehicle) {
   if (vehicle.photos.length > 0) {
     jsonLd.image = vehicle.photos.map((p) => `${siteConfig.url}${p}`)
   }
+  if (vehicle.accidentFree) {
+    jsonLd.additionalProperty = {
+      '@type': 'PropertyValue',
+      name: 'Unfallfrei',
+      value: true,
+    }
+  }
   // undefined-Felder entfernen, damit kein "vehicleIdentificationNumber: undefined" im HTML landet
   Object.keys(jsonLd).forEach((k) => jsonLd[k] === undefined && delete jsonLd[k])
   return jsonLd

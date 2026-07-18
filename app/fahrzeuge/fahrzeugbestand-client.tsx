@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Fuel, Gauge, Calendar, Zap, ArrowRight, ImageOff, SlidersHorizontal, X, Heart } from 'lucide-react'
+import { Fuel, Gauge, Calendar, Zap, ArrowRight, ImageOff, SlidersHorizontal, X, Heart, ShieldCheck } from 'lucide-react'
 import { formatPrice, formatKm, type Vehicle } from '@/lib/vehicles-data'
 import { siteConfig } from '@/lib/site-config'
 import { estimateCardMonthlyPayment } from '@/lib/financing'
@@ -93,6 +93,12 @@ function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; on
               {car.priceNote}
             </div>
           )}
+          {car.accidentFree && !car.priceNote && (
+            <div className="absolute top-3 left-3 flex items-center gap-1 bg-dark/85 backdrop-blur-sm text-white text-[9.5px] font-bold uppercase tracking-wide px-2 py-1 rounded-sm border border-white/10">
+              <ShieldCheck size={11} strokeWidth={2} className="text-[#c7c9cc]" />
+              Unfallfrei
+            </div>
+          )}
         </div>
         <div className="p-5 flex flex-col flex-1">
           <div className="mb-1">
@@ -122,7 +128,7 @@ function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; on
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`${car.brand} ${car.model} per WhatsApp anfragen`}
-        className="absolute top-3 right-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366] hover:bg-[#20bd5a] shadow-lg transition-colors duration-300"
+        className="absolute top-3 right-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-[#178048] hover:bg-[#136339] shadow-lg transition-colors duration-300"
       >
         <WhatsAppIcon size={16} />
       </a>
@@ -132,7 +138,7 @@ function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; on
         aria-label={isFav ? 'Von Merkliste entfernen' : 'Auf Merkliste setzen'}
         aria-pressed={isFav}
         className={`absolute top-[3.75rem] right-3 z-10 flex items-center justify-center w-9 h-9 rounded-full border shadow-lg transition-colors duration-300 ${
-          isFav ? 'bg-gold border-gold text-white' : 'bg-dark/70 border-white/25 text-white/85 hover:text-white hover:border-gold/70'
+          isFav ? 'bg-gold border-gold text-primary-foreground' : 'bg-dark/70 border-white/25 text-white/85 hover:text-white hover:border-gold/70'
         }`}
       >
         <Heart size={15} strokeWidth={2} fill={isFav ? 'currentColor' : 'none'} />
@@ -312,7 +318,7 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
               onClick={() => setOnlyFavs((v) => !v)}
               aria-pressed={onlyFavs}
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-md border text-[12px] font-semibold tracking-wide transition-colors duration-300 ${
-                onlyFavs ? 'bg-gold border-gold text-white' : 'bg-card border-border text-muted-foreground hover:border-gold/40 hover:text-foreground'
+                onlyFavs ? 'bg-gold border-gold text-primary-foreground' : 'bg-card border-border text-muted-foreground hover:border-gold/40 hover:text-foreground'
               }`}
             >
               <Heart size={13} strokeWidth={2} fill={onlyFavs ? 'currentColor' : 'none'} />
