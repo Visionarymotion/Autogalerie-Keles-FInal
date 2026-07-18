@@ -113,7 +113,7 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="#fahrzeuge"
-              className="btn-shine group inline-flex items-center gap-2.5 px-7 py-3.5 bg-gold text-white font-semibold text-[13px] tracking-widest uppercase rounded-sm hover:bg-gold/90 transition-all duration-300"
+              className="btn-shine group inline-flex items-center gap-2.5 px-7 py-3.5 bg-gold text-primary-foreground font-semibold text-[13px] tracking-widest uppercase rounded-sm hover:bg-gold/90 transition-all duration-300"
             >
               Alle Fahrzeuge
               <ArrowRight size={15} strokeWidth={2} className="transition-transform duration-300 group-hover:translate-x-1" />
