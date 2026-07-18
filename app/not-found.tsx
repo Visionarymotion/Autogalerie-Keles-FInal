@@ -33,7 +33,7 @@ export default function NotFound() {
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Link
           href="/fahrzeuge"
-          className="btn-shine group inline-flex items-center gap-2.5 px-7 py-3.5 bg-gold text-white font-semibold text-[13px] tracking-widest uppercase rounded-sm hover:bg-gold/90 transition-all duration-300"
+          className="btn-shine group inline-flex items-center gap-2.5 px-7 py-3.5 bg-gold text-primary-foreground font-semibold text-[13px] tracking-widest uppercase rounded-sm hover:bg-gold/90 transition-all duration-300"
         >
           <Search size={15} strokeWidth={2} />
           Zum Fahrzeugbestand

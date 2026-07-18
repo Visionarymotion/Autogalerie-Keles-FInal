@@ -110,7 +110,7 @@ export default function FinanzierungsrechnerClient() {
                     onClick={() => setTerm(t)}
                     className={`text-[12.5px] py-2 rounded-md border transition-colors duration-300 ${
                       term === t
-                        ? 'bg-gold border-gold text-white'
+                        ? 'bg-gold border-gold text-primary-foreground'
                         : 'border-border text-muted-foreground hover:border-gold/40'
                     }`}
                   >
@@ -169,7 +169,7 @@ export default function FinanzierungsrechnerClient() {
                 href={waHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="whatsapp-pulse flex-1 inline-flex items-center justify-center gap-3 px-6 py-3.5 bg-[#25D366] text-white text-[13px] font-semibold tracking-widest uppercase hover:bg-[#20bd5a] transition-all duration-300 rounded-sm"
+                className="whatsapp-pulse flex-1 inline-flex items-center justify-center gap-3 px-6 py-3.5 bg-[#178048] text-white text-[13px] font-semibold tracking-widest uppercase hover:bg-[#136339] transition-all duration-300 rounded-sm"
               >
                 <WhatsAppIcon size={15} />
                 Angebot per WhatsApp anfragen

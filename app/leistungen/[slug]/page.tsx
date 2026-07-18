@@ -95,7 +95,7 @@ export default async function LeistungDetailPage({ params }: { params: Promise<{
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="whatsapp-pulse w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-[#25D366] text-white text-[13px] font-semibold tracking-widest uppercase hover:bg-[#20bd5a] transition-all duration-300 rounded-sm"
+              className="whatsapp-pulse w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-[#178048] text-white text-[13px] font-semibold tracking-widest uppercase hover:bg-[#136339] transition-all duration-300 rounded-sm"
             >
               <WhatsAppIcon size={15} />
               {service.ctaText}

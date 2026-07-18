@@ -3,7 +3,7 @@ import { siteConfig } from '@/lib/site-config'
 /**
  * Fixer, leuchtender WhatsApp-Button – wie im Referenzvideo des
  * Kunden unten rechts auf jeder Seite sichtbar. Bewusst in
- * WhatsApp-Grün (#25D366), NICHT in Gold – soll sofort als
+ * WhatsApp-Grün (#178048), NICHT in Gold – soll sofort als
  * WhatsApp erkennbar sein, nicht ins Farbschema "eingefärbt" werden.
  */
 export function WhatsAppFloat() {
@@ -13,7 +13,7 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Auf WhatsApp schreiben"
-      className="whatsapp-pulse fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center hover:bg-[#22bf5d] transition-colors duration-300 hover:scale-105"
+      className="whatsapp-float-global whatsapp-pulse fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#178048] flex items-center justify-center hover:bg-[#136339] transition-colors duration-300 hover:scale-105"
       style={{ transition: 'transform 0.25s ease, background-color 0.25s ease' }}
     >
       <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white">

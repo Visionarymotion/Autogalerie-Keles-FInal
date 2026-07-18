@@ -76,7 +76,7 @@ function CarCard({ car }: { car: Vehicle }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`${car.brand} ${car.model} per WhatsApp anfragen`}
-        className="absolute top-3 left-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366] hover:bg-[#20bd5a] shadow-lg transition-colors duration-300"
+        className="absolute top-3 left-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-[#178048] hover:bg-[#136339] shadow-lg transition-colors duration-300"
       >
         <WhatsAppIcon size={16} />
       </a>
@@ -134,7 +134,7 @@ export default async function Inventory() {
             href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent('Hallo, ich suche ein bestimmtes Fahrzeug und würde mich gerne beraten lassen.')}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="whatsapp-pulse group inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] text-white text-[13px] font-semibold tracking-widest uppercase hover:bg-[#22bf5d] transition-all duration-300 rounded-sm"
+            className="whatsapp-pulse group inline-flex items-center gap-3 px-8 py-4 bg-[#178048] text-white text-[13px] font-semibold tracking-widest uppercase hover:bg-[#136339] transition-all duration-300 rounded-sm"
           >
             <WhatsAppIcon size={15} />
             Wunschfahrzeug anfragen

@@ -106,7 +106,7 @@ export default function Contact() {
             href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="whatsapp-pulse flex items-center gap-3 px-5 py-4 bg-[#25D366] rounded-xl hover:bg-[#22bf5d] transition-all duration-300"
+            className="whatsapp-pulse flex items-center gap-3 px-5 py-4 bg-[#178048] rounded-xl hover:bg-[#136339] transition-all duration-300"
           >
             <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
               <WhatsAppIcon size={16} />
@@ -318,10 +318,10 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-gold text-white text-[13px] font-semibold tracking-widest uppercase rounded-lg hover:bg-gold/90 transition-all duration-300 disabled:opacity-60"
+                        className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-gold text-primary-foreground text-[13px] font-semibold tracking-widest uppercase rounded-lg hover:bg-gold/90 transition-all duration-300 disabled:opacity-60"
                       >
                         {loading ? (
-                          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" aria-hidden="true" />
+                          <span className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" aria-hidden="true" />
                         ) : (
                           <Send size={14} strokeWidth={2} />
                         )}

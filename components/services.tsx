@@ -34,7 +34,7 @@ export default function Services() {
                   className="block bg-card border border-border rounded-lg p-7 group hover:shadow-md hover:border-gold/30 transition-all duration-300"
                 >
                   <div className="w-11 h-11 rounded-md bg-gold/10 border border-gold/20 flex items-center justify-center mb-5 group-hover:bg-gold group-hover:border-gold transition-all duration-300">
-                    <Icon size={20} strokeWidth={1.6} className="text-gold group-hover:text-white transition-colors duration-300" />
+                    <Icon size={20} strokeWidth={1.6} className="text-gold group-hover:text-primary-foreground transition-colors duration-300" />
                   </div>
                   <h3 className="text-[16px] font-[var(--font-heading)] font-semibold text-foreground mb-2.5">{s.title}</h3>
                   <p className="text-[13px] text-muted-foreground leading-relaxed mb-4">{s.shortText}</p>

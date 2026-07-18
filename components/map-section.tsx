@@ -41,7 +41,7 @@ export default function MapSection() {
         </div>
         <button
           onClick={grantConsent}
-          className="px-5 py-2.5 bg-gold text-white text-[12px] font-semibold tracking-widest uppercase hover:bg-gold/90 transition-all duration-300 rounded-sm"
+          className="px-5 py-2.5 bg-gold text-primary-foreground text-[12px] font-semibold tracking-widest uppercase hover:bg-gold/90 transition-all duration-300 rounded-sm"
         >
           Karte laden
         </button>

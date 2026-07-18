@@ -193,7 +193,7 @@ export default function AnkaufClient() {
             <button
               type="submit"
               disabled={!canSubmit}
-              className="flex-1 inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] disabled:opacity-40 disabled:cursor-not-allowed text-white text-[14px] font-semibold tracking-wide px-8 py-4 rounded-md transition-all duration-300"
+              className="flex-1 inline-flex items-center justify-center gap-2.5 bg-[#178048] hover:bg-[#136339] disabled:opacity-40 disabled:cursor-not-allowed text-white text-[14px] font-semibold tracking-wide px-8 py-4 rounded-md transition-all duration-300"
             >
               <WhatsAppIcon size={17} />
               Anfrage per WhatsApp senden
@@ -228,7 +228,7 @@ export default function AnkaufClient() {
               { step: '3', title: 'Verkauf & Auszahlung', text: 'Termin vor Ort, Barzahlung, Abmeldung inklusive.' },
             ].map((s) => (
               <li key={s.step} className="bg-card border border-border rounded-lg p-5">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gold text-white text-[13px] font-bold mb-3">{s.step}</span>
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gold text-primary-foreground text-[13px] font-bold mb-3">{s.step}</span>
                 <h3 className="text-[14px] font-semibold text-foreground mb-1.5">{s.title}</h3>
                 <p className="text-[12px] text-muted-foreground leading-relaxed">{s.text}</p>
               </li>

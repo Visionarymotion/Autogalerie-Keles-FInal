@@ -60,7 +60,7 @@ export default function Footer() {
               href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 bg-[#25D366] text-white text-[12px] font-semibold tracking-widest uppercase hover:bg-[#20bd5a] transition-all duration-300 rounded-sm shadow-[0_0_0_0_rgba(37,211,102,0.5)] hover:shadow-[0_0_0_6px_rgba(37,211,102,0.15)]"
+              className="inline-flex items-center gap-2 px-5 py-3 bg-[#178048] text-white text-[12px] font-semibold tracking-widest uppercase hover:bg-[#136339] transition-all duration-300 rounded-sm shadow-[0_0_0_0_rgba(23,128,72,0.5)] hover:shadow-[0_0_0_6px_rgba(23,128,72,0.15)]"
             >
               <WhatsAppIcon size={14} />
               WhatsApp schreiben

@@ -88,6 +88,23 @@ html, body {
     scroll-behavior: smooth;
     background-color: #0e0e0e;
   }
+  /* Markendesign-Fokusring statt nacktem Browser-Default – Silber-Akzent
+     mit dunklem Offset, funktioniert auf hellen und dunklen Flächen. */
+  :focus-visible {
+    outline: 2px solid #c7c9cc;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* Sticky Mobile-CTA auf Fahrzeug-Detailseiten (vehicle-detail-client.tsx)
+   überlappt sonst mit dem globalen schwebenden WhatsApp-Button – dort
+   ausblenden, sobald die Bar im DOM ist (nur unterhalb lg-Breakpoint,
+   auf Desktop bleibt der Float-Button normal sichtbar). */
+@media (max-width: 1023px) {
+  body:has(.sticky-mobile-cta) .whatsapp-float-global {
+    display: none;
+  }
 }
 
 ::-webkit-scrollbar {
