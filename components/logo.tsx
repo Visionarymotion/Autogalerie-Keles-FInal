@@ -6,7 +6,7 @@ import Image from 'next/image'
  * freigestellt/transparent gemacht). Ersetzt den früheren
  * Platzhalter-Badge.
  */
-export function Logo({ variant = 'dark' }: { variant?: 'dark' | 'light' }) {
+export function Logo(_props: { variant?: 'dark' | 'light' }) {
   return (
     <Link href="/" className="flex items-center group" aria-label="Autogalerie Keles – Startseite">
       <div className="relative h-12 md:h-14 w-[220px] md:w-[260px]">

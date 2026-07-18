@@ -55,8 +55,8 @@ export default function VehicleForm({ vehicleId, initialData }: { vehicleId?: nu
         if (!res.ok) throw new Error(data.error || 'Upload fehlgeschlagen')
         update('photos', [...form.photos, data.url])
       }
-    } catch (err: any) {
-      setError(err.message || 'Foto-Upload fehlgeschlagen')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Foto-Upload fehlgeschlagen')
     }
     setUploading(false)
     e.target.value = ''
@@ -88,8 +88,8 @@ export default function VehicleForm({ vehicleId, initialData }: { vehicleId?: nu
       
       router.push('/admin')
       router.refresh()
-    } catch (err: any) {
-      setError(err.message || 'Speichern fehlgeschlagen')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Speichern fehlgeschlagen')
       setSaving(false)
     }
   }

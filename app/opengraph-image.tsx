@@ -32,6 +32,7 @@ export default async function OpengraphImage() {
       >
         <img
           src={iconSrc}
+          alt=""
           width={112}
           height={112}
           style={{ borderRadius: 12, marginBottom: 36 }}

@@ -39,7 +39,7 @@ export default function AdminLoginPage() {
       const data = await res.json()
       setError(data.error || 'Falsches Passwort')
       setLoading(false)
-    } catch (err) {
+    } catch {
       setError('Verbindungsfehler. Versuche es später erneut.')
       setLoading(false)
     }

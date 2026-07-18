@@ -64,7 +64,7 @@ export default function DatenschutzPage() {
             <p>
               Zur Anzeige unseres Standorts binden wir eine Karte von Google Maps ein (Google
               Ireland Limited). Die Karte wird nicht automatisch geladen, sondern erst, wenn Sie
-              aktiv auf „Karte laden" klicken. Erst dann kann Google Daten über Ihre Nutzung
+              aktiv auf „Karte laden“ klicken. Erst dann kann Google Daten über Ihre Nutzung
               verarbeiten, ggf. auch außerhalb der EU. Rechtsgrundlage ist Ihre Einwilligung durch
               den Klick (Art. 6 Abs. 1 lit. a DSGVO). Weitere Infos:{' '}
               <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
