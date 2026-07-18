@@ -305,6 +305,47 @@ Screenshot gegengeprüft. **Lehre für künftige Dependency-Installs**: nach jed
 `"pnpm"`-Legacy-Felder prüfen, die nicht mehr zur Lockfile passen könnten — lokales
 `--no-frozen-lockfile` verschleiert das zuverlässig bis zum Vercel-Build.
 
+## Dependabot-Fix: 20 offene Alerts behoben (undici + postcss)
+
+Auslöser: GitHub meldete 20 offene Alerts (6 hoch, 10 mittel, 4 niedrig), alle in
+`undici` (WebSocket-DoS, HTTP-Smuggling, Header-Injection, unbounded decompression)
+und `postcss` (XSS via unescaped `</style>`). Kein einfaches `pnpm update`, da beide
+Pakete unterschiedliche Root Causes hatten:
+
+- **undici@5.29.0** (verwundbar) kam ausschließlich von `@vercel/blob@0.27.3`
+  (`dependencies.undici: ^5.28.4`). Fix: `@vercel/blob` auf `2.6.1` gebumpt — ab
+  Version 2.1.0 deklariert das Paket `undici: ^6.23.0`, löst damit automatisch auf
+  eine gepatchte 6.x-Version auf, kein Override nötig. **Vor dem Bump verifiziert**
+  (0.x→2.x ist ein Major-Sprung): Laut Changelog des Pakets brachte 1.0.0 zwei
+  Breaking Changes (`addRandomSuffix` jetzt `false` per Default, `allowOverwrite`
+  jetzt für Überschreiben erforderlich) — `lib/vehicle-store.ts` und
+  `app/api/admin/upload/route.ts` setzen beide Flags bereits explizit passend zur
+  neuen API, `storeId`-Nutzung unverändert kompatibel. Zusätzlich `tsc --noEmit`
+  isoliert laufen lassen (da `next.config.mjs` `ignoreBuildErrors: true` hat und
+  ein grüner `next build` daher keine Typkompatibilität beweist) — sauber.
+- **postcss@8.4.31** (verwundbar) ist fest in `next@16.2.6` selbst eingebettet
+  (exakte Versionsangabe, kein Range). Fix: Override in `pnpm-workspace.yaml` →
+  `overrides: postcss: 8.5.16` (matcht die Version, die im Rest des Baums ohnehin
+  schon lief, dadurch nur noch eine statt zwei postcss-Versionen im Tree) — exakt
+  dasselbe Muster wie der bestehende `hono`-Override.
+- **Nebenfund**: eine git-getrackte `package-lock.json` lag parallel zur
+  `pnpm-lock.yaml` im Projekt (reines pnpm-Projekt, keine npm-Nutzung im
+  Skript-Setup) und verdoppelte die Dependabot-Meldungen künstlich auf 20 statt
+  real 10. Entfernt, `.gitignore` ergänzt.
+- Es existierte bereits ein offener Dependabot-PR mit demselben undici/blob-Bump
+  (`dependabot/npm_and_yarn/multi-3c2b2a488c`). Dessen Vercel-Preview war zwar grün,
+  das beweist wegen `ignoreBuildErrors: true` aber keine Typkompatibilität — deshalb
+  eigener, vollständig verifizierter Fix (inkl. postcss + Lockfile-Cleanup, was der
+  PR nicht abgedeckt hätte) statt blindem Merge. PR nach dem eigenen Fix als
+  überflüssig geschlossen.
+- Verifiziert: isolierte Kopie, `pnpm install --frozen-lockfile` (Vercel-CI-Modus)
+  sauber, `pnpm run build` sauber (24 Routen), `npx eslint .` 0 Errors, `tsc --noEmit`
+  sauber, lokaler Server-Smoke-Test (kein Styling-/Konsolenfehler durch den
+  postcss-Bump). Live auf Production verifiziert: Deployment READY, Fahrzeugfotos
+  laden weiterhin korrekt über die neue `@vercel/blob`-API (echter Runtime-Test der
+  `storeId`/`list`/`put`-Aufrufe, nicht nur der lokale Blob-Fallback). GitHub
+  Dependabot bestätigt direkt nach dem Push: 0 offene Alerts.
+
 ## Frühere Runden (Kurzfassung)
 
 - **Runde 6**: E-Mail-Anfrage-Option (Ankauf + Finanzierungsrechner) neben WhatsApp,
@@ -349,16 +390,13 @@ Screenshot gegengeprüft. **Lehre für künftige Dependency-Installs**: nach jed
 11. Weitere `Vehicle.accidentFree`-Flags nachtragen, sobald der Kunde für weitere
     Fahrzeuge den Unfallfrei-Status bestätigt (aktuell nur 4 von 37, exakt die vom
     mobile.de-Inserat bereits ausgewiesenen — nicht großzügiger raten).
-12. 20 bestehende Dependabot-Meldungen (undici + postcss, Runtime-Scope) — bewusst nicht
-    in dieser Session gefixt, um nicht angefragten Scope zu vermeiden, als eigener Task
-    geflaggt. Ein Dependabot-PR dafür existiert bereits (`dependabot/npm_and_yarn/multi-3c2b2a488c`,
-    aktualisiert `undici`+`@vercel/blob`) — Merge ist eine eigene Entscheidung, nicht
-    automatisch durchführen.
-13. PageSpeed-Insights-Zahlen weiterhin nicht messbar (Tooling-Blocker in der Sandbox,
+12. PageSpeed-Insights-Zahlen weiterhin nicht messbar (Tooling-Blocker in der Sandbox,
     kein Site-Defekt) — bei Gelegenheit von außerhalb der Sandbox nachholen.
 
 **Erledigt in Runde 9 Batch 2+3** (ehemals hier gelistet): ESLint-Dependency nachgerüstet,
 Fahrzeugvergleich, Merkliste-WhatsApp-Share, Stand:Datum-Anzeige — siehe Abschnitt oben.
+**Erledigt danach**: alle 20 Dependabot-Alerts (undici + postcss) behoben, siehe Abschnitt
+"Dependabot-Fix" oben.
 
 ## Wichtige Konventionen im Code
 
