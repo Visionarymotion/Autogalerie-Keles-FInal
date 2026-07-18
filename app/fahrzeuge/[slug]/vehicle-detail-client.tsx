@@ -5,10 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {
   ArrowLeft, Calendar, Gauge, Fuel, Zap, Settings, Users,
-  Phone, Mail, ImageOff, ChevronLeft, ChevronRight,
+  Phone, Mail, ImageOff, ChevronLeft, ChevronRight, ShieldCheck,
 } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 import { formatPrice, formatKm, type Vehicle } from '@/lib/vehicles-data'
+import { estimateCardMonthlyPayment } from '@/lib/financing'
 
 function WhatsAppIcon({ size = 13 }: { size?: number }) {
   return (
@@ -22,6 +23,7 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
   const [activePhoto, setActivePhoto] = useState(0)
   const hasPhotos = vehicle.photos.length > 0
   const waMessage = `Hallo, ich interessiere mich für den ${vehicle.brand} ${vehicle.model} für ${formatPrice(vehicle.price)}.`
+  const monthlyEstimate = Math.round(estimateCardMonthlyPayment(vehicle.price))
 
   const specs = [
     { label: 'Erstzulassung', value: vehicle.firstRegistration, icon: Calendar },
@@ -106,7 +108,15 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
 
           {/* Description */}
           <div className="mt-8">
-            <h2 className="text-[13px] font-bold uppercase tracking-widest text-foreground mb-3">Beschreibung</h2>
+            <div className="flex items-center justify-between gap-3 mb-3">
+              <h2 className="text-[13px] font-bold uppercase tracking-widest text-foreground">Beschreibung</h2>
+              {vehicle.accidentFree && (
+                <span className="inline-flex items-center gap-1.5 bg-dark/85 text-white text-[10.5px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-sm border border-white/10 flex-shrink-0">
+                  <ShieldCheck size={12} strokeWidth={2} className="text-[#c7c9cc]" />
+                  Unfallfrei
+                </span>
+              )}
+            </div>
             <p className="text-[14px] text-muted-foreground leading-relaxed">{vehicle.description}</p>
           </div>
 
@@ -146,7 +156,7 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
                 href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(waMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="whatsapp-pulse w-full flex items-center justify-center gap-2 py-3.5 bg-[#25D366] text-white text-[13px] font-semibold tracking-wide rounded-lg hover:bg-[#22bf5d] transition-all duration-300"
+                className="whatsapp-pulse w-full flex items-center justify-center gap-2 py-3.5 bg-[#178048] text-white text-[13px] font-semibold tracking-wide rounded-lg hover:bg-[#136339] transition-all duration-300"
               >
                 <WhatsAppIcon size={16} />
                 Per WhatsApp anfragen
@@ -168,13 +178,43 @@ export default function VehicleDetailClient({ vehicle }: { vehicle: Vehicle }) {
             </div>
 
             <div className="mt-6 pt-6 border-t border-border">
+              {monthlyEstimate > 0 && (
+                <p className="text-[13px] font-semibold text-foreground mb-1.5">
+                  Finanzierung ab {formatPrice(monthlyEstimate)}/mtl.<span className="text-muted-foreground font-normal">*</span>
+                </p>
+              )}
               <p className="text-[11.5px] text-muted-foreground leading-relaxed">
-                Finanzierung möglich – fragen Sie uns nach individuellen Konditionen für dieses Fahrzeug.
+                {monthlyEstimate > 0
+                  ? '*0 € Anzahlung, 36 Monate, 5,9 % eff. Jahreszins, unverbindliches Rechenbeispiel – fragen Sie uns nach individuellen Konditionen.'
+                  : 'Finanzierung möglich – fragen Sie uns nach individuellen Konditionen für dieses Fahrzeug.'}
               </p>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Sticky Mobile-CTA: Preis + WhatsApp ohne Scroll erreichbar (Desktop-Sidebar ist bereits lg:sticky) */}
+      <div
+        className="sticky-mobile-cta lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border px-4 py-3 flex items-center gap-3"
+        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}
+      >
+        <div className="flex-1 min-w-0">
+          <p className="text-[17px] font-[var(--font-heading)] font-bold text-foreground leading-none truncate">{formatPrice(vehicle.price)}</p>
+          {monthlyEstimate > 0 && (
+            <p className="text-[10.5px] text-muted-foreground mt-1">ab {formatPrice(monthlyEstimate)}/mtl.*</p>
+          )}
+        </div>
+        <a
+          href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(waMessage)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-shrink-0 flex items-center justify-center gap-2 px-5 py-3 bg-[#178048] text-white text-[12.5px] font-semibold tracking-wide rounded-lg hover:bg-[#136339] transition-colors duration-300"
+        >
+          <WhatsAppIcon size={15} />
+          Anfragen
+        </a>
+      </div>
+      <div className="lg:hidden h-[76px]" aria-hidden="true" />
     </div>
   )
 }
