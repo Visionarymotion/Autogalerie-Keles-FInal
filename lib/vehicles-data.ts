@@ -27,6 +27,11 @@
  *   liefert oder mobile.de-Galerien einzeln abgerufen werden.
  */
 
+// Echtes Abrufdatum der mobile.de-Daten (siehe Dateikopf oben) – als
+// Konstante statt hartkodiert an jeder Anzeigestelle, damit sich der
+// Wert beim nächsten echten Datenabgleich nur an einer Stelle ändert.
+export const DATA_SNAPSHOT_DATE = '04.07.2026'
+
 export type Vehicle = {
   id: number
   slug: string

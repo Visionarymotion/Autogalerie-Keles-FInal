@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Fuel, Gauge, Calendar, Zap, ArrowRight, ExternalLink, ImageOff } from 'lucide-react'
+import { Fuel, Gauge, Zap, ArrowRight, ExternalLink, ImageOff } from 'lucide-react'
 import { siteConfig } from '@/lib/site-config'
 import { getFeaturedVehicles } from '@/lib/vehicle-store'
-import { formatPrice, formatKm, type Vehicle } from '@/lib/vehicles-data'
+import { formatPrice, formatKm, DATA_SNAPSHOT_DATE, type Vehicle } from '@/lib/vehicles-data'
 import { Reveal } from '@/components/reveal'
 
 function WhatsAppIcon({ size = 13 }: { size?: number }) {
@@ -64,6 +64,7 @@ function CarCard({ car }: { car: Vehicle }) {
               {car.powerPs} PS
             </span>
           </div>
+          <p className="text-[9.5px] text-muted-foreground/50 mt-2">Stand: {DATA_SNAPSHOT_DATE}</p>
 
           <span className="mt-4 flex items-center justify-center gap-2 py-2.5 bg-surface border border-border text-[12px] font-semibold tracking-wide text-foreground rounded-sm group-hover:bg-[#c7c9cc] group-hover:text-background group-hover:border-[#c7c9cc] transition-all duration-300">
             Details ansehen

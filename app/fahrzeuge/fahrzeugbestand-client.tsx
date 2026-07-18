@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Fuel, Gauge, Calendar, Zap, ArrowRight, ImageOff, SlidersHorizontal, X, Heart, ShieldCheck } from 'lucide-react'
-import { formatPrice, formatKm, type Vehicle } from '@/lib/vehicles-data'
+import { Fuel, Gauge, Calendar, Zap, ArrowRight, ImageOff, SlidersHorizontal, X, Heart, ShieldCheck, Scale } from 'lucide-react'
+import { formatPrice, formatKm, DATA_SNAPSHOT_DATE, type Vehicle } from '@/lib/vehicles-data'
 import { siteConfig } from '@/lib/site-config'
 import { estimateCardMonthlyPayment } from '@/lib/financing'
 
@@ -21,6 +21,19 @@ function sortVehicles(list: Vehicle[], sort: SortKey) {
   }
 }
 
+// Baut eine vorformulierte WhatsApp-Nachricht aus der gemerkten Fahrzeugliste,
+// statt dass der Nutzer jedes Fahrzeug einzeln anfragen muss.
+function buildMerklisteWhatsAppHref(vehicles: Vehicle[], favIds: number[]): string {
+  const favVehicles = favIds
+    .map((id) => vehicles.find((v) => v.id === id))
+    .filter((v): v is Vehicle => Boolean(v))
+  const lines = favVehicles.map(
+    (v) => `• ${v.brand} ${v.model} – ${formatPrice(v.price)} – ${siteConfig.url}/fahrzeuge/${v.slug}`,
+  )
+  const message = `Hallo, folgende Fahrzeuge interessieren mich:\n\n${lines.join('\n')}`
+  return `https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(message)}`
+}
+
 function WhatsAppIcon({ size = 13 }: { size?: number }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true">
@@ -29,7 +42,16 @@ function WhatsAppIcon({ size = 13 }: { size?: number }) {
   )
 }
 
-function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; onToggleFav: (id: number) => void }) {
+function CarCard({
+  car, isFav, onToggleFav, isComparing, onToggleCompare, compareDisabled,
+}: {
+  car: Vehicle
+  isFav: boolean
+  onToggleFav: (id: number) => void
+  isComparing: boolean
+  onToggleCompare: (id: number) => void
+  compareDisabled: boolean
+}) {
   const photo = car.photos[0] ?? null
   const waHref = `https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(`Hallo, ich interessiere mich für den ${car.brand} ${car.model}.`)}`
   const monthlyEstimate = Math.round(estimateCardMonthlyPayment(car.price))
@@ -117,6 +139,7 @@ function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; on
             <span className="flex items-center gap-1.5 text-[11px] text-muted-foreground"><Fuel size={11} strokeWidth={1.8} className="text-[#c7c9cc]" />{car.fuel}</span>
             <span className="flex items-center gap-1.5 text-[11px] text-muted-foreground"><Zap size={11} strokeWidth={1.8} className="text-[#c7c9cc]" />{car.powerPs} PS</span>
           </div>
+          <p className="text-[9.5px] text-muted-foreground/50 mt-2">Stand: {DATA_SNAPSHOT_DATE}</p>
           <span className="mt-4 flex items-center justify-center gap-2 py-2.5 bg-surface border border-border text-[12px] font-semibold tracking-wide text-foreground rounded-sm group-hover:bg-[#c7c9cc] group-hover:text-background group-hover:border-[#c7c9cc] transition-all duration-300">
             Details ansehen
             <ArrowRight size={13} strokeWidth={2} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -143,6 +166,23 @@ function CarCard({ car, isFav, onToggleFav }: { car: Vehicle; isFav: boolean; on
       >
         <Heart size={15} strokeWidth={2} fill={isFav ? 'currentColor' : 'none'} />
       </button>
+      <button
+        type="button"
+        onClick={() => onToggleCompare(car.id)}
+        disabled={compareDisabled}
+        aria-pressed={isComparing}
+        aria-label={isComparing ? `${car.brand} ${car.model} vom Vergleich entfernen` : `${car.brand} ${car.model} zum Vergleich hinzufügen`}
+        title={compareDisabled ? 'Maximal 3 Fahrzeuge vergleichen' : undefined}
+        className={`absolute top-[6.75rem] right-3 z-10 flex items-center justify-center w-9 h-9 rounded-full border shadow-lg transition-colors duration-300 ${
+          isComparing
+            ? 'bg-[#c7c9cc] border-[#c7c9cc] text-background'
+            : compareDisabled
+              ? 'bg-dark/50 border-white/10 text-white/30 cursor-not-allowed'
+              : 'bg-dark/70 border-white/25 text-white/85 hover:text-white hover:border-[#c7c9cc]/70'
+        }`}
+      >
+        <Scale size={14} strokeWidth={2} />
+      </button>
     </div>
   )
 }
@@ -155,6 +195,16 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [favs, setFavs] = useState<number[]>([])
   const [onlyFavs, setOnlyFavs] = useState(false)
+  const [compareIds, setCompareIds] = useState<number[]>([])
+  const [compareOpen, setCompareOpen] = useState(false)
+
+  const toggleCompare = (id: number) => {
+    setCompareIds((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id)
+      if (prev.length >= 3) return prev
+      return [...prev, id]
+    })
+  }
 
   // Merkliste liegt nur lokal im Browser (localStorage) – keine
   // Server-Speicherung, keine personenbezogenen Daten.
@@ -312,7 +362,7 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
             </select>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-6 flex flex-wrap items-center gap-2.5">
             <button
               type="button"
               onClick={() => setOnlyFavs((v) => !v)}
@@ -324,11 +374,32 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
               <Heart size={13} strokeWidth={2} fill={onlyFavs ? 'currentColor' : 'none'} />
               Merkliste{favs.length > 0 ? ` (${favs.length})` : ''}
             </button>
+            {favs.length > 0 && (
+              <a
+                href={buildMerklisteWhatsAppHref(vehicles, favs)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[#178048] text-white text-[12px] font-semibold tracking-wide hover:bg-[#136339] transition-colors duration-300"
+              >
+                <WhatsAppIcon size={13} />
+                Merkliste per WhatsApp teilen
+              </a>
+            )}
           </div>
 
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-              {filtered.map((car) => <CarCard key={car.id} car={car} isFav={favs.includes(car.id)} onToggleFav={toggleFav} />)}
+              {filtered.map((car) => (
+                <CarCard
+                  key={car.id}
+                  car={car}
+                  isFav={favs.includes(car.id)}
+                  onToggleFav={toggleFav}
+                  isComparing={compareIds.includes(car.id)}
+                  onToggleCompare={toggleCompare}
+                  compareDisabled={compareIds.length >= 3 && !compareIds.includes(car.id)}
+                />
+              ))}
             </div>
           ) : (
             <div className="text-center py-20 text-muted-foreground text-[13.5px]">
@@ -336,6 +407,140 @@ export default function FahrzeugbestandClient({ vehicles }: { vehicles: Vehicle[
             </div>
           )}
         </div>
+      </div>
+
+      {compareIds.length >= 2 && !compareOpen && (
+        <button
+          type="button"
+          onClick={() => setCompareOpen(true)}
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2.5 px-6 py-3.5 bg-[#c7c9cc] text-background text-[13px] font-semibold tracking-wide rounded-full shadow-2xl hover:bg-[#c7c9cc]/90 transition-all duration-300"
+        >
+          <Scale size={16} strokeWidth={2} />
+          {compareIds.length} Fahrzeuge vergleichen
+        </button>
+      )}
+
+      {compareOpen && (
+        <CompareModal
+          vehicles={compareIds.map((id) => vehicles.find((v) => v.id === id)).filter((v): v is Vehicle => Boolean(v))}
+          onClose={() => setCompareOpen(false)}
+          onRemove={(id) => setCompareIds((prev) => prev.filter((x) => x !== id))}
+        />
+      )}
+    </div>
+  )
+}
+
+function CompareModal({
+  vehicles, onClose, onRemove,
+}: {
+  vehicles: Vehicle[]
+  onClose: () => void
+  onRemove: (id: number) => void
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  const rows: { label: string; render: (v: Vehicle) => ReactNode }[] = [
+    { label: 'Preis', render: (v) => <span className="text-[16px] font-bold text-foreground">{formatPrice(v.price)}</span> },
+    {
+      label: 'Finanzierung',
+      render: (v) => {
+        const rate = Math.round(estimateCardMonthlyPayment(v.price))
+        return rate > 0 ? <span>ab {formatPrice(rate)}/mtl.*</span> : <span>–</span>
+      },
+    },
+    { label: 'Erstzulassung', render: (v) => <span>{v.firstRegistration}</span> },
+    { label: 'Kilometerstand', render: (v) => <span>{formatKm(v.km)}</span> },
+    { label: 'Leistung', render: (v) => <span>{v.powerKw} kW ({v.powerPs} PS)</span> },
+    { label: 'Kraftstoff', render: (v) => <span>{v.fuel}</span> },
+    { label: 'Getriebe', render: (v) => <span>{v.transmission ?? '–'}</span> },
+    {
+      label: 'Unfallfrei',
+      render: (v) => v.accidentFree
+        ? <span className="inline-flex items-center gap-1 text-[#c7c9cc]"><ShieldCheck size={13} strokeWidth={2} />Ja</span>
+        : <span className="text-muted-foreground">unbekannt</span>,
+    },
+  ]
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
+      <div className="relative bg-card border border-border rounded-t-2xl sm:rounded-2xl w-full sm:max-w-4xl max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 bg-card border-b border-border">
+          <h2 className="text-[15px] font-[var(--font-heading)] font-semibold text-foreground">Fahrzeugvergleich</h2>
+          <button type="button" onClick={onClose} aria-label="Vergleich schließen" className="text-muted-foreground hover:text-foreground transition-colors">
+            <X size={20} strokeWidth={2} />
+          </button>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full table-fixed" style={{ minWidth: `${140 + vehicles.length * 190}px` }}>
+            <thead>
+              <tr>
+                <th className="w-[140px]" />
+                {vehicles.map((v) => (
+                  <th key={v.id} className="w-[190px] p-4 text-left align-top">
+                    <div className="relative aspect-[16/10] w-full rounded-lg overflow-hidden bg-surface mb-3">
+                      {v.photos[0] ? (
+                        <Image src={v.photos[0]} alt={`${v.brand} ${v.model}`} fill unoptimized className="object-cover" />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <ImageOff size={20} strokeWidth={1.3} className="text-muted-foreground/40" />
+                        </div>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => onRemove(v.id)}
+                        aria-label={`${v.brand} ${v.model} aus Vergleich entfernen`}
+                        className="absolute top-2 right-2 w-7 h-7 rounded-full bg-dark/80 text-white flex items-center justify-center hover:bg-dark transition-colors"
+                      >
+                        <X size={14} strokeWidth={2} />
+                      </button>
+                    </div>
+                    <p className="text-[9px] tracking-[0.2em] text-[#c7c9cc] uppercase font-semibold mb-0.5">{v.brand}</p>
+                    <p className="text-[13px] font-semibold text-foreground leading-snug mb-3">{v.model}</p>
+                    <a
+                      href={`https://wa.me/${siteConfig.contact.ctaWhatsapp}?text=${encodeURIComponent(`Hallo, ich interessiere mich für den ${v.brand} ${v.model}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-1.5 py-2 bg-[#178048] hover:bg-[#136339] text-white text-[11px] font-semibold rounded-md transition-colors duration-300 mb-1.5"
+                    >
+                      <WhatsAppIcon size={12} />
+                      Anfragen
+                    </a>
+                    <Link
+                      href={`/fahrzeuge/${v.slug}`}
+                      className="flex items-center justify-center gap-1.5 py-2 border border-border text-foreground text-[11px] font-semibold rounded-md hover:border-[#c7c9cc]/50 transition-colors duration-300"
+                    >
+                      Details
+                    </Link>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, i) => (
+                <tr key={row.label} className={i % 2 === 0 ? 'bg-surface/50' : ''}>
+                  <td className="p-4 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground align-top">{row.label}</td>
+                  {vehicles.map((v) => (
+                    <td key={v.id} className="p-4 text-[13px] text-foreground align-top">{row.render(v)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="px-5 pb-5 text-[10.5px] text-muted-foreground leading-relaxed">
+          *Finanzierungsbeispiel: 0 € Anzahlung, 36 Monate, 5,9 % eff. Jahreszins, unverbindlich.
+        </p>
       </div>
     </div>
   )
