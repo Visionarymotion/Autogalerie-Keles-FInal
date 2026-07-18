@@ -206,6 +206,59 @@ funktionieren".
   in Arbeit ist. Vor eigenem Start unbedingt mit der anderen Session/Vision abgleichen,
   um keine Doppelarbeit zu bauen.
 
+## Runde 9 (Cowork, abgeschlossen, live verifiziert)
+
+Auslöser: Vision bat um kompletten Vollaudit ("was fällt dir auf, was würdest du als
+Senior besser machen, sind wir 11/10") — echte Web-Recherche zu Konkurrenz/Rechtslage,
+keine reine Code-Analyse. Danach alle Funde sofort umgesetzt. 9 Commits.
+
+**Zwei kritische Funde aus der Recherche:**
+1. **EU-OS-Streitschlichtungslink war ein aktives Abmahnrisiko**: Die Plattform wurde
+   zum 20.07.2025 abgeschaltet (IHK-Quellen), die Verlinkungspflicht ist seither
+   entfallen — wer den Link trotzdem zeigt, riskiert eine Abmahnung nach §§ 3, 5 UWG
+   (suggeriert ein nicht mehr existierendes Verfahren). Aus dem Impressum entfernt.
+2. **WCAG-Kontrastfehler auf praktisch allen Haupt-CTAs**: Rechnerisch per
+   `getComputedStyle()` geprüft (nicht nur optisch). Zwei systemische Ursachen:
+   - WhatsApp-Grün `#25D366` mit weißer Schrift: 1.98:1 (nötig 4.5:1). Auf `#178048`
+     (Hover `#136339`) umgestellt, beides echte WhatsApp-Markenfarben — 4.98:1.
+   - `bg-gold text-white` (die "gold"-Variable zeigt seit Runde 5 auf den Silber-Akzent
+     `#c7c9cc`, nicht mehr auf echtes Gold): 1.66:1. Betraf 9 Stellen sitweit (Hero-CTA,
+     Kontaktformular-Submit, "Karte laden", Ankauf-Schritt-Badges, Finanzierungsrechner-
+     Laufzeit-Auswahl, Merkliste-Toggles, Leistungs-Icons). Fix: `text-primary-foreground`
+     (`#0e0e0e`) statt `text-white` — dieses Token war im Design-System bereits als
+     korrektes Pairing für `--primary`/`bg-gold` definiert (siehe `components/ui/button.tsx`),
+     nur nirgends sonst benutzt worden. Jetzt 11.6:1.
+
+**Weitere Funde/Fixes:**
+- **"Unfallfrei" war nur Fließtext, kein Trust-Signal**: mobile.de zeigt es als Tag direkt
+  auf der Karte, unsere Seite hatte es nur in 4 von 37 Beschreibungstexten versteckt (die
+  einzigen 4 Fahrzeuge, bei denen mobile.de es auch tatsächlich auswies — nicht erfunden,
+  nur strukturiert). Neues `Vehicle.accidentFree?: boolean`-Feld, Badge auf Karte +
+  Detailseite, `additionalProperty`-PropertyValue im Car-JSON-LD.
+- **Preis/CTA auf der Fahrzeug-Detailseite saß auf Mobile zu tief** (erst nach Galerie +
+  Beschreibung + Datenkarten, kompletter Scroll nötig). Neue Sticky-Bottom-Bar
+  (`lg:hidden`, Preis + Finanzierungsrate + WhatsApp-Button) ohne Scroll sichtbar.
+  **Kollisionsfix nötig**: der globale schwebende WhatsApp-Button
+  (`components/whatsapp-float.tsx`) hätte die neue Bar überlappt — per
+  `body:has(.sticky-mobile-cta)`-CSS-Selektor (nur < lg-Breakpoint) ausgeblendet, sobald
+  die Sticky-Bar im DOM ist. Reiner CSS-Fix, keine JS-Koordination zwischen den beiden
+  unabhängigen Komponenten nötig.
+- **Finanzierungsrate fehlte auf der Detailseite** (nur generischer "fragen Sie uns"-Text),
+  obwohl die Karte längst "ab X €/mtl." zeigte. Jetzt konsistent auf beiden Seiten.
+- **Kein Marken-Fokusring**: Tastatur-Fokus zeigte nur den nackten Browser-Default. Jetzt
+  global `:focus-visible { outline: 2px solid #c7c9cc }` in `globals.css`.
+- **Adresse im Impressum verifiziert**: Drittanbieter-Verzeichnisse (11880, ein alter
+  Zeitungsartikel) nennen "Martin-Pauls-Straße" — das mobile.de-Händlerprofil selbst
+  (vom Kunden gepflegt, maßgeblich) bestätigt "Am Sieltief 2" exakt wie im Impressum.
+  Kein Handlungsbedarf, Drittanbieter-Einträge sind veraltet.
+
+**Recherche-Ergebnis (kein Code-Fix, zur Kenntnis)**: Zertifizierte Gebrauchtwagen-
+Programme (VW, BMW, MINI, Spoticar) bieten inzwischen standardmäßig 360°-Fotos/-Videos
+und Online-Probefahrt-Buchung. Für einen inhabergeführten Einzelhändler als Vollausbau
+unrealistisch (siehe Runde-7-Einschätzung zur Terminbuchung), aber ein kurzes
+Rundgang-Video pro Fahrzeug wäre ein realistischer nächster Schritt, sobald der Kunde
+das liefern kann.
+
 ## Frühere Runden (Kurzfassung)
 
 - **Runde 6**: E-Mail-Anfrage-Option (Ankauf + Finanzierungsrechner) neben WhatsApp,
@@ -223,7 +276,7 @@ funktionieren".
 - **Runde 1**: Scroll-Reveal-Komponente, Hero-Klarheit + Ken-Burns-Effekt, SEO-Fundament
   (robots/sitemap/`metadataBase`/llms.txt, JSON-LD-Domain-Fix).
 
-## Offene Punkte (priorisiert für die nächste Session, Stand nach Runde 8)
+## Offene Punkte (priorisiert für die nächste Session, Stand nach Runde 9)
 
 1. **mobile.de-Live-Sync**: blockiert auf Händler-Schnittstellen-Zugang vom Kunden
    (API-Key/Zugangsdaten) — kann niemand ohne diese Daten bauen, siehe Runde 8.
@@ -244,6 +297,12 @@ funktionieren".
 8. `typescript.ignoreBuildErrors: true` als separate Aufräum-Session angehen, falls
    gewünscht (Umfang der bereits vorhandenen Typfehler ist unbekannt, da nie geprüft).
 9. Ratgeber-/Content-Bereich für Local SEO, echte Kundenvideos — mittelfristig.
+10. Kurzes Rundgang-Video pro Fahrzeug (Handy-Aufnahme reicht) als realistische
+    Annäherung an die 360°-Ansichten der zertifizierten Gebrauchtwagen-Programme der
+    Hersteller (Runde-9-Konkurrenzrecherche) — braucht Material vom Kunden.
+11. Weitere `Vehicle.accidentFree`-Flags nachtragen, sobald der Kunde für weitere
+    Fahrzeuge den Unfallfrei-Status bestätigt (aktuell nur 4 von 37, exakt die vom
+    mobile.de-Inserat bereits ausgewiesenen — nicht großzügiger raten).
 10. ESLint ist im Projekt referenziert (`npm run lint`), aber nicht als Dependency
     installiert — `pnpm run lint` schlägt mit "command not found" fehl. Vor der
     nächsten größeren Änderung nachrüsten, damit das Qualitäts-Gate wieder vollständig
