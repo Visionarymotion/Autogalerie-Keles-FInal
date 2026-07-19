@@ -112,7 +112,7 @@ export default function Contact() {
               <WhatsAppIcon size={16} />
             </div>
             <div>
-              <p className="text-[11px] text-white/75 uppercase tracking-wide">WhatsApp</p>
+              <p className="text-[11px] text-white uppercase tracking-wide">WhatsApp</p>
               <p className="text-[13px] font-semibold text-white">Jetzt schreiben</p>
             </div>
           </a>
@@ -199,7 +199,7 @@ export default function Contact() {
                       )}
                       {h.day}
                     </span>
-                    <span className={`text-[13px] ${h.time === 'Geschlossen' ? 'text-muted-foreground/50' : i === todayIndex ? 'text-gold font-semibold' : 'text-muted-foreground'}`}>
+                    <span className={`text-[13px] ${h.time === 'Geschlossen' ? 'text-muted-foreground' : i === todayIndex ? 'text-gold font-semibold' : 'text-muted-foreground'}`}>
                       {h.time}
                     </span>
                   </li>
@@ -328,7 +328,7 @@ export default function Contact() {
                         {loading ? 'Senden...' : 'Per WhatsApp senden'}
                       </button>
                       <p className="text-[11px] text-muted-foreground">
-                        Öffnet WhatsApp mit Ihrer Nachricht – keine Speicherung auf dieser Website. <a href="/datenschutz" className="text-gold hover:underline">Datenschutz</a>
+                        Öffnet WhatsApp mit Ihrer Nachricht – keine Speicherung auf dieser Website. <a href="/datenschutz" className="text-gold underline underline-offset-2">Datenschutz</a>
                       </p>
                     </div>
                   </form>

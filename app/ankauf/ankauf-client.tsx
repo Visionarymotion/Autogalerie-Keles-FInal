@@ -212,7 +212,7 @@ export default function AnkaufClient() {
           <p className="text-[11px] text-muted-foreground/80 leading-relaxed mt-4 text-center">
             Beim Absenden öffnet sich WhatsApp bzw. Ihr E-Mail-Programm mit Ihrer vorbereiteten Nachricht – Sie sehen alles vor dem
             Senden und Ihre Angaben werden nicht auf unserer Website gespeichert. Details in der{' '}
-            <Link href="/datenschutz" className="text-gold hover:underline">Datenschutzerklärung</Link>.
+            <Link href="/datenschutz" className="text-gold underline underline-offset-2">Datenschutzerklärung</Link>.
           </p>
         </form>
       </Reveal>

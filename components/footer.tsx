@@ -69,7 +69,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <p className="text-[11px] tracking-widest text-white/40 uppercase mb-5 font-bold">Navigation</p>
+            <p className="text-[11px] tracking-widest text-white/70 uppercase mb-5 font-bold">Navigation</p>
             <ul className="space-y-3" aria-label="Footer Navigation">
               {[
                 { label: 'Startseite', href: '/' },
@@ -94,7 +94,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-[11px] tracking-widest text-white/40 uppercase mb-5 font-bold">Kontakt</p>
+            <p className="text-[11px] tracking-widest text-white/70 uppercase mb-5 font-bold">Kontakt</p>
             <ul className="space-y-4" aria-label="Kontaktinformationen">
               <li className="flex items-start gap-3">
                 <MapPin size={13} strokeWidth={1.8} className="text-gold mt-0.5 flex-shrink-0" />
@@ -117,7 +117,7 @@ export default function Footer() {
                 <Clock size={13} strokeWidth={1.8} className="text-gold mt-0.5 flex-shrink-0" />
                 <div className="text-[13px] text-white/55 leading-snug">
                   <div>Mo–Sa: 09:00–18:00</div>
-                  <div className="text-white/35 mb-1.5">So: Geschlossen</div>
+                  <div className="text-white/70 mb-1.5">So: Geschlossen</div>
                   <FooterStatusBadge status={status} />
                 </div>
               </li>
@@ -126,7 +126,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-white/30">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-white/70">
           <p>© {year} {siteConfig.name}. Alle Rechte vorbehalten.</p>
           <div className="flex items-center gap-6">
             <Link href="/impressum" className="hover:text-gold transition-colors">Impressum</Link>
@@ -135,10 +135,10 @@ export default function Footer() {
         </div>
 
         {/* Agentur-Credit */}
-        <div className="pt-4 text-center text-[11px] text-white/25">
+        <div className="pt-4 text-center text-[11px] text-white/70">
           Realisiert von
           <br />
-          <span className="font-bold text-white/40">Visionary Motion Digital</span>
+          <span className="font-bold text-white/85">Visionary Motion Digital</span>
         </div>
       </div>
     </footer>
